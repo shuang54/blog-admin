@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/main.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1646380363217,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1646383963975,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import router from './route'\n+import { createPinia } from 'pinia'\n \n const app = createApp(App)\n app.use(router)\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1646383987620,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import router from './route'\n import { createPinia } from 'pinia'\n-\n const app = createApp(App)\n app.use(router)\n+app.use(createPinia())\n app.mount('#app')\n"
+                }
+            ],
+            "date": 1646380363217,
+            "name": "Commit-0",
+            "content": "import { createApp } from 'vue'\nimport App from './App.vue'\nimport router from './route'\n\nconst app = createApp(App)\napp.use(router)\napp.mount('#app')\n"
+        }
+    ]
+}

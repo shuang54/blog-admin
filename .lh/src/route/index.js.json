@@ -1,0 +1,46 @@
+{
+    "sourceFile": "src/route/index.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1646380259106,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1646380271639,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,5 +8,6 @@\n       path: '/',\r\n       component: HelloWorld\r\n     },\r\n   ]\r\n-})\n\\ No newline at end of file\n+})\r\n+export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1646380478744,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { createRouter, createWebHistory } from 'vue-router'\r\n-import HelloWorld from '@/components/HelloWorld'\r\n+import HelloWorld from '@/components/HelloWorld.vue'\r\n const routerHistory = createWebHistory()\r\n const router = createRouter({\r\n   history: routerHistory,\r\n   routes: [\r\n"
+                },
+                {
+                    "date": 1646381631340,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { createRouter, createWebHistory } from 'vue-router'\r\n-import HelloWorld from '@/components/HelloWorld.vue'\r\n+import HelloWorld from '../components/HelloWorld.vue'\r\n const routerHistory = createWebHistory()\r\n const router = createRouter({\r\n   history: routerHistory,\r\n   routes: [\r\n"
+                },
+                {
+                    "date": 1646381654230,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { createRouter, createWebHistory } from 'vue-router'\r\n-import HelloWorld from '../components/HelloWorld.vue'\r\n+import HelloWorld from '../components/HelloWorld'\r\n const routerHistory = createWebHistory()\r\n const router = createRouter({\r\n   history: routerHistory,\r\n   routes: [\r\n"
+                },
+                {
+                    "date": 1646383797332,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { createRouter, createWebHistory } from 'vue-router'\r\n-import HelloWorld from '../components/HelloWorld'\r\n+import HelloWorld from '@/components/HelloWorld.vue'\r\n const routerHistory = createWebHistory()\r\n const router = createRouter({\r\n   history: routerHistory,\r\n   routes: [\r\n"
+                },
+                {
+                    "date": 1646383885794,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { createRouter, createWebHistory } from 'vue-router'\r\n-import HelloWorld from '@/components/HelloWorld.vue'\r\n+import HelloWorld from '../components/HelloWorld.vue'\r\n const routerHistory = createWebHistory()\r\n const router = createRouter({\r\n   history: routerHistory,\r\n   routes: [\r\n"
+                },
+                {
+                    "date": 1646384790910,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { createRouter, createWebHistory } from 'vue-router'\r\n-import HelloWorld from '../components/HelloWorld.vue'\r\n+import HelloWorld from '@/components/HelloWorld.vue'\r\n const routerHistory = createWebHistory()\r\n const router = createRouter({\r\n   history: routerHistory,\r\n   routes: [\r\n"
+                }
+            ],
+            "date": 1646380259106,
+            "name": "Commit-0",
+            "content": "import { createRouter, createWebHistory } from 'vue-router'\r\nimport HelloWorld from '@/components/HelloWorld'\r\nconst routerHistory = createWebHistory()\r\nconst router = createRouter({\r\n  history: routerHistory,\r\n  routes: [\r\n    {\r\n      path: '/',\r\n      component: HelloWorld\r\n    },\r\n  ]\r\n})"
+        }
+    ]
+}

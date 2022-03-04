@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/App.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1646380413199,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1646380413199,
+            "name": "Commit-0",
+            "content": "<script setup>\n// This starter template is using Vue 3 <script setup> SFCs\n// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup\nimport HelloWorld from './components/HelloWorld.vue'\n</script>\n\n<template>\n  <router-view></router-view>\n</template>\n\n<style>\n#app {\n  font-family: Avenir, Helvetica, Arial, sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  text-align: center;\n  color: #2c3e50;\n  margin-top: 60px;\n}\n</style>\n"
+        }
+    ]
+}

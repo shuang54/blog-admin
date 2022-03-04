@@ -1,0 +1,18 @@
+{
+    "sourceFile": "vite.config.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1646384783229,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1646384783229,
+            "name": "Commit-0",
+            "content": "import { defineConfig } from 'vite'\nimport vue from '@vitejs/plugin-vue'\nimport { resolve } from 'path'\n\nconst pathResolve = (dir) => resolve(__dirname, dir)\n\n// https://vitejs.dev/config/\nexport default defineConfig({\n  plugins: [vue()],\n  build: {\n    outDir: 'dist',     // 指定打包路径，默认为项目根目录下的 dist 目录\n    terserOptions: {\n      compress: {\n        keep_infinity: true,  // 防止 Infinity 被压缩成 1/0，这可能会导致 Chrome 上的性能问题\n        drop_console: true, // 生产环境去除 console\n        drop_debugger: true // 生产环境去除 debugger\n      },\n    },\n    chunkSizeWarningLimit: 1500 // chunk 大小警告的限制（以 kbs 为单位）\n  },\n  resolve: {\n    alias: {\n      '@': pathResolve('./src'), // 设置 `@` 指向 `src` 目录\n      views: pathResolve('./src/views'),\n      components: pathResolve('./src/components'),\n      assets: pathResolve('./src/assets'),\n    },\n  },\n  base: './', // 设置公共基础路径\n  server: {\n    port: 4000, // 设置服务启动端口号\n    open: true, // 设置服务启动时是否自动打开浏览器\n    cors: true, // 允许跨域\n\n    // 设置代理，根据我们项目实际情况配置\n    proxy: {\n      '/api': {\n        target: 'http://127.0.0.1:8000',\n        changeOrigin: true,\n        secure: false,\n        // rewrite: path => path.replace(/^/api /, '')\n      }\n    }\n  }\n})\n\n"
+        }
+    ]
+}
