@@ -1,12 +1,22 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 const pathResolve = (dir) => resolve(__dirname, dir)
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue(),
+  AutoImport({
+    resolvers: [ElementPlusResolver()],
+  }),
+  Components({
+    resolvers: [ElementPlusResolver()],
+  }),
+  ],
   build: {
     outDir: 'dist',     // 指定打包路径，默认为项目根目录下的 dist 目录
     terserOptions: {
@@ -34,7 +44,7 @@ export default defineConfig({
 
     // 设置代理，根据我们项目实际情况配置
     proxy: {
-      '/api': {
+      '/blog': {
         target: 'http://127.0.0.1:8000',
         changeOrigin: true,
         secure: false,

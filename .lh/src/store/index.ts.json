@@ -1,0 +1,62 @@
+{
+    "sourceFile": "src/store/index.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 11,
+            "patches": [
+                {
+                    "date": 1646392986930,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1646393006745,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n import { defineStore } from 'pinia'\r\n \r\n export const useHello = defineStore('hello', {\r\n-  state: () = {\r\n+  state: () => {\r\n+    return {\r\n \r\n+    }\r\n   }\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1646393020176,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,8 @@\n \r\n export const useHello = defineStore('hello', {\r\n   state: () => {\r\n     return {\r\n-\r\n+      helloWorld: 'helloWorld'\r\n     }\r\n   }\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1646393033706,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n \r\n export const useHello = defineStore('hello', {\r\n   state: () => {\r\n     return {\r\n-      helloWorld: 'helloWorld'\r\n+      helloWorld: 'helloWorld',\r\n     }\r\n-  }\r\n+  },\r\n+  getters:\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1646393040780,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,6 +5,8 @@\n     return {\r\n       helloWorld: 'helloWorld',\r\n     }\r\n   },\r\n-  getters:\r\n+  getters: {\r\n+    return \r\n+  }\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1646393066111,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,17 @@\n import { defineStore } from 'pinia'\r\n \r\n export const useHello = defineStore('hello', {\r\n+  // 状态\r\n   state: () => {\r\n     return {\r\n       helloWorld: 'helloWorld',\r\n     }\r\n   },\r\n+\r\n   getters: {\r\n-    return \r\n+\r\n+  },\r\n+  actions: {\r\n+\r\n   }\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1646393078582,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { defineStore } from 'pinia'\r\n \r\n export const useHello = defineStore('hello', {\r\n-  // 状态\r\n+  // 状态/数据\r\n   state: () => {\r\n     return {\r\n       helloWorld: 'helloWorld',\r\n     }\r\n"
+                },
+                {
+                    "date": 1646393109227,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,12 +6,13 @@\n     return {\r\n       helloWorld: 'helloWorld',\r\n     }\r\n   },\r\n-\r\n+  //\r\n   getters: {\r\n \r\n   },\r\n+  //\r\n   actions: {\r\n \r\n   }\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1646393134868,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,13 +6,13 @@\n     return {\r\n       helloWorld: 'helloWorld',\r\n     }\r\n   },\r\n-  //\r\n+\r\n   getters: {\r\n \r\n   },\r\n-  //\r\n+\r\n   actions: {\r\n \r\n   }\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1646394021214,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n   // 状态/数据\r\n   state: () => {\r\n     return {\r\n       helloWorld: 'helloWorld',\r\n+      count: 0\r\n     }\r\n   },\r\n \r\n   getters: {\r\n"
+                },
+                {
+                    "date": 1646394511037,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,7 +13,9 @@\n \r\n   },\r\n \r\n   actions: {\r\n-\r\n+    changeCount() {\r\n+      count\r\n+    }\r\n   }\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1646394536403,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,8 @@\n   },\r\n \r\n   actions: {\r\n     changeCount() {\r\n-      count\r\n+      this.count++\r\n     }\r\n   }\r\n })\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1646392986930,
+            "name": "Commit-0",
+            "content": "import { defineStore } from 'pinia'\r\n\r\nexport const useHello = defineStore('hello', {\r\n  state: () = {\r\n\r\n  }\r\n})"
+        }
+    ]
+}

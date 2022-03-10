@@ -3,11 +3,31 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 5,
             "patches": [
                 {
                     "date": 1646384783229,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1646385007229,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n     cors: true, // 允许跨域\n \n     // 设置代理，根据我们项目实际情况配置\n     proxy: {\n-      '/api': {\n+      '/blog': {\n         target: 'http://127.0.0.1:8000',\n         changeOrigin: true,\n         secure: false,\n         // rewrite: path => path.replace(/^/api /, '')\n"
+                },
+                {
+                    "date": 1646912538200,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n import { defineConfig } from 'vite'\n import vue from '@vitejs/plugin-vue'\n import { resolve } from 'path'\n+import AutoImport from 'unplugin-auto-import/vite'\n+import Components from 'unplugin-vue-components/vite'\n+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'\n \n const pathResolve = (dir) => resolve(__dirname, dir)\n \n // https://vitejs.dev/config/\n"
+                },
+                {
+                    "date": 1646913128663,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,16 @@\n const pathResolve = (dir) => resolve(__dirname, dir)\n \n // https://vitejs.dev/config/\n export default defineConfig({\n-  plugins: [vue()],\n+  plugins: [vue(),\n+  AutoImport({\n+    resolvers: [ElementPlusResolver()],\n+  }),\n+  Components({\n+    resolvers: [ElementPlusResolver()],\n+  }),\n+  ],\n   build: {\n     outDir: 'dist',     // 指定打包路径，默认为项目根目录下的 dist 目录\n     terserOptions: {\n       compress: {\n"
+                },
+                {
+                    "date": 1646917502762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import vue from '@vitejs/plugin-vue'\n import { resolve } from 'path'\n import AutoImport from 'unplugin-auto-import/vite'\n import Components from 'unplugin-vue-components/vite'\n+import viteCompression from 'vite-plugin-compression';\n import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'\n \n const pathResolve = (dir) => resolve(__dirname, dir)\n \n"
+                },
+                {
+                    "date": 1646917526740,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,8 @@\n import vue from '@vitejs/plugin-vue'\n import { resolve } from 'path'\n import AutoImport from 'unplugin-auto-import/vite'\n import Components from 'unplugin-vue-components/vite'\n-import viteCompression from 'vite-plugin-compression';\n import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'\n \n const pathResolve = (dir) => resolve(__dirname, dir)\n \n"
                 }
             ],
             "date": 1646384783229,

@@ -3,11 +3,231 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 55,
             "patches": [
                 {
                     "date": 1646380413199,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1646392857734,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,20 +1,8 @@\n-<script setup>\n-// This starter template is using Vue 3 <script setup> SFCs\n-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup\n-import HelloWorld from './components/HelloWorld.vue'\n+<script lang=\"ts\" setup>\n+\n </script>\n \n-<template>\n-  <router-view></router-view>\n-</template>\n+<template></template>\n \n <style>\n-#app {\n-  font-family: Avenir, Helvetica, Arial, sans-serif;\n-  -webkit-font-smoothing: antialiased;\n-  -moz-osx-font-smoothing: grayscale;\n-  text-align: center;\n-  color: #2c3e50;\n-  margin-top: 60px;\n-}\n </style>\n"
+                },
+                {
+                    "date": 1646393134868,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <script lang=\"ts\" setup>\n-\n+import \n </script>\n \n <template></template>\n \n"
+                },
+                {
+                    "date": 1646393163722,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n <script lang=\"ts\" setup>\n-import \n+import { useHello } from './store';\n+\n </script>\n \n <template></template>\n \n"
+                },
+                {
+                    "date": 1646393171973,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <script lang=\"ts\" setup>\n import { useHello } from './store';\n-\n+const \n </script>\n \n <template></template>\n \n"
+                },
+                {
+                    "date": 1646393206400,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,11 @@\n <script lang=\"ts\" setup>\n import { useHello } from './store';\n-const \n+const store = useHello()\n </script>\n \n-<template></template>\n+<template>\n+  <p>{{ store.helloWorld }}</p>\n+</template>\n \n <style>\n </style>\n"
+                },
+                {
+                    "date": 1646394021214,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,13 @@\n <script lang=\"ts\" setup>\n import { useHello } from './store';\n const store = useHello()\n+\n </script>\n \n <template>\n   <p>{{ store.helloWorld }}</p>\n+  <button @click=\"clickCount\">count++</button>\n </template>\n \n <style>\n </style>\n"
+                },
+                {
+                    "date": 1646394036285,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n <script lang=\"ts\" setup>\n import { useHello } from './store';\n const store = useHello()\n-\n+const clickCount = () => {\n+  store.count++\n+}\n </script>\n \n <template>\n   <p>{{ store.helloWorld }}</p>\n"
+                },
+                {
+                    "date": 1646394048189,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n </script>\n \n <template>\n   <p>{{ store.helloWorld }}</p>\n+  <p>{{ store.count }}</p>\n   <button @click=\"clickCount\">count++</button>\n </template>\n \n <style>\n"
+                },
+                {
+                    "date": 1646394150926,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n <script lang=\"ts\" setup>\n import { useHello } from './store';\n const store = useHello()\n const clickCount = () => {\n-  store.count++\n+  // store.count++\n+  store.$patch()\n }\n </script>\n \n <template>\n"
+                },
+                {
+                    "date": 1646394159430,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,11 @@\n import { useHello } from './store';\n const store = useHello()\n const clickCount = () => {\n   // store.count++\n-  store.$patch()\n+  store.$patch({\n+    count++\n+  })\n }\n </script>\n \n <template>\n"
+                },
+                {
+                    "date": 1646394167408,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n const store = useHello()\n const clickCount = () => {\n   // store.count++\n   store.$patch({\n-    count++\n+    count: count++\n   })\n }\n </script>\n \n"
+                },
+                {
+                    "date": 1646394314607,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,14 @@\n import { useHello } from './store';\n const store = useHello()\n const clickCount = () => {\n   // store.count++\n-  store.$patch({\n-    count: count++\n-  })\n+\n+  // store.$patch({\n+  //   count: store.count++\n+  // })\n+\n+  store\n }\n </script>\n \n <template>\n"
+                },
+                {
+                    "date": 1646394345367,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,11 @@\n   // store.$patch({\n   //   count: store.count++\n   // })\n \n-  store\n+  store.$patch((store) => {\n+\n+  })\n }\n </script>\n \n <template>\n"
+                },
+                {
+                    "date": 1646394358990,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   //   count: store.count++\n   // })\n \n   store.$patch((store) => {\n-\n+    s\n   })\n }\n </script>\n \n"
+                },
+                {
+                    "date": 1646394373558,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,10 @@\n   // store.$patch({\n   //   count: store.count++\n   // })\n \n-  store.$patch((store) => {\n-    s\n+  store.$patch((state) => {\n+    state.count++\n   })\n }\n </script>\n \n"
+                },
+                {
+                    "date": 1646394549333,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,11 +7,13 @@\n   // store.$patch({\n   //   count: store.count++\n   // })\n \n-  store.$patch((state) => {\n-    state.count++\n-  })\n+  // store.$patch((state) => {\n+  //   state.count++\n+  // })\n+\n+  store.\n }\n </script>\n \n <template>\n"
+                },
+                {
+                    "date": 1646394558941,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   // store.$patch((state) => {\n   //   state.count++\n   // })\n \n-  store.\n+  store.changeCount()\n }\n </script>\n \n <template>\n"
+                },
+                {
+                    "date": 1646394598414,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,17 +3,17 @@\n const store = useHello()\n const clickCount = () => {\n   // store.count++\n \n-  // store.$patch({\n-  //   count: store.count++\n-  // })\n+  store.$patch({\n+    count: store.count + 1\n+  })\n \n   // store.$patch((state) => {\n   //   state.count++\n   // })\n \n-  store.changeCount()\n+  // store.changeCount()\n }\n </script>\n \n <template>\n"
+                },
+                {
+                    "date": 1646394616490,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,11 +3,11 @@\n const store = useHello()\n const clickCount = () => {\n   // store.count++\n \n-  store.$patch({\n-    count: store.count + 1\n-  })\n+  // store.$patch({\n+  //   count: store.count + 1\n+  // })\n \n   // store.$patch((state) => {\n   //   state.count++\n   // })\n"
+                },
+                {
+                    "date": 1646911851055,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,26 +1,8 @@\n <script lang=\"ts\" setup>\n-import { useHello } from './store';\n-const store = useHello()\n-const clickCount = () => {\n-  // store.count++\n \n-  // store.$patch({\n-  //   count: store.count + 1\n-  // })\n-\n-  // store.$patch((state) => {\n-  //   state.count++\n-  // })\n-\n-  // store.changeCount()\n-}\n </script>\n \n-<template>\n-  <p>{{ store.helloWorld }}</p>\n-  <p>{{ store.count }}</p>\n-  <button @click=\"clickCount\">count++</button>\n-</template>\n+<template></template>\n \n <style>\n </style>\n"
+                },
+                {
+                    "date": 1646912170709,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,4 +5,5 @@\n <template></template>\n \n <style>\n </style>\n+\n"
+                },
+                {
+                    "date": 1646913193480,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,13 @@\n <script lang=\"ts\" setup>\n \n </script>\n \n-<template></template>\n+<template>\n+  <el-config-provider :size=\"size\" :zIndex=\"zIndex\">\n+    <app />\n+  </el-config-provider>\n+</template>\n \n <style>\n </style>\n \n"
+                },
+                {
+                    "date": 1646913202199,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,19 @@\n <script lang=\"ts\" setup>\n+import { defineComponent } from 'vue'\n+import { ElConfigProvider } from 'element-plus'\n \n+export default defineComponent({\n+  components: {\n+    ElConfigProvider,\n+  },\n+  setup() {\n+    return {\n+      zIndex: 3000,\n+      size: 'small',\n+    }\n+  },\n+})\n </script>\n \n <template>\n   <el-config-provider :size=\"size\" :zIndex=\"zIndex\">\n"
+                },
+                {
+                    "date": 1646913231711,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,14 +5,14 @@\n export default defineComponent({\n   components: {\n     ElConfigProvider,\n   },\n-  setup() {\n-    return {\n-      zIndex: 3000,\n-      size: 'small',\n-    }\n-  },\n+\n+  return {\n+    zIndex: 3000,\n+    size: 'small',\n+  }\n+\n })\n </script>\n \n <template>\n"
+                },
+                {
+                    "date": 1646913286871,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,19 +1,6 @@\n <script lang=\"ts\" setup>\n-import { defineComponent } from 'vue'\n-import { ElConfigProvider } from 'element-plus'\n \n-export default defineComponent({\n-  components: {\n-    ElConfigProvider,\n-  },\n-\n-  return {\n-    zIndex: 3000,\n-    size: 'small',\n-  }\n-\n-})\n </script>\n \n <template>\n   <el-config-provider :size=\"size\" :zIndex=\"zIndex\">\n"
+                },
+                {
+                    "date": 1646913394573,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <script lang=\"ts\" setup>\n-\n+defineComponent\n </script>\n \n <template>\n   <el-config-provider :size=\"size\" :zIndex=\"zIndex\">\n"
+                },
+                {
+                    "date": 1646913411180,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <script lang=\"ts\" setup>\n-defineComponent\n+import { ElConfigProvider } from 'element-plus'\n </script>\n \n <template>\n   <el-config-provider :size=\"size\" :zIndex=\"zIndex\">\n"
+                },
+                {
+                    "date": 1646913426108,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,8 @@\n <script lang=\"ts\" setup>\n import { ElConfigProvider } from 'element-plus'\n+zIndex: 3000,\n+  size: 'small',\n </script>\n \n <template>\n   <el-config-provider :size=\"size\" :zIndex=\"zIndex\">\n"
+                },
+                {
+                    "date": 1646913454344,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <script lang=\"ts\" setup>\n import { ElConfigProvider } from 'element-plus'\n-zIndex: 3000,\n-  size: 'small',\n+const zIndex: 3000,\n+const size: 'small',\n </script>\n \n <template>\n   <el-config-provider :size=\"size\" :zIndex=\"zIndex\">\n"
+                },
+                {
+                    "date": 1646913468022,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <script lang=\"ts\" setup>\n import { ElConfigProvider } from 'element-plus'\n-const zIndex: 3000,\n-const size: 'small',\n+const zIndex = 3000\n+const size = 'small'\n </script>\n \n <template>\n   <el-config-provider :size=\"size\" :zIndex=\"zIndex\">\n"
+                },
+                {
+                    "date": 1646913834147,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,10 @@\n const size = 'small'\n </script>\n \n <template>\n-  <el-config-provider :size=\"size\" :zIndex=\"zIndex\">\n-    <app />\n+  <el-config-provider :locale=\"locale\">\n+    <router-view></router-view>\n   </el-config-provider>\n </template>\n \n <style>\n"
+                },
+                {
+                    "date": 1646913847655,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <script lang=\"ts\" setup>\n-import { ElConfigProvider } from 'element-plus'\n-const zIndex = 3000\n-const size = 'small'\n+import { defineComponent } from \"vue\";\n+import HelloWorld from \"./components/HelloWorld.vue\";\n+import { ElConfigProvider } from \"element-plus\";\n </script>\n \n <template>\n   <el-config-provider :locale=\"locale\">\n"
+                },
+                {
+                    "date": 1646913859545,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <script lang=\"ts\" setup>\n import { defineComponent } from \"vue\";\n-import HelloWorld from \"./components/HelloWorld.vue\";\n import { ElConfigProvider } from \"element-plus\";\n+import zhCn from \"element-plus/lib/locale/lang/zh-cn\";\n </script>\n \n <template>\n   <el-config-provider :locale=\"locale\">\n"
+                },
+                {
+                    "date": 1646913918738,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,20 @@\n <script lang=\"ts\" setup>\n import { defineComponent } from \"vue\";\n import { ElConfigProvider } from \"element-plus\";\n import zhCn from \"element-plus/lib/locale/lang/zh-cn\";\n+defineComponent({\n+  name: \"App\",\n+  components: {\n+\n+    [ElConfigProvider.name]: ElConfigProvider,\n+  },\n+  data() {\n+    return {\n+      locale: zhCn,\n+    };\n+  },\n+});\n </script>\n \n <template>\n   <el-config-provider :locale=\"locale\">\n"
+                },
+                {
+                    "date": 1646913935292,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,8 @@\n import zhCn from \"element-plus/lib/locale/lang/zh-cn\";\n defineComponent({\n   name: \"App\",\n   components: {\n-\n     [ElConfigProvider.name]: ElConfigProvider,\n   },\n   data() {\n     return {\n"
+                },
+                {
+                    "date": 1646914025499,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,19 +1,15 @@\n <script lang=\"ts\" setup>\n import { defineComponent } from \"vue\";\n import { ElConfigProvider } from \"element-plus\";\n import zhCn from \"element-plus/lib/locale/lang/zh-cn\";\n-defineComponent({\n-  name: \"App\",\n-  components: {\n-    [ElConfigProvider.name]: ElConfigProvider,\n-  },\n-  data() {\n-    return {\n-      locale: zhCn,\n-    };\n-  },\n-});\n+\n+name: \"App\",\n+\n+\n+     const locale: zhCn,\n+\n+\n </script>\n \n <template>\n   <el-config-provider :locale=\"locale\">\n"
+                },
+                {
+                    "date": 1646914036542,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,12 +2,12 @@\n import { defineComponent } from \"vue\";\n import { ElConfigProvider } from \"element-plus\";\n import zhCn from \"element-plus/lib/locale/lang/zh-cn\";\n \n-name: \"App\",\n+name: \"App\"\n \n \n-     const locale: zhCn,\n+const locale = zhCn\n \n \n </script>\n \n"
+                },
+                {
+                    "date": 1646914043126,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,13 +3,9 @@\n import { ElConfigProvider } from \"element-plus\";\n import zhCn from \"element-plus/lib/locale/lang/zh-cn\";\n \n name: \"App\"\n-\n-\n const locale = zhCn\n-\n-\n </script>\n \n <template>\n   <el-config-provider :locale=\"locale\">\n"
+                },
+                {
+                    "date": 1646914106054,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,12 +2,13 @@\n import { defineComponent } from \"vue\";\n import { ElConfigProvider } from \"element-plus\";\n import zhCn from \"element-plus/lib/locale/lang/zh-cn\";\n \n-name: \"App\"\n const locale = zhCn\n </script>\n-\n+<script>\n+name: 'App'\n+</script>\n <template>\n   <el-config-provider :locale=\"locale\">\n     <router-view></router-view>\n   </el-config-provider>\n"
+                },
+                {
+                    "date": 1646914166728,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,11 +4,8 @@\n import zhCn from \"element-plus/lib/locale/lang/zh-cn\";\n \n const locale = zhCn\n </script>\n-<script>\n-name: 'App'\n-</script>\n <template>\n   <el-config-provider :locale=\"locale\">\n     <router-view></router-view>\n   </el-config-provider>\n"
+                },
+                {
+                    "date": 1646918059963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,15 @@\n \n const locale = zhCn\n </script>\n <template>\n-  <el-config-provider :locale=\"locale\">\n-    <router-view></router-view>\n-  </el-config-provider>\n+  <el-container>\n+    <el-header>Header</el-header>\n+    <el-container>\n+      <el-aside width=\"200px\">Aside</el-aside>\n+      <el-main>Main</el-main>\n+    </el-container>\n+  </el-container>\n </template>\n \n <style>\n </style>\n"
+                },
+                {
+                    "date": 1646918072692,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,7 +14,44 @@\n     </el-container>\n   </el-container>\n </template>\n \n-<style>\n+<style scoped>\n+.common-layout .el-header,\n+.common-layout .el-footer {\n+  background-color: #b3c0d1;\n+  color: var(--el-text-color-primary);\n+  text-align: center;\n+  line-height: 60px;\n+}\n+.common-layout .el-footer {\n+  line-height: 60px;\n+}\n+\n+.common-layout .el-aside {\n+  background-color: #d3dce6;\n+  color: var(--el-text-color-primary);\n+  text-align: center;\n+  line-height: 200px;\n+}\n+\n+.common-layout .el-main {\n+  background-color: #e9eef3;\n+  color: var(--el-text-color-primary);\n+  text-align: center;\n+  line-height: 160px;\n+}\n+\n+.common-layout > .el-container {\n+  margin-bottom: 40px;\n+}\n+\n+.common-layout .el-container:nth-child(5) .el-aside,\n+.common-layout .el-container:nth-child(6) .el-aside {\n+  line-height: 260px;\n+}\n+\n+.common-layout .el-container:nth-child(7) .el-aside {\n+  line-height: 320px;\n+}\n </style>\n \n"
+                },
+                {
+                    "date": 1646919376685,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,7 @@\n <script lang=\"ts\" setup>\n import { defineComponent } from \"vue\";\n-import { ElConfigProvider } from \"element-plus\";\n-import zhCn from \"element-plus/lib/locale/lang/zh-cn\";\n \n-const locale = zhCn\n </script>\n <template>\n   <el-container>\n     <el-header>Header</el-header>\n"
+                },
+                {
+                    "date": 1646919626321,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,43 +12,6 @@\n   </el-container>\n </template>\n \n <style scoped>\n-.common-layout .el-header,\n-.common-layout .el-footer {\n-  background-color: #b3c0d1;\n-  color: var(--el-text-color-primary);\n-  text-align: center;\n-  line-height: 60px;\n-}\n-.common-layout .el-footer {\n-  line-height: 60px;\n-}\n-\n-.common-layout .el-aside {\n-  background-color: #d3dce6;\n-  color: var(--el-text-color-primary);\n-  text-align: center;\n-  line-height: 200px;\n-}\n-\n-.common-layout .el-main {\n-  background-color: #e9eef3;\n-  color: var(--el-text-color-primary);\n-  text-align: center;\n-  line-height: 160px;\n-}\n-\n-.common-layout > .el-container {\n-  margin-bottom: 40px;\n-}\n-\n-.common-layout .el-container:nth-child(5) .el-aside,\n-.common-layout .el-container:nth-child(6) .el-aside {\n-  line-height: 260px;\n-}\n-\n-.common-layout .el-container:nth-child(7) .el-aside {\n-  line-height: 320px;\n-}\n </style>\n \n"
+                },
+                {
+                    "date": 1646920042057,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,6 +12,9 @@\n   </el-container>\n </template>\n \n <style scoped>\n+.el-header {\n+  background-color: pink;\n+}\n </style>\n \n"
+                },
+                {
+                    "date": 1646920096894,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,8 @@\n </template>\n \n <style scoped>\n .el-header {\n-  background-color: pink;\n+  background-color: ;\n }\n </style>\n \n"
+                },
+                {
+                    "date": 1646920144532,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,10 +11,12 @@\n     </el-container>\n   </el-container>\n </template>\n \n-<style scoped>\n-.el-header {\n-  background-color: ;\n+<style scoped lang=\"less\">\n+.el-container {\n+  .el-header {\n+    background-color: #b3c0d1;\n+  }\n }\n </style>\n \n"
+                },
+                {
+                    "date": 1646920183016,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,11 +12,43 @@\n   </el-container>\n </template>\n \n <style scoped lang=\"less\">\n-.el-container {\n-  .el-header {\n-    background-color: #b3c0d1;\n-  }\n+.common-layout .el-header,\n+.common-layout .el-footer {\n+  background-color: #b3c0d1;\n+  color: var(--el-text-color-primary);\n+  text-align: center;\n+  line-height: 60px;\n }\n+.common-layout .el-footer {\n+  line-height: 60px;\n+}\n+\n+.common-layout .el-aside {\n+  background-color: #d3dce6;\n+  color: var(--el-text-color-primary);\n+  text-align: center;\n+  line-height: 200px;\n+}\n+\n+.common-layout .el-main {\n+  background-color: #e9eef3;\n+  color: var(--el-text-color-primary);\n+  text-align: center;\n+  line-height: 160px;\n+}\n+\n+.common-layout > .el-container {\n+  margin-bottom: 40px;\n+}\n+\n+.common-layout .el-container:nth-child(5) .el-aside,\n+.common-layout .el-container:nth-child(6) .el-aside {\n+  line-height: 260px;\n+}\n+\n+.common-layout .el-container:nth-child(7) .el-aside {\n+  line-height: 320px;\n+}\n </style>\n \n"
+                },
+                {
+                    "date": 1646920631478,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,12 @@\n   <el-container>\n     <el-header>Header</el-header>\n     <el-container>\n       <el-aside width=\"200px\">Aside</el-aside>\n-      <el-main>Main</el-main>\n+      <el-main>\n+        Main\n+        <el-button type></el-button>\n+      </el-main>\n     </el-container>\n   </el-container>\n </template>\n \n"
+                },
+                {
+                    "date": 1646920639331,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n     <el-container>\n       <el-aside width=\"200px\">Aside</el-aside>\n       <el-main>\n         Main\n-        <el-button type></el-button>\n+        <el-button>aaa</el-button>\n       </el-main>\n     </el-container>\n   </el-container>\n </template>\n"
+                },
+                {
+                    "date": 1646920647910,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,12 +6,9 @@\n   <el-container>\n     <el-header>Header</el-header>\n     <el-container>\n       <el-aside width=\"200px\">Aside</el-aside>\n-      <el-main>\n-        Main\n-        <el-button>aaa</el-button>\n-      </el-main>\n+      <el-main>Main</el-main>\n     </el-container>\n   </el-container>\n </template>\n \n"
+                },
+                {
+                    "date": 1646920662868,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n .common-layout .el-header,\n .common-layout .el-footer {\n   background-color: #b3c0d1;\n   color: var(--el-text-color-primary);\n-  text-align: center;\n+  text-align: center !important;\n   line-height: 60px;\n }\n .common-layout .el-footer {\n   line-height: 60px;\n"
+                },
+                {
+                    "date": 1646920700801,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n .common-layout .el-header,\n .common-layout .el-footer {\n   background-color: #b3c0d1;\n   color: var(--el-text-color-primary);\n-  text-align: center !important;\n+  text-align: center;\n   line-height: 60px;\n }\n .common-layout .el-footer {\n   line-height: 60px;\n"
+                },
+                {
+                    "date": 1646920734564,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n   </el-container>\n </template>\n \n <style scoped lang=\"less\">\n-.common-layout .el-header,\n+.el-header,\n .common-layout .el-footer {\n   background-color: #b3c0d1;\n   color: var(--el-text-color-primary);\n   text-align: center;\n"
+                },
+                {
+                    "date": 1646920806713,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,42 +13,39 @@\n </template>\n \n <style scoped lang=\"less\">\n .el-header,\n-.common-layout .el-footer {\n+.el-footer {\n   background-color: #b3c0d1;\n   color: var(--el-text-color-primary);\n   text-align: center;\n   line-height: 60px;\n }\n-.common-layout .el-footer {\n-  line-height: 60px;\n-}\n \n-.common-layout .el-aside {\n+.el-aside {\n   background-color: #d3dce6;\n   color: var(--el-text-color-primary);\n   text-align: center;\n   line-height: 200px;\n }\n \n-.common-layout .el-main {\n+.el-main {\n   background-color: #e9eef3;\n   color: var(--el-text-color-primary);\n   text-align: center;\n   line-height: 160px;\n }\n \n-.common-layout > .el-container {\n+body > .el-container {\n   margin-bottom: 40px;\n }\n \n-.common-layout .el-container:nth-child(5) .el-aside,\n-.common-layout .el-container:nth-child(6) .el-aside {\n+.el-container:nth-child(5) .el-aside,\n+.el-container:nth-child(6) .el-aside {\n   line-height: 260px;\n }\n \n-.common-layout .el-container:nth-child(7) .el-aside {\n+.el-container:nth-child(7) .el-aside {\n   line-height: 320px;\n }\n </style>\n \n"
                 }
             ],
             "date": 1646380413199,

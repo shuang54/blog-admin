@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 15,
             "patches": [
                 {
                     "date": 1646380363217,
@@ -16,6 +16,58 @@
                 {
                     "date": 1646383987620,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import router from './route'\n import { createPinia } from 'pinia'\n-\n const app = createApp(App)\n app.use(router)\n+app.use(createPinia())\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1646918360140,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,9 @@\n+import { createApp } from 'vue'\n+import App from './App.vue'\n+import router from './route'\n+import { createPinia } from 'pinia'\n+import 'element-plus/lib/theme-chalk/index.css';\n+const app = createApp(App)\n+app.use(router)\n+app.use(createPinia())\n+app.mount('#app')\n"
+                },
+                {
+                    "date": 1646918552494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,12 +6,4 @@\n const app = createApp(App)\n app.use(router)\n app.use(createPinia())\n app.mount('#app')\n-import { createApp } from 'vue'\n-import App from './App.vue'\n-import router from './route'\n-import { createPinia } from 'pinia'\n-const app = createApp(App)\n-app.use(router)\n-app.use(createPinia())\n-app.mount('#app')\n"
+                },
+                {
+                    "date": 1646918630597,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import router from './route'\n import { createPinia } from 'pinia'\n-import 'element-plus/lib/theme-chalk/index.css';\n+import '_element-plus/lib/theme-chalk/index.css';\n const app = createApp(App)\n app.use(router)\n app.use(createPinia())\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1646918722240,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import router from './route'\n import { createPinia } from 'pinia'\n-import '_element-plus/lib/theme-chalk/index.css';\n+import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n const app = createApp(App)\n app.use(router)\n app.use(createPinia())\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1646918737024,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import router from './route'\n import { createPinia } from 'pinia'\n-import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n+import '__element-plus@2.0.5@element-plus/theme-chalk/index.css';\n const app = createApp(App)\n app.use(router)\n app.use(createPinia())\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1646918803277,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import router from './route'\n import { createPinia } from 'pinia'\n-import '__element-plus@2.0.5@element-plus/theme-chalk/index.css';\n+// import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n+import 'element-plus/lib/theme-chalk/index.css';\n const app = createApp(App)\n app.use(router)\n app.use(createPinia())\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1646918818865,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,8 @@\n import App from './App.vue'\n import router from './route'\n import { createPinia } from 'pinia'\n // import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n-import 'element-plus/lib/theme-chalk/index.css';\n const app = createApp(App)\n app.use(router)\n app.use(createPinia())\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1646918988789,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import router from './route'\n import { createPinia } from 'pinia'\n-// import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n+import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n const app = createApp(App)\n app.use(router)\n app.use(createPinia())\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1646919124383,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import router from './route'\n import { createPinia } from 'pinia'\n-import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n+// import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n+import '_element-plus/theme-chalk/index.css';\n const app = createApp(App)\n app.use(router)\n app.use(createPinia())\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1646919239055,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,9 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import router from './route'\n import { createPinia } from 'pinia'\n-// import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n-import '_element-plus/theme-chalk/index.css';\n+import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n const app = createApp(App)\n app.use(router)\n app.use(createPinia())\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1646919574901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import router from './route'\n import { createPinia } from 'pinia'\n-import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n+// import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n const app = createApp(App)\n app.use(router)\n app.use(createPinia())\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1646920300386,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import router from './route'\n import { createPinia } from 'pinia'\n-// import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n+import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n const app = createApp(App)\n app.use(router)\n app.use(createPinia())\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1646920323158,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import router from './route'\n import { createPinia } from 'pinia'\n-import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n+// import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n const app = createApp(App)\n app.use(router)\n app.use(createPinia())\n app.mount('#app')\n"
                 }
             ],
             "date": 1646380363217,

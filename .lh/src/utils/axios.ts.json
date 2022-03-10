@@ -1,0 +1,38 @@
+{
+    "sourceFile": "src/utils/axios.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1646391894478,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1646391904734,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,5 +28,20 @@\n     console.log('网络请求失败, 请刷新重试')\r\n     return Promise.reject(error)\r\n   }\r\n )\r\n+const errorHandle = (status: number, error): void => {\r\n+  // HTTP状态码判断\r\n+  switch (status) {\r\n+    case 401:\r\n+      return alert(`Error Code: ${status}, Message: ${error.msg || '登录失效，请重新登录'}`)\r\n+    case 403:\r\n+      return alert(`Error Code: ${status}, Message: ${error.msg || '你没有访问权限'}`)\r\n+    case 500:\r\n+      return alert(`Error Code: ${status}, Message: ${error.msg || '后台错误，请联系管理员'}`)\r\n+    case 502:\r\n+      return alert(`Error Code: ${status}, Message: ${error.msg || '平台环境异常'}`)\r\n+    default:\r\n+      alert(`Error Code: ${status}, Message: ${error.msg || '未知错误，请刷新重试'}`)\r\n+  }\r\n+}\r\n \r\n"
+                },
+                {
+                    "date": 1646391911964,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,9 @@\n     console.log('网络请求失败, 请刷新重试')\r\n     return Promise.reject(error)\r\n   }\r\n )\r\n+// 当捕获到错误请求时，可以自定义错误处理：\r\n const errorHandle = (status: number, error): void => {\r\n   // HTTP状态码判断\r\n   switch (status) {\r\n     case 401:\r\n"
+                },
+                {
+                    "date": 1646391917328,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,5 +44,21 @@\n     default:\r\n       alert(`Error Code: ${status}, Message: ${error.msg || '未知错误，请刷新重试'}`)\r\n   }\r\n }\r\n+const getPromise = (method, url, params, config = {}) => {\r\n+  return new Promise((resolve, reject) => {\r\n+    instance[method](method, url)(params, config).catch(e => e.response.data)\r\n+      .then(res => resolve(res))\r\n+      .catch(err => reject(err))\r\n+  })\r\n+}\r\n \r\n+const get = (url: string, params?: any) => getPromise('get', url, { params })\r\n+const post = (url: string, params: any, config?: AxiosRequestConfig) => getPromise('post', url, params, config)\r\n+\r\n+export {\r\n+  get,\r\n+  post,\r\n+}\r\n+\r\n+\r\n"
+                },
+                {
+                    "date": 1646391922782,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n       .then(res => resolve(res))\r\n       .catch(err => reject(err))\r\n   })\r\n }\r\n-\r\n+// 导出我们常用的请求方法：\r\n const get = (url: string, params?: any) => getPromise('get', url, { params })\r\n const post = (url: string, params: any, config?: AxiosRequestConfig) => getPromise('post', url, params, config)\r\n \r\n export {\r\n"
+                },
+                {
+                    "date": 1646391945568,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import Axios, { AxiosError, AxiosResponse } from 'axios'\r\n+import Axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios'\r\n \r\n const BASE_URL = 'https://api.example.com'\r\n const TIME_OUT = 10 * 1000\r\n \r\n"
+                }
+            ],
+            "date": 1646391894477,
+            "name": "Commit-0",
+            "content": "import Axios, { AxiosError, AxiosResponse } from 'axios'\r\n\r\nconst BASE_URL = 'https://api.example.com'\r\nconst TIME_OUT = 10 * 1000\r\n\r\n// 通过Axios.create()方法创建一个自定义配置的axios实例\r\nconst instance = Axios.create({\r\n  baseURL: BASE_URL,\r\n  timeout: TIME_OUT\r\n})\r\n// 使用后置拦截器，对获取的响应进行拦截：\r\ninstance.interceptors.response.use(\r\n  (res: AxiosResponse) => {\r\n    if (String(res.status).indexOf('2') !== 0) {\r\n      return {\r\n        code: res.status,\r\n        message: res.data.message || '请求异常，请刷新重试',\r\n        result: false\r\n      }\r\n    }\r\n    return Promise.reject(res.data)\r\n  },\r\n  (error: AxiosError) => {\r\n    if (error && error.response) {\r\n      errorHandle(error.response.status, error.response)\r\n      return Promise.reject(error.response)\r\n    }\r\n    console.log('网络请求失败, 请刷新重试')\r\n    return Promise.reject(error)\r\n  }\r\n)\r\n\r\n"
+        }
+    ]
+}
