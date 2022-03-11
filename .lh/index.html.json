@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 22,
+            "activePatchIndex": 25,
             "patches": [
                 {
                     "date": 1646918139801,
@@ -96,6 +96,18 @@
                 {
                     "date": 1646920589643,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,13 +5,13 @@\n   <meta charset=\"UTF-8\" />\n   <link rel=\"icon\" href=\"/favicon.ico\" />\n   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n   <link rel=\"stylesheet\" href=\"./src/assets/css/base.css\">\n-  <!-- <script src=\"https://unpkg.com/vue@next\" rel=\"external nofollow\"></script>\n+  <!-- <script src=\"https://unpkg.com/vue@next\" rel=\"external nofollow\"></script> -->\n   <!-- import CSS -->\n-  <link rel=\"stylesheet\" href=\"https://unpkg.com/element-plus/dist/index.css\" target=\"_blank\">\n+  <!-- <link rel=\"stylesheet\" href=\"https://unpkg.com/element-plus/dist/index.css\" target=\"_blank\"> -->\n   <!-- import JavaScript -->\n-  <script src=\"https://unpkg.com/element-plus\"></script> -->\n+  <!-- <script src=\"https://unpkg.com/element-plus\"></script> -->\n   <title>Vite App</title>\n </head>\n \n <body>\n"
+                },
+                {
+                    "date": 1646983004465,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,10 @@\n   <!-- import CSS -->\n   <!-- <link rel=\"stylesheet\" href=\"https://unpkg.com/element-plus/dist/index.css\" target=\"_blank\"> -->\n   <!-- import JavaScript -->\n   <!-- <script src=\"https://unpkg.com/element-plus\"></script> -->\n-  <title>Vite App</title>\n+  <title>blog-ad</title>\n+  </title>\n </head>\n \n <body>\n   <div id=\"app\"></div>\n"
+                },
+                {
+                    "date": 1646983022877,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,10 +10,9 @@\n   <!-- import CSS -->\n   <!-- <link rel=\"stylesheet\" href=\"https://unpkg.com/element-plus/dist/index.css\" target=\"_blank\"> -->\n   <!-- import JavaScript -->\n   <!-- <script src=\"https://unpkg.com/element-plus\"></script> -->\n-  <title>blog-ad</title>\n-  </title>\n+  <title>blog-admin</title>\n </head>\n \n <body>\n   <div id=\"app\"></div>\n"
+                },
+                {
+                    "date": 1646983166884,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,15 @@\n   <!-- <link rel=\"stylesheet\" href=\"https://unpkg.com/element-plus/dist/index.css\" target=\"_blank\"> -->\n   <!-- import JavaScript -->\n   <!-- <script src=\"https://unpkg.com/element-plus\"></script> -->\n   <title>blog-admin</title>\n+  <style>\n+    html,\n+    body {\n+      margin: 0;\n+      height: 100%;\n+    }\n+  </style>\n </head>\n \n <body>\n   <div id=\"app\"></div>\n"
                 }
             ],
             "date": 1646918139801,

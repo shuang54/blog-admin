@@ -1,13 +1,23 @@
 <script lang="ts" setup>
-import { defineComponent } from "vue";
-
+import { defineAsyncComponent } from "vue";
+//异步导入组件
+const Aside = defineAsyncComponent(() =>
+  import('./components/Aside/index.vue')
+)
 </script>
 <template>
   <el-container>
-    <el-header>Header</el-header>
+    <!-- 头部 -->
+    <el-header>博客后台管理系统</el-header>
     <el-container>
-      <el-aside width="200px">Aside</el-aside>
-      <el-main>Main</el-main>
+      <!-- 侧边栏 -->
+      <el-aside width="200px">
+        <Aside></Aside>
+      </el-aside>
+      <!-- 主体内容 -->
+      <el-main>
+        <router-view></router-view>
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -26,13 +36,13 @@ import { defineComponent } from "vue";
   color: var(--el-text-color-primary);
   text-align: center;
   line-height: 200px;
+  height: 100vh;
 }
 
 .el-main {
-  background-color: #e9eef3;
+  background-color: white;
   color: var(--el-text-color-primary);
   text-align: center;
-  line-height: 160px;
 }
 
 body > .el-container {

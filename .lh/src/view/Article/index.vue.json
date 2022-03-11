@@ -1,0 +1,334 @@
+{
+    "sourceFile": "src/view/Article/index.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 79,
+            "patches": [
+                {
+                    "date": 1646992286119,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1646994629859,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,11 @@\n <template>\r\n   <div id=\"article-container\">\r\n-    <p>文章视图</p>\r\n+    <el-row>\r\n+      <el-col :span=\"24\">\r\n+        <div class=\"grid-content bg-purple-dark\"></div>\r\n+      </el-col>\r\n+    </el-row>\r\n   </div>\r\n </template>\r\n <script setup lang=\"ts\"></script>\r\n <style lang=\"less\" scoped></style>\r\n"
+                },
+                {
+                    "date": 1646994766550,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,14 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row>\r\n       <el-col :span=\"24\">\r\n-        <div class=\"grid-content bg-purple-dark\"></div>\r\n+        <div class=\"grid-content bg-purple-dark\">\r\n+          <el-input v-model=\"input\" placeholder=\"Please input\" clearable />\r\n+        </div>\r\n       </el-col>\r\n     </el-row>\r\n+    <el-input v-model=\"input\" placeholder=\"Please input\" clearable />\r\n   </div>\r\n </template>\r\n <script setup lang=\"ts\"></script>\r\n <style lang=\"less\" scoped></style>\r\n"
+                },
+                {
+                    "date": 1646994785067,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,6 +9,8 @@\n     </el-row>\r\n     <el-input v-model=\"input\" placeholder=\"Please input\" clearable />\r\n   </div>\r\n </template>\r\n-<script setup lang=\"ts\"></script>\r\n+<script setup lang=\"ts\">\r\n+const value = \r\n+</script>\r\n <style lang=\"less\" scoped></style>\r\n"
+                },
+                {
+                    "date": 1646994797588,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,7 +10,9 @@\n     <el-input v-model=\"input\" placeholder=\"Please input\" clearable />\r\n   </div>\r\n </template>\r\n <script setup lang=\"ts\">\r\n-const value = \r\n+import { ref } from 'vue';\r\n+\r\n+const input = ref('')\r\n </script>\r\n <style lang=\"less\" scoped></style>\r\n"
+                },
+                {
+                    "date": 1646994821467,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,6 @@\n <template>\r\n   <div id=\"article-container\">\r\n-    <el-row>\r\n-      <el-col :span=\"24\">\r\n-        <div class=\"grid-content bg-purple-dark\">\r\n-          <el-input v-model=\"input\" placeholder=\"Please input\" clearable />\r\n-        </div>\r\n-      </el-col>\r\n-    </el-row>\r\n     <el-input v-model=\"input\" placeholder=\"Please input\" clearable />\r\n   </div>\r\n </template>\r\n <script setup lang=\"ts\">\r\n"
+                },
+                {
+                    "date": 1646994962916,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <template>\r\n   <div id=\"article-container\">\r\n-    <el-input v-model=\"input\" placeholder=\"Please input\" clearable />\r\n+    <el-input v-model=\"input\" placeholder=\"搜索\" clearable />\r\n   </div>\r\n </template>\r\n <script setup lang=\"ts\">\r\n import { ref } from 'vue';\r\n"
+                },
+                {
+                    "date": 1646995034316,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-input v-model=\"input\" placeholder=\"搜索\" clearable />\r\n+    <el-button type=\"primary\">Primary</el-button>\r\n   </div>\r\n </template>\r\n <script setup lang=\"ts\">\r\n import { ref } from 'vue';\r\n"
+                },
+                {
+                    "date": 1646995058977,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,13 @@\n   <div id=\"article-container\">\r\n     <el-input v-model=\"input\" placeholder=\"搜索\" clearable />\r\n     <el-button type=\"primary\">Primary</el-button>\r\n   </div>\r\n+  <el-row>\r\n+    <el-col :span=\"24\">\r\n+      <div class=\"grid-content bg-purple-dark\"></div>\r\n+    </el-col>\r\n+  </el-row>\r\n </template>\r\n <script setup lang=\"ts\">\r\n import { ref } from 'vue';\r\n \r\n"
+                },
+                {
+                    "date": 1646995099348,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,15 @@\n <template>\r\n   <div id=\"article-container\">\r\n-    <el-input v-model=\"input\" placeholder=\"搜索\" clearable />\r\n-    <el-button type=\"primary\">Primary</el-button>\r\n+    <el-row>\r\n+      <el-col :span=\"24\">\r\n+        <div class=\"grid-content bg-purple-dark\">\r\n+          <el-input v-model=\"input\" placeholder=\"搜索\" clearable />\r\n+          <el-button type=\"primary\">Primary</el-button>\r\n+        </div>\r\n+      </el-col>\r\n+    </el-row>\r\n   </div>\r\n-  <el-row>\r\n-    <el-col :span=\"24\">\r\n-      <div class=\"grid-content bg-purple-dark\"></div>\r\n-    </el-col>\r\n-  </el-row>\r\n </template>\r\n <script setup lang=\"ts\">\r\n import { ref } from 'vue';\r\n \r\n"
+                },
+                {
+                    "date": 1646995220457,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row>\r\n-      <el-col :span=\"24\">\r\n+      <el-col :span=\"20\">\r\n         <div class=\"grid-content bg-purple-dark\">\r\n           <el-input v-model=\"input\" placeholder=\"搜索\" clearable />\r\n           <el-button type=\"primary\">Primary</el-button>\r\n         </div>\r\n"
+                },
+                {
+                    "date": 1646995248788,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,5 +14,32 @@\n import { ref } from 'vue';\r\n \r\n const input = ref('')\r\n </script>\r\n-<style lang=\"less\" scoped></style>\r\n+<style lang=\"less\" scoped>\r\n+.el-row {\r\n+  margin-bottom: 20px;\r\n+}\r\n+.el-row:last-child {\r\n+  margin-bottom: 0;\r\n+}\r\n+.el-col {\r\n+  border-radius: 4px;\r\n+}\r\n+.bg-purple-dark {\r\n+  background: #99a9bf;\r\n+}\r\n+.bg-purple {\r\n+  background: #d3dce6;\r\n+}\r\n+.bg-purple-light {\r\n+  background: #e5e9f2;\r\n+}\r\n+.grid-content {\r\n+  border-radius: 4px;\r\n+  min-height: 36px;\r\n+}\r\n+.row-bg {\r\n+  padding: 10px 0;\r\n+  background-color: #f9fafc;\r\n+}\r\n+</style>\r\n"
+                },
+                {
+                    "date": 1646995279393,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,11 +3,13 @@\n     <el-row>\r\n       <el-col :span=\"20\">\r\n         <div class=\"grid-content bg-purple-dark\">\r\n           <el-input v-model=\"input\" placeholder=\"搜索\" clearable />\r\n-          <el-button type=\"primary\">Primary</el-button>\r\n         </div>\r\n       </el-col>\r\n+      <el-col :span=\"4\">\r\n+        <el-button type=\"primary\">Primary</el-button>\r\n+      </el-col>\r\n     </el-row>\r\n   </div>\r\n </template>\r\n <script setup lang=\"ts\">\r\n"
+                },
+                {
+                    "date": 1646995302626,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,11 @@\n           <el-input v-model=\"input\" placeholder=\"搜索\" clearable />\r\n         </div>\r\n       </el-col>\r\n       <el-col :span=\"4\">\r\n-        <el-button type=\"primary\">Primary</el-button>\r\n+        <div class=\"grid-content bg-purple-dark\">\r\n+          <el-button type=\"primary\">Primary</el-button>\r\n+        </div>\r\n       </el-col>\r\n     </el-row>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1646995321438,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n           <el-input v-model=\"input\" placeholder=\"搜索\" clearable />\r\n         </div>\r\n       </el-col>\r\n       <el-col :span=\"4\">\r\n-        <div class=\"grid-content bg-purple-dark\">\r\n+        <div class>\r\n           <el-button type=\"primary\">Primary</el-button>\r\n         </div>\r\n       </el-col>\r\n     </el-row>\r\n"
+                },
+                {
+                    "date": 1646995328529,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row>\r\n       <el-col :span=\"20\">\r\n-        <div class=\"grid-content bg-purple-dark\">\r\n+        <div class>\r\n           <el-input v-model=\"input\" placeholder=\"搜索\" clearable />\r\n         </div>\r\n       </el-col>\r\n       <el-col :span=\"4\">\r\n"
+                },
+                {
+                    "date": 1646995339128,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,31 +19,5 @@\n \r\n const input = ref('')\r\n </script>\r\n <style lang=\"less\" scoped>\r\n-.el-row {\r\n-  margin-bottom: 20px;\r\n-}\r\n-.el-row:last-child {\r\n-  margin-bottom: 0;\r\n-}\r\n-.el-col {\r\n-  border-radius: 4px;\r\n-}\r\n-.bg-purple-dark {\r\n-  background: #99a9bf;\r\n-}\r\n-.bg-purple {\r\n-  background: #d3dce6;\r\n-}\r\n-.bg-purple-light {\r\n-  background: #e5e9f2;\r\n-}\r\n-.grid-content {\r\n-  border-radius: 4px;\r\n-  min-height: 36px;\r\n-}\r\n-.row-bg {\r\n-  padding: 10px 0;\r\n-  background-color: #f9fafc;\r\n-}\r\n </style>\r\n"
+                },
+                {
+                    "date": 1646995365976,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n         </div>\r\n       </el-col>\r\n       <el-col :span=\"4\">\r\n         <div class>\r\n-          <el-button type=\"primary\">Primary</el-button>\r\n+          <el-button type=\"primary\">搜索</el-button>\r\n         </div>\r\n       </el-col>\r\n     </el-row>\r\n   </div>\r\n"
+                },
+                {
+                    "date": 1646995569841,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,13 @@\n         </div>\r\n       </el-col>\r\n       <el-col :span=\"4\">\r\n         <div class>\r\n-          <el-button type=\"primary\">搜索</el-button>\r\n+          <el-button type=\"primary\">\r\n+            <el-icon style=\"vertical-align: middle;\">\r\n+              <search />\r\n+            </el-icon>搜索\r\n+          </el-button>\r\n         </div>\r\n       </el-col>\r\n     </el-row>\r\n   </div>\r\n"
+                },
+                {
+                    "date": 1646995633387,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n       <el-col :span=\"4\">\r\n         <div class>\r\n           <el-button type=\"primary\">\r\n             <el-icon style=\"vertical-align: middle;\">\r\n-              <search />\r\n+              <Search />\r\n             </el-icon>搜索\r\n           </el-button>\r\n         </div>\r\n       </el-col>\r\n@@ -19,9 +19,9 @@\n   </div>\r\n </template>\r\n <script setup lang=\"ts\">\r\n import { ref } from 'vue';\r\n-\r\n+import { Search } from '@element-plus/icons-vue'\r\n const input = ref('')\r\n </script>\r\n <style lang=\"less\" scoped>\r\n </style>\r\n"
+                },
+                {
+                    "date": 1646995654599,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n       </el-col>\r\n       <el-col :span=\"4\">\r\n         <div class>\r\n           <el-button type=\"primary\">\r\n-            <el-icon style=\"vertical-align: middle;\">\r\n+            <el-icon>\r\n               <Search />\r\n             </el-icon>搜索\r\n           </el-button>\r\n         </div>\r\n"
+                },
+                {
+                    "date": 1646995705922,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n         </div>\r\n       </el-col>\r\n       <el-col :span=\"4\">\r\n         <div class>\r\n-          <el-button type=\"primary\">\r\n+          <el-button type=\"primary\" :size=\"small\">\r\n             <el-icon>\r\n               <Search />\r\n             </el-icon>搜索\r\n           </el-button>\r\n"
+                },
+                {
+                    "date": 1646995720302,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,10 @@\n         </div>\r\n       </el-col>\r\n       <el-col :span=\"4\">\r\n         <div class>\r\n-          <el-button type=\"primary\" :size=\"small\">\r\n-            <el-icon>\r\n+          <el-button type=\"primary\">\r\n+            <el-icon size=\"small\">\r\n               <Search />\r\n             </el-icon>搜索\r\n           </el-button>\r\n         </div>\r\n"
+                },
+                {
+                    "date": 1646995762405,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n         </div>\r\n       </el-col>\r\n       <el-col :span=\"4\">\r\n         <div class>\r\n-          <el-button type=\"primary\">\r\n+          <el-button type=\"primary\" size>\r\n             <el-icon size=\"small\">\r\n               <Search />\r\n             </el-icon>搜索\r\n           </el-button>\r\n"
+                },
+                {
+                    "date": 1646995779077,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n         </div>\r\n       </el-col>\r\n       <el-col :span=\"4\">\r\n         <div class>\r\n-          <el-button type=\"primary\" size>\r\n+          <el-button type=\"primary\" size=\"large\">\r\n             <el-icon size=\"small\">\r\n               <Search />\r\n             </el-icon>搜索\r\n           </el-button>\r\n"
+                },
+                {
+                    "date": 1646995796289,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n   <div id=\"article-container\">\r\n     <el-row>\r\n       <el-col :span=\"20\">\r\n         <div class>\r\n-          <el-input v-model=\"input\" placeholder=\"搜索\" clearable />\r\n+          <el-input v-model=\"input\" placeholder=\"搜索\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n       <el-col :span=\"4\">\r\n         <div class>\r\n"
+                },
+                {
+                    "date": 1646995897503,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,18 +2,19 @@\n   <div id=\"article-container\">\r\n     <el-row>\r\n       <el-col :span=\"20\">\r\n         <div class>\r\n-          <el-input v-model=\"input\" placeholder=\"搜索\" clearable size=\"large\" />\r\n+          <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n       <el-col :span=\"4\">\r\n         <div class>\r\n           <el-button type=\"primary\" size=\"large\">\r\n             <el-icon size=\"small\">\r\n               <Search />\r\n-            </el-icon>搜索\r\n+            </el-icon>查询\r\n           </el-button>\r\n+          <el-button type=\"primary\" size=\"large\">添加</el-button>\r\n         </div>\r\n       </el-col>\r\n     </el-row>\r\n   </div>\r\n"
+                },
+                {
+                    "date": 1646995983325,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,17 +12,21 @@\n             <el-icon size=\"small\">\r\n               <Search />\r\n             </el-icon>查询\r\n           </el-button>\r\n-          <el-button type=\"primary\" size=\"large\">添加</el-button>\r\n+          <el-button type=\"primary\" size=\"large\">\r\n+            <el-icon>\r\n+              <Plus />\r\n+            </el-icon>添加\r\n+          </el-button>\r\n         </div>\r\n       </el-col>\r\n     </el-row>\r\n   </div>\r\n </template>\r\n <script setup lang=\"ts\">\r\n import { ref } from 'vue';\r\n-import { Search } from '@element-plus/icons-vue'\r\n+import { Search, Plus } from '@element-plus/icons-vue'\r\n const input = ref('')\r\n </script>\r\n <style lang=\"less\" scoped>\r\n </style>\r\n"
+                },
+                {
+                    "date": 1646996128458,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row>\r\n-      <el-col :span=\"20\">\r\n+      <el-col :xs=\"16\" :sm=\"6\" :md=\"4\" :lg=\"3\" :xl=\"1\">\r\n         <div class>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n-      <el-col :span=\"4\">\r\n+      <el-col :xs=\"4\" :sm=\"6\" :md=\"4\" :lg=\"3\" :xl=\"1\">\r\n         <div class>\r\n           <el-button type=\"primary\" size=\"large\">\r\n             <el-icon size=\"small\">\r\n               <Search />\r\n"
+                },
+                {
+                    "date": 1646996233430,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row>\r\n-      <el-col :xs=\"16\" :sm=\"6\" :md=\"4\" :lg=\"3\" :xl=\"1\">\r\n+      <el-col :offset=\"4\" :xs=\"16\" :sm=\"6\" :md=\"4\" :lg=\"3\" :xl=\"1\">\r\n         <div class>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n"
+                },
+                {
+                    "date": 1646996292928,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row>\r\n-      <el-col :offset=\"4\" :xs=\"16\" :sm=\"6\" :md=\"4\" :lg=\"3\" :xl=\"1\">\r\n+      <el-col :xs=\"16\" :sm=\"6\" :md=\"4\" :lg=\"3\" :xl=\"16\">\r\n         <div class>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n-      <el-col :xs=\"4\" :sm=\"6\" :md=\"4\" :lg=\"3\" :xl=\"1\">\r\n+      <el-col :xs=\"4\" :sm=\"6\" :md=\"4\" :lg=\"3\" :xl=\"4\">\r\n         <div class>\r\n           <el-button type=\"primary\" size=\"large\">\r\n             <el-icon size=\"small\">\r\n               <Search />\r\n"
+                },
+                {
+                    "date": 1646996310879,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row>\r\n-      <el-col :xs=\"16\" :sm=\"6\" :md=\"4\" :lg=\"3\" :xl=\"16\">\r\n+      <el-col :span=\"20\">\r\n         <div class>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n-      <el-col :xs=\"4\" :sm=\"6\" :md=\"4\" :lg=\"3\" :xl=\"4\">\r\n+      <el-col :span=\"4\">\r\n         <div class>\r\n           <el-button type=\"primary\" size=\"large\">\r\n             <el-icon size=\"small\">\r\n               <Search />\r\n"
+                },
+                {
+                    "date": 1646996396916,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <template>\r\n   <div id=\"article-container\">\r\n-    <el-row>\r\n+    <el-row justify=\"center\">\r\n       <el-col :span=\"20\">\r\n         <div class>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n"
+                },
+                {
+                    "date": 1646996425564,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row justify=\"center\">\r\n-      <el-col :span=\"20\">\r\n+      <el-col :span=\"18\">\r\n         <div class>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n"
+                },
+                {
+                    "date": 1646996439723,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row justify=\"center\">\r\n-      <el-col :span=\"18\">\r\n+      <el-col :span=\"16\">\r\n         <div class>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n"
+                },
+                {
+                    "date": 1646996493241,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row justify=\"center\">\r\n-      <el-col :span=\"16\">\r\n+      <el-col :span=\"16\" :xs=\"8\" :sm=\"6\" :md=\"4\" :lg=\"3\">\r\n         <div class>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n"
+                },
+                {
+                    "date": 1646996502051,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row justify=\"center\">\r\n-      <el-col :span=\"16\" :xs=\"8\" :sm=\"6\" :md=\"4\" :lg=\"3\">\r\n+      <el-col :span=\"16\" :xs=\"8\" :sm=\"6\" :md=\"4\" :lg=\"12\">\r\n         <div class>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n"
+                },
+                {
+                    "date": 1646996534310,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n         <div class>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n-      <el-col :span=\"4\">\r\n+      <el-col :span=\"6\">\r\n         <div class>\r\n           <el-button type=\"primary\" size=\"large\">\r\n             <el-icon size=\"small\">\r\n               <Search />\r\n"
+                },
+                {
+                    "date": 1646996557480,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row justify=\"center\">\r\n-      <el-col :span=\"16\" :xs=\"8\" :sm=\"6\" :md=\"4\" :lg=\"12\">\r\n+      <el-col :span=\"16\" :xs=\"8\" :sm=\"6\" :md=\"10\" :lg=\"12\">\r\n         <div class>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n"
+                },
+                {
+                    "date": 1646996567851,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row justify=\"center\">\r\n-      <el-col :span=\"16\" :xs=\"8\" :sm=\"6\" :md=\"10\" :lg=\"12\">\r\n+      <el-col :span=\"16\" :xs=\"8\" :sm=\"8\" :md=\"10\" :lg=\"12\">\r\n         <div class>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n"
+                },
+                {
+                    "date": 1646996585380,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row justify=\"center\">\r\n-      <el-col :span=\"16\" :xs=\"8\" :sm=\"8\" :md=\"10\" :lg=\"12\">\r\n+      <el-col :span=\"16\" :xs=\"8\" :sm=\"6\" :md=\"10\" :lg=\"12\">\r\n         <div class>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n-      <el-col :span=\"6\">\r\n+      <el-col :span=\"6\" :sm=\"8\">\r\n         <div class>\r\n           <el-button type=\"primary\" size=\"large\">\r\n             <el-icon size=\"small\">\r\n               <Search />\r\n"
+                },
+                {
+                    "date": 1646996659909,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row justify=\"center\">\r\n-      <el-col :span=\"16\" :xs=\"8\" :sm=\"6\" :md=\"10\" :lg=\"12\">\r\n+      <el-col :span=\"20\" :xs=\"8\" :sm=\"6\" :md=\"10\" :lg=\"12\">\r\n         <div class>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n-      <el-col :span=\"6\" :sm=\"8\">\r\n+      <el-col :span=\"4\" :sm=\"8\">\r\n         <div class>\r\n           <el-button type=\"primary\" size=\"large\">\r\n             <el-icon size=\"small\">\r\n               <Search />\r\n"
+                },
+                {
+                    "date": 1646996667810,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row justify=\"center\">\r\n-      <el-col :span=\"20\" :xs=\"8\" :sm=\"6\" :md=\"10\" :lg=\"12\">\r\n+      <el-col :span=\"20\" :xs=\"8\" :sm=\"6\" :md=\"10\" :>\r\n         <div class>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n"
+                },
+                {
+                    "date": 1646996677865,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row justify=\"center\">\r\n-      <el-col :span=\"20\" :xs=\"8\" :sm=\"6\" :md=\"10\" :>\r\n+      <el-col :span=\"20\">\r\n         <div class>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n"
+                },
+                {
+                    "date": 1646996686689,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n         <div class>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n-      <el-col :span=\"4\" :sm=\"8\">\r\n+      <el-col :span=\"4\">\r\n         <div class>\r\n           <el-button type=\"primary\" size=\"large\">\r\n             <el-icon size=\"small\">\r\n               <Search />\r\n"
+                },
+                {
+                    "date": 1646996727195,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row justify=\"center\">\r\n-      <el-col :span=\"20\">\r\n+      <el-col :span=\"19\">\r\n         <div class>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n"
+                },
+                {
+                    "date": 1646996746782,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row justify=\"center\">\r\n-      <el-col :span=\"19\">\r\n+      <el-col :span=\"18\">\r\n         <div class>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n"
+                },
+                {
+                    "date": 1646996754964,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row justify=\"center\">\r\n-      <el-col :span=\"18\">\r\n+      <el-col :span=\"16\">\r\n         <div class>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n"
+                },
+                {
+                    "date": 1646996788975,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row justify=\"center\">\r\n       <el-col :span=\"16\">\r\n-        <div class>\r\n+        <div>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n       <el-col :span=\"4\">\r\n"
+                },
+                {
+                    "date": 1646996950712,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n       <el-col :span=\"4\">\r\n-        <div class>\r\n+        <div justify=\"start\">\r\n           <el-button type=\"primary\" size=\"large\">\r\n             <el-icon size=\"small\">\r\n               <Search />\r\n             </el-icon>查询\r\n"
+                },
+                {
+                    "date": 1646996966235,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,10 @@\n         <div>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n-      <el-col :span=\"4\">\r\n-        <div justify=\"start\">\r\n+      <el-col :span=\"4\" justify=\"start\">\r\n+        <div>\r\n           <el-button type=\"primary\" size=\"large\">\r\n             <el-icon size=\"small\">\r\n               <Search />\r\n             </el-icon>查询\r\n"
+                },
+                {
+                    "date": 1646996974200,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n         <div>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n-      <el-col :span=\"4\" justify=\"start\">\r\n+      <el-col :span=\"4\" \\>\r\n         <div>\r\n           <el-button type=\"primary\" size=\"large\">\r\n             <el-icon size=\"small\">\r\n               <Search />\r\n"
+                },
+                {
+                    "date": 1646997197308,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n         <div>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n-      <el-col :span=\"4\" \\>\r\n+      <el-col :span=\"3\">\r\n         <div>\r\n           <el-button type=\"primary\" size=\"large\">\r\n             <el-icon size=\"small\">\r\n               <Search />\r\n"
+                },
+                {
+                    "date": 1646997249912,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row justify=\"center\">\r\n-      <el-col :span=\"16\">\r\n+      <el-col :xs=\"8\" :sm=\"6\" :md=\"4\" :lg=\"14\" :xl=\"16\">\r\n         <div>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n"
+                },
+                {
+                    "date": 1646997263693,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row justify=\"center\">\r\n-      <el-col :xs=\"8\" :sm=\"6\" :md=\"4\" :lg=\"14\" :xl=\"16\">\r\n+      <el-col :xs=\"8\" :sm=\"6\" :md=\"4\" :lg=\"12\" :xl=\"16\">\r\n         <div>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n"
+                },
+                {
+                    "date": 1646997301362,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row justify=\"center\">\r\n-      <el-col :xs=\"8\" :sm=\"6\" :md=\"4\" :lg=\"12\" :xl=\"16\">\r\n+      <el-col :xs=\"8\" :sm=\"6\" :md=\"4\" :lg=\"12\" :xl=\"14\">\r\n         <div>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n-      <el-col :span=\"3\">\r\n+      <el-col :xs=\"8\" :sm=\"6\" :md=\"4\" :lg=\"4\" :xl=\"3\">\r\n         <div>\r\n           <el-button type=\"primary\" size=\"large\">\r\n             <el-icon size=\"small\">\r\n               <Search />\r\n"
+                },
+                {
+                    "date": 1646997370578,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <template>\r\n   <div id=\"article-container\">\r\n-    <el-row justify=\"center\">\r\n+    <el-row justify=\"space-between\">\r\n       <el-col :xs=\"8\" :sm=\"6\" :md=\"4\" :lg=\"12\" :xl=\"14\">\r\n         <div>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n"
+                },
+                {
+                    "date": 1646997377887,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n <template>\r\n   <div id=\"article-container\">\r\n-    <el-row justify=\"space-between\">\r\n+    <el-row justify=\"center\">\r\n       <el-col :xs=\"8\" :sm=\"6\" :md=\"4\" :lg=\"12\" :xl=\"14\">\r\n         <div>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n-      <el-col :xs=\"8\" :sm=\"6\" :md=\"4\" :lg=\"4\" :xl=\"3\">\r\n+      <el-col :xs=\"8\" :sm=\"6\" :md=\"4\" :lg=\"12\" :xl=\"3\">\r\n         <div>\r\n           <el-button type=\"primary\" size=\"large\">\r\n             <el-icon size=\"small\">\r\n               <Search />\r\n"
+                },
+                {
+                    "date": 1646997404378,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n         <div>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n-      <el-col :xs=\"8\" :sm=\"6\" :md=\"4\" :lg=\"12\" :xl=\"3\">\r\n+      <el-col :xs=\"8\" :sm=\"6\" :md=\"4\" :lg=\"5\" :xl=\"3\">\r\n         <div>\r\n           <el-button type=\"primary\" size=\"large\">\r\n             <el-icon size=\"small\">\r\n               <Search />\r\n"
+                },
+                {
+                    "date": 1646997410692,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n         <div>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n-      <el-col :xs=\"8\" :sm=\"6\" :md=\"4\" :lg=\"5\" :xl=\"3\">\r\n+      <el-col :xs=\"8\" :sm=\"6\" :md=\"4\" :lg=\"4\" :xl=\"3\">\r\n         <div>\r\n           <el-button type=\"primary\" size=\"large\">\r\n             <el-icon size=\"small\">\r\n               <Search />\r\n"
+                },
+                {
+                    "date": 1646997435983,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n         <div>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n-      <el-col :xs=\"8\" :sm=\"6\" :md=\"4\" :lg=\"4\" :xl=\"3\">\r\n+      <el-col :xs=\"8\" :sm=\"6\" :md=\"4\" :lg=\"5\" :xl=\"3\">\r\n         <div>\r\n           <el-button type=\"primary\" size=\"large\">\r\n             <el-icon size=\"small\">\r\n               <Search />\r\n"
+                },
+                {
+                    "date": 1646997454249,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row justify=\"center\">\r\n-      <el-col :xs=\"8\" :sm=\"6\" :md=\"4\" :lg=\"12\" :xl=\"14\">\r\n+      <el-col :xs=\"8\" :sm=\"6\" :md=\"12\" :lg=\"12\" :xl=\"14\">\r\n         <div>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n"
+                },
+                {
+                    "date": 1646997462638,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row justify=\"center\">\r\n-      <el-col :xs=\"8\" :sm=\"6\" :md=\"12\" :lg=\"12\" :xl=\"14\">\r\n+      <el-col :xs=\"8\" :sm=\"6\" :md=\"10\" :lg=\"12\" :xl=\"14\">\r\n         <div>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n-      <el-col :xs=\"8\" :sm=\"6\" :md=\"4\" :lg=\"5\" :xl=\"3\">\r\n+      <el-col :xs=\"8\" :sm=\"6\" :md=\"6\" :lg=\"5\" :xl=\"3\">\r\n         <div>\r\n           <el-button type=\"primary\" size=\"large\">\r\n             <el-icon size=\"small\">\r\n               <Search />\r\n"
+                },
+                {
+                    "date": 1646997543884,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n         <div>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n-      <el-col :xs=\"8\" :sm=\"6\" :md=\"6\" :lg=\"5\" :xl=\"3\">\r\n+      <el-col :xs=\"8\" :sm=\"6\" :md=\"6\" :lg=\"5\" :xl=\"3\" class=\"search-btn\">\r\n         <div>\r\n           <el-button type=\"primary\" size=\"large\">\r\n             <el-icon size=\"small\">\r\n               <Search />\r\n@@ -28,5 +28,8 @@\n import { Search, Plus } from '@element-plus/icons-vue'\r\n const input = ref('')\r\n </script>\r\n <style lang=\"less\" scoped>\r\n+.search-btn {\r\n+  max-width: 200px;\r\n+}\r\n </style>\r\n"
+                },
+                {
+                    "date": 1646997579593,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n <template>\r\n   <div id=\"article-container\">\r\n     <el-row justify=\"center\">\r\n-      <el-col :xs=\"8\" :sm=\"6\" :md=\"10\" :lg=\"12\" :xl=\"14\">\r\n+      <el-col :md=\"10\" :lg=\"12\" :xl=\"14\">\r\n         <div>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n         </div>\r\n       </el-col>\r\n-      <el-col :xs=\"8\" :sm=\"6\" :md=\"6\" :lg=\"5\" :xl=\"3\" class=\"search-btn\">\r\n+      <el-col :md=\"6\" :lg=\"5\" :xl=\"3\" class=\"search-btn\">\r\n         <div>\r\n           <el-button type=\"primary\" size=\"large\">\r\n             <el-icon size=\"small\">\r\n               <Search />\r\n"
+                },
+                {
+                    "date": 1646997946491,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,27 @@\n           </el-button>\r\n         </div>\r\n       </el-col>\r\n     </el-row>\r\n+    <el-table\r\n+      ref=\"multipleTableRef\"\r\n+      :data=\"tableData\"\r\n+      style=\"width: 100%\"\r\n+      @selection-change=\"handleSelectionChange\"\r\n+    >\r\n+      <el-table-column type=\"selection\" width=\"55\" />\r\n+      <el-table-column label=\"Date\" width=\"120\">\r\n+        <template #default=\"scope\">{{ scope.row.date }}</template>\r\n+      </el-table-column>\r\n+      <el-table-column property=\"name\" label=\"Name\" width=\"120\" />\r\n+      <el-table-column property=\"address\" label=\"Address\" show-overflow-tooltip />\r\n+    </el-table>\r\n+    <div style=\"margin-top: 20px\">\r\n+      <el-button\r\n+        @click=\"toggleSelection([tableData[1], tableData[2]])\"\r\n+      >Toggle selection status of second and third rows</el-button>\r\n+      <el-button @click=\"toggleSelection()\">Clear selection</el-button>\r\n+    </div>\r\n   </div>\r\n </template>\r\n <script setup lang=\"ts\">\r\n import { ref } from 'vue';\r\n"
+                },
+                {
+                    "date": 1646997964078,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,8 +44,9 @@\n </template>\r\n <script setup lang=\"ts\">\r\n import { ref } from 'vue';\r\n import { Search, Plus } from '@element-plus/icons-vue'\r\n+import type { ElTable } from 'element-plus'\r\n const input = ref('')\r\n </script>\r\n <style lang=\"less\" scoped>\r\n .search-btn {\r\n"
+                },
+                {
+                    "date": 1646997990282,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,8 +46,66 @@\n import { ref } from 'vue';\r\n import { Search, Plus } from '@element-plus/icons-vue'\r\n import type { ElTable } from 'element-plus'\r\n const input = ref('')\r\n+interface User {\r\n+  date: string\r\n+  name: string\r\n+  address: string\r\n+}\r\n+\r\n+const multipleTableRef = ref<InstanceType<typeof ElTable>>()\r\n+const multipleSelection = ref<User[]>([])\r\n+const toggleSelection = (rows?: User[]) => {\r\n+  if (rows) {\r\n+    rows.forEach((row) => {\r\n+      multipleTableRef.value!.toggleRowSelection(row, undefined)\r\n+    })\r\n+  } else {\r\n+    multipleTableRef.value!.clearSelection()\r\n+  }\r\n+}\r\n+const handleSelectionChange = (val: User[]) => {\r\n+  multipleSelection.value = val\r\n+}\r\n+\r\n+const tableData: User[] = [\r\n+  {\r\n+    date: '2016-05-03',\r\n+    name: 'Tom',\r\n+    address: 'No. 189, Grove St, Los Angeles',\r\n+  },\r\n+  {\r\n+    date: '2016-05-02',\r\n+    name: 'Tom',\r\n+    address: 'No. 189, Grove St, Los Angeles',\r\n+  },\r\n+  {\r\n+    date: '2016-05-04',\r\n+    name: 'Tom',\r\n+    address: 'No. 189, Grove St, Los Angeles',\r\n+  },\r\n+  {\r\n+    date: '2016-05-01',\r\n+    name: 'Tom',\r\n+    address: 'No. 189, Grove St, Los Angeles',\r\n+  },\r\n+  {\r\n+    date: '2016-05-08',\r\n+    name: 'Tom',\r\n+    address: 'No. 189, Grove St, Los Angeles',\r\n+  },\r\n+  {\r\n+    date: '2016-05-06',\r\n+    name: 'Tom',\r\n+    address: 'No. 189, Grove St, Los Angeles',\r\n+  },\r\n+  {\r\n+    date: '2016-05-07',\r\n+    name: 'Tom',\r\n+    address: 'No. 189, Grove St, Los Angeles',\r\n+  },\r\n+]\r\n </script>\r\n <style lang=\"less\" scoped>\r\n .search-btn {\r\n   max-width: 200px;\r\n"
+                },
+                {
+                    "date": 1646998093459,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,11 +34,9 @@\n       <el-table-column property=\"name\" label=\"Name\" width=\"120\" />\r\n       <el-table-column property=\"address\" label=\"Address\" show-overflow-tooltip />\r\n     </el-table>\r\n     <div style=\"margin-top: 20px\">\r\n-      <el-button\r\n-        @click=\"toggleSelection([tableData[1], tableData[2]])\"\r\n-      >Toggle selection status of second and third rows</el-button>\r\n+      <el-button @click=\"toggleSelection([tableData[1], tableData[2]])\">切换第二行和第三行的选择状态</el-button>\r\n       <el-button @click=\"toggleSelection()\">Clear selection</el-button>\r\n     </div>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1646998193747,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,9 @@\n     <el-table\r\n       ref=\"multipleTableRef\"\r\n       :data=\"tableData\"\r\n       style=\"width: 100%\"\r\n+      class=\"table\"\r\n       @selection-change=\"handleSelectionChange\"\r\n     >\r\n       <el-table-column type=\"selection\" width=\"55\" />\r\n       <el-table-column label=\"Date\" width=\"120\">\r\n@@ -107,5 +108,8 @@\n <style lang=\"less\" scoped>\r\n .search-btn {\r\n   max-width: 200px;\r\n }\r\n+.table {\r\n+  margin-top: 20px;\r\n+}\r\n </style>\r\n"
+                },
+                {
+                    "date": 1646998278968,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -110,6 +110,7 @@\n   max-width: 200px;\r\n }\r\n .table {\r\n   margin-top: 20px;\r\n+  padding-left: 20px;\r\n }\r\n </style>\r\n"
+                },
+                {
+                    "date": 1646998296713,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -110,7 +110,6 @@\n   max-width: 200px;\r\n }\r\n .table {\r\n   margin-top: 20px;\r\n-  padding-left: 20px;\r\n }\r\n </style>\r\n"
+                },
+                {
+                    "date": 1646998309922,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n     </el-row>\r\n     <el-table\r\n       ref=\"multipleTableRef\"\r\n       :data=\"tableData\"\r\n-      style=\"width: 100%\"\r\n+      style=\"width: 80%\"\r\n       class=\"table\"\r\n       @selection-change=\"handleSelectionChange\"\r\n     >\r\n       <el-table-column type=\"selection\" width=\"55\" />\r\n"
+                },
+                {
+                    "date": 1646998330456,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -110,6 +110,7 @@\n   max-width: 200px;\r\n }\r\n .table {\r\n   margin-top: 20px;\r\n+  text-align: center;\r\n }\r\n </style>\r\n"
+                },
+                {
+                    "date": 1646998336988,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -110,7 +110,6 @@\n   max-width: 200px;\r\n }\r\n .table {\r\n   margin-top: 20px;\r\n-  text-align: center;\r\n }\r\n </style>\r\n"
+                },
+                {
+                    "date": 1646998394345,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n <template>\r\n   <div id=\"article-container\">\r\n+    <!-- 搜索框 -->\r\n     <el-row justify=\"center\">\r\n       <el-col :md=\"10\" :lg=\"12\" :xl=\"14\">\r\n         <div>\r\n           <el-input v-model=\"input\" placeholder=\"请输入内容\" clearable size=\"large\" />\r\n@@ -20,22 +21,28 @@\n           </el-button>\r\n         </div>\r\n       </el-col>\r\n     </el-row>\r\n-    <el-table\r\n-      ref=\"multipleTableRef\"\r\n-      :data=\"tableData\"\r\n-      style=\"width: 80%\"\r\n-      class=\"table\"\r\n-      @selection-change=\"handleSelectionChange\"\r\n-    >\r\n-      <el-table-column type=\"selection\" width=\"55\" />\r\n-      <el-table-column label=\"Date\" width=\"120\">\r\n-        <template #default=\"scope\">{{ scope.row.date }}</template>\r\n-      </el-table-column>\r\n-      <el-table-column property=\"name\" label=\"Name\" width=\"120\" />\r\n-      <el-table-column property=\"address\" label=\"Address\" show-overflow-tooltip />\r\n-    </el-table>\r\n+    <!-- 文章表格 -->\r\n+    <el-row>\r\n+      <el-col>\r\n+        <el-table\r\n+          ref=\"multipleTableRef\"\r\n+          :data=\"tableData\"\r\n+          style=\"width: 80%\"\r\n+          class=\"table\"\r\n+          @selection-change=\"handleSelectionChange\"\r\n+        >\r\n+          <el-table-column type=\"selection\" width=\"55\" />\r\n+          <el-table-column label=\"Date\" width=\"120\">\r\n+            <template #default=\"scope\">{{ scope.row.date }}</template>\r\n+          </el-table-column>\r\n+          <el-table-column property=\"name\" label=\"Name\" width=\"120\" />\r\n+          <el-table-column property=\"address\" label=\"Address\" show-overflow-tooltip />\r\n+        </el-table>\r\n+      </el-col>\r\n+    </el-row>\r\n+\r\n     <div style=\"margin-top: 20px\">\r\n       <el-button @click=\"toggleSelection([tableData[1], tableData[2]])\">切换第二行和第三行的选择状态</el-button>\r\n       <el-button @click=\"toggleSelection()\">Clear selection</el-button>\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1646998412920,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,10 +22,10 @@\n         </div>\r\n       </el-col>\r\n     </el-row>\r\n     <!-- 文章表格 -->\r\n-    <el-row>\r\n-      <el-col>\r\n+    <el-row justify=\"center\">\r\n+      <el-col :span=\"20\">\r\n         <el-table\r\n           ref=\"multipleTableRef\"\r\n           :data=\"tableData\"\r\n           style=\"width: 80%\"\r\n"
+                },
+                {
+                    "date": 1646998432133,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,13 +23,13 @@\n       </el-col>\r\n     </el-row>\r\n     <!-- 文章表格 -->\r\n     <el-row justify=\"center\">\r\n-      <el-col :span=\"20\">\r\n+      <el-col :span=\"22\">\r\n         <el-table\r\n           ref=\"multipleTableRef\"\r\n           :data=\"tableData\"\r\n-          style=\"width: 80%\"\r\n+          style=\"width: 100%\"\r\n           class=\"table\"\r\n           @selection-change=\"handleSelectionChange\"\r\n         >\r\n           <el-table-column type=\"selection\" width=\"55\" />\r\n"
+                },
+                {
+                    "date": 1646998545212,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,10 @@\n           <el-table-column property=\"address\" label=\"Address\" show-overflow-tooltip />\r\n         </el-table>\r\n       </el-col>\r\n     </el-row>\r\n-\r\n+    <!-- 删除..按钮 -->\r\n+    <el-row justify=\"start\"></el-row>\r\n     <div style=\"margin-top: 20px\">\r\n       <el-button @click=\"toggleSelection([tableData[1], tableData[2]])\">切换第二行和第三行的选择状态</el-button>\r\n       <el-button @click=\"toggleSelection()\">Clear selection</el-button>\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1646998697439,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n       </el-col>\r\n     </el-row>\r\n     <!-- 删除..按钮 -->\r\n     <el-row justify=\"start\">\r\n-      <el-col>\r\n+      <el-col >\r\n         <div style=\"margin-top: 20px\">\r\n           <el-button @click=\"toggleSelection([tableData[1], tableData[2]])\">切换第二行和第三行的选择状态</el-button>\r\n           <el-button @click=\"toggleSelection()\">Clear selection</el-button>\r\n         </div>\r\n"
+                }
+            ],
+            "date": 1646992286119,
+            "name": "Commit-0",
+            "content": "<template>\r\n  <div id=\"article-container\">\r\n    <p>文章视图</p>\r\n  </div>\r\n</template>\r\n<script setup lang=\"ts\"></script>\r\n<style lang=\"less\" scoped></style>\r\n"
+        }
+    ]
+}

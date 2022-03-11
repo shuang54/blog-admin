@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 8,
+            "activePatchIndex": 16,
             "patches": [
                 {
                     "date": 1646380259106,
@@ -40,6 +40,38 @@
                 {
                     "date": 1646392813542,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,9 @@\n import { createRouter, createWebHistory } from 'vue-router'\r\n-import HelloWorld from '@/components/HelloWorld.vue'\r\n const routerHistory = createWebHistory()\r\n const router = createRouter({\r\n   history: routerHistory,\r\n   routes: [\r\n-    {\r\n-      path: '/',\r\n-      component: HelloWorld\r\n-    },\r\n+\r\n   ]\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1646992317648,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,11 @@\n const routerHistory = createWebHistory()\r\n const router = createRouter({\r\n   history: routerHistory,\r\n   routes: [\r\n+    {\r\n+      path: '/article',\r\n \r\n+    }\r\n   ]\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1646992347386,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n   history: routerHistory,\r\n   routes: [\r\n     {\r\n       path: '/article',\r\n-\r\n+      component:\r\n     }\r\n   ]\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1646992402898,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,10 @@\n   history: routerHistory,\r\n   routes: [\r\n     {\r\n       path: '/article',\r\n-      component:\r\n+      component: () => import('../view/Article/index.vue'),\r\n+      name: 'article'\r\n     }\r\n   ]\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1646993459402,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n const router = createRouter({\r\n   history: routerHistory,\r\n   routes: [\r\n     {\r\n-      path: '/article',\r\n+      path: '/admin/article',\r\n       component: () => import('../view/Article/index.vue'),\r\n       name: 'article'\r\n     }\r\n   ]\r\n"
+                },
+                {
+                    "date": 1646993485843,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,13 @@\n     {\r\n       path: '/admin/article',\r\n       component: () => import('../view/Article/index.vue'),\r\n       name: 'article'\r\n+    },\r\n+    {\r\n+      path: '/admin/category',\r\n+      component: () => import('../view/Category/index.vue'),\r\n+      name: 'category'\r\n     }\r\n   ]\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1646993963862,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,16 +3,22 @@\n const router = createRouter({\r\n   history: routerHistory,\r\n   routes: [\r\n     {\r\n+      path: '/',\r\n+      component: () => import('../components/'),\r\n+      name: 'category'\r\n+    },\r\n+    {\r\n       path: '/admin/article',\r\n       component: () => import('../view/Article/index.vue'),\r\n       name: 'article'\r\n     },\r\n     {\r\n       path: '/admin/category',\r\n       component: () => import('../view/Category/index.vue'),\r\n       name: 'category'\r\n-    }\r\n+    },\r\n+\r\n   ]\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1646993970202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n   history: routerHistory,\r\n   routes: [\r\n     {\r\n       path: '/',\r\n-      component: () => import('../components/'),\r\n+      component: () => import('../components/Main/index.vue'),\r\n       name: 'category'\r\n     },\r\n     {\r\n       path: '/admin/article',\r\n"
+                },
+                {
+                    "date": 1646993992786,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,8 @@\n   routes: [\r\n     {\r\n       path: '/',\r\n       component: () => import('../components/Main/index.vue'),\r\n-      name: 'category'\r\n     },\r\n     {\r\n       path: '/admin/article',\r\n       component: () => import('../view/Article/index.vue'),\r\n"
                 }
             ],
             "date": 1646380259106,

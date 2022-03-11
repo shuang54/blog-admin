@@ -1,7 +1,9 @@
 /* 把我们所有标签的内外边距清零 */
 * {
     margin: 0;
-    padding: 0
+    padding: 0;
+    font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
+  'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
 }
 /* em 和 i 斜体的文字不倾斜 */
 em,

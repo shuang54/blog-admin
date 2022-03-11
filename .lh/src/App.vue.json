@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 55,
+            "activePatchIndex": 74,
             "patches": [
                 {
                     "date": 1646380413199,
@@ -228,6 +228,82 @@
                 {
                     "date": 1646920806713,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,42 +13,39 @@\n </template>\n \n <style scoped lang=\"less\">\n .el-header,\n-.common-layout .el-footer {\n+.el-footer {\n   background-color: #b3c0d1;\n   color: var(--el-text-color-primary);\n   text-align: center;\n   line-height: 60px;\n }\n-.common-layout .el-footer {\n-  line-height: 60px;\n-}\n \n-.common-layout .el-aside {\n+.el-aside {\n   background-color: #d3dce6;\n   color: var(--el-text-color-primary);\n   text-align: center;\n   line-height: 200px;\n }\n \n-.common-layout .el-main {\n+.el-main {\n   background-color: #e9eef3;\n   color: var(--el-text-color-primary);\n   text-align: center;\n   line-height: 160px;\n }\n \n-.common-layout > .el-container {\n+body > .el-container {\n   margin-bottom: 40px;\n }\n \n-.common-layout .el-container:nth-child(5) .el-aside,\n-.common-layout .el-container:nth-child(6) .el-aside {\n+.el-container:nth-child(5) .el-aside,\n+.el-container:nth-child(6) .el-aside {\n   line-height: 260px;\n }\n \n-.common-layout .el-container:nth-child(7) .el-aside {\n+.el-container:nth-child(7) .el-aside {\n   line-height: 320px;\n }\n </style>\n \n"
+                },
+                {
+                    "date": 1646983249944,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,9 @@\n   background-color: #d3dce6;\n   color: var(--el-text-color-primary);\n   text-align: center;\n   line-height: 200px;\n+  height: 100vh;\n }\n \n .el-main {\n   background-color: #e9eef3;\n"
+                },
+                {
+                    "date": 1646983972842,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,15 @@\n <script lang=\"ts\" setup>\n import { defineComponent } from \"vue\";\n-\n+import Aside from './components/Aside/index.vue'\n </script>\n <template>\n   <el-container>\n     <el-header>Header</el-header>\n     <el-container>\n-      <el-aside width=\"200px\">Aside</el-aside>\n+      <el-aside width=\"200px\">\n+        <Aside></Aside>\n+      </el-aside>\n       <el-main>Main</el-main>\n     </el-container>\n   </el-container>\n </template>\n"
+                },
+                {
+                    "date": 1646984088987,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n <script lang=\"ts\" setup>\n import { defineComponent } from \"vue\";\n import Aside from './components/Aside/index.vue'\n+\n </script>\n <template>\n   <el-container>\n     <el-header>Header</el-header>\n"
+                },
+                {
+                    "date": 1646984145362,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <script lang=\"ts\" setup>\n-import { defineComponent } from \"vue\";\n+import { defineAsyncComponent } from \"vue\";\n import Aside from './components/Aside/index.vue'\n \n </script>\n <template>\n"
+                },
+                {
+                    "date": 1646984157117,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n <script lang=\"ts\" setup>\n import { defineAsyncComponent } from \"vue\";\n import Aside from './components/Aside/index.vue'\n+const Aside = defineAsyncComponent({\n \n+})\n </script>\n <template>\n   <el-container>\n     <el-header>Header</el-header>\n"
+                },
+                {
+                    "date": 1646984180906,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <script lang=\"ts\" setup>\n import { defineAsyncComponent } from \"vue\";\n-import Aside from './components/Aside/index.vue'\n-const Aside = defineAsyncComponent({\n-\n+import Aside from ''\n+const Aside = defineAsyncComponent(() => {\n+  import()=> './components/Aside/index.vue'\n })\n </script>\n <template>\n   <el-container>\n"
+                },
+                {
+                    "date": 1646984188502,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n <script lang=\"ts\" setup>\n import { defineAsyncComponent } from \"vue\";\n-import Aside from ''\n const Aside = defineAsyncComponent(() => {\n   import()=> './components/Aside/index.vue'\n })\n </script>\n"
+                },
+                {
+                    "date": 1646984201506,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <script lang=\"ts\" setup>\n import { defineAsyncComponent } from \"vue\";\n const Aside = defineAsyncComponent(() => {\n-  import()=> './components/Aside/index.vue'\n+  import './components/Aside/index.vue'\n })\n </script>\n <template>\n   <el-container>\n"
+                },
+                {
+                    "date": 1646984208646,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <script lang=\"ts\" setup>\n import { defineAsyncComponent } from \"vue\";\n-const Aside = defineAsyncComponent(() => {\n+const Aside = defineAsyncComponent(() => \n   import './components/Aside/index.vue'\n-})\n+)\n </script>\n <template>\n   <el-container>\n     <el-header>Header</el-header>\n"
+                },
+                {
+                    "date": 1646984224370,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <script lang=\"ts\" setup>\n import { defineAsyncComponent } from \"vue\";\n-const Aside = defineAsyncComponent(() => \n-  import './components/Aside/index.vue'\n+const Aside = defineAsyncComponent(() =>\n+  import('./components/Aside/index.vue')\n )\n </script>\n <template>\n   <el-container>\n"
+                },
+                {
+                    "date": 1646984269863,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n <script lang=\"ts\" setup>\n import { defineAsyncComponent } from \"vue\";\n+//异步导入组件\n const Aside = defineAsyncComponent(() =>\n   import('./components/Aside/index.vue')\n )\n </script>\n"
+                },
+                {
+                    "date": 1646984313595,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,13 +6,16 @@\n )\n </script>\n <template>\n   <el-container>\n+    <!-- 头部 -->\n     <el-header>Header</el-header>\n     <el-container>\n+      <!-- 侧边栏 -->\n       <el-aside width=\"200px\">\n         <Aside></Aside>\n       </el-aside>\n+      <!-- 主体内容 -->\n       <el-main>Main</el-main>\n     </el-container>\n   </el-container>\n </template>\n"
+                },
+                {
+                    "date": 1646991574883,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n </script>\n <template>\n   <el-container>\n     <!-- 头部 -->\n-    <el-header>Header</el-header>\n+    <el-header>blog-admin</el-header>\n     <el-container>\n       <!-- 侧边栏 -->\n       <el-aside width=\"200px\">\n         <Aside></Aside>\n"
+                },
+                {
+                    "date": 1646991581983,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n </script>\n <template>\n   <el-container>\n     <!-- 头部 -->\n-    <el-header>blog-admin</el-header>\n+    <el-header>博客后台系统</el-header>\n     <el-container>\n       <!-- 侧边栏 -->\n       <el-aside width=\"200px\">\n         <Aside></Aside>\n"
+                },
+                {
+                    "date": 1646991667654,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n </script>\n <template>\n   <el-container>\n     <!-- 头部 -->\n-    <el-header>博客后台系统</el-header>\n+    <el-header>博客后台管理系统</el-header>\n     <el-container>\n       <!-- 侧边栏 -->\n       <el-aside width=\"200px\">\n         <Aside></Aside>\n"
+                },
+                {
+                    "date": 1646991935969,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,11 @@\n       <el-aside width=\"200px\">\n         <Aside></Aside>\n       </el-aside>\n       <!-- 主体内容 -->\n-      <el-main>Main</el-main>\n+      <el-main>\n+        <router-view name=\"path\"></router-view>\n+      </el-main>\n     </el-container>\n   </el-container>\n </template>\n \n"
+                },
+                {
+                    "date": 1646992055981,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n         <Aside></Aside>\n       </el-aside>\n       <!-- 主体内容 -->\n       <el-main>\n-        <router-view name=\"path\"></router-view>\n+        <router-view></router-view>\n       </el-main>\n     </el-container>\n   </el-container>\n </template>\n"
+                },
+                {
+                    "date": 1646994933849,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,8 @@\n .el-main {\n   background-color: #e9eef3;\n   color: var(--el-text-color-primary);\n   text-align: center;\n-  line-height: 160px;\n }\n \n body > .el-container {\n   margin-bottom: 40px;\n"
+                },
+                {
+                    "date": 1646998222680,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n   height: 100vh;\n }\n \n .el-main {\n-  background-color: #e9eef3;\n+  background-color: white;\n   color: var(--el-text-color-primary);\n   text-align: center;\n }\n \n"
                 }
             ],
             "date": 1646380413199,
