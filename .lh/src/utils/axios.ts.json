@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 5,
+            "activePatchIndex": 9,
             "patches": [
                 {
                     "date": 1646391894478,
@@ -28,6 +28,22 @@
                 {
                     "date": 1646391945568,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import Axios, { AxiosError, AxiosResponse } from 'axios'\r\n+import Axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios'\r\n \r\n const BASE_URL = 'https://api.example.com'\r\n const TIME_OUT = 10 * 1000\r\n \r\n"
+                },
+                {
+                    "date": 1647131971479,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,18 @@\n import Axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios'\r\n+import { } \r\n+const BASE_URL = 'http://127.0.0.1:8000/blog'\r\n+const TIME_OUT = 5000\r\n \r\n-const BASE_URL = 'https://api.example.com'\r\n-const TIME_OUT = 10 * 1000\r\n-\r\n // 通过Axios.create()方法创建一个自定义配置的axios实例\r\n const instance = Axios.create({\r\n   baseURL: BASE_URL,\r\n-  timeout: TIME_OUT\r\n+  timeout: TIME_OUT,\r\n+  headers: {\r\n+    'content-type': 'application/json',\r\n+    // 'access-control-allow-origin': '*'\r\n+\r\n+  }\r\n })\r\n // 使用后置拦截器，对获取的响应进行拦截：\r\n instance.interceptors.response.use(\r\n   (res: AxiosResponse) => {\r\n@@ -46,19 +51,23 @@\n   }\r\n }\r\n const getPromise = (method, url, params, config = {}) => {\r\n   return new Promise((resolve, reject) => {\r\n-    instance[method](method, url)(params, config).catch(e => e.response.data)\r\n+    instance[method](url, params, config).catch(e => e.data)\r\n       .then(res => resolve(res))\r\n       .catch(err => reject(err))\r\n   })\r\n }\r\n // 导出我们常用的请求方法：\r\n const get = (url: string, params?: any) => getPromise('get', url, { params })\r\n const post = (url: string, params: any, config?: AxiosRequestConfig) => getPromise('post', url, params, config)\r\n-\r\n+const del = (url: string, params?: any, config?: AxiosRequestConfig) => getPromise('delete', url, params, config)\r\n+const put = (url: string, params?: any, config?: AxiosRequestConfig) => getPromise('put', url, params, config)\r\n export {\r\n   get,\r\n   post,\r\n+  del,\r\n+  put,\r\n+  instance\r\n }\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1647132245048,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import Axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios'\r\n-import { } \r\n+import { ElMessage as $message } from 'element-plus'\r\n const BASE_URL = 'http://127.0.0.1:8000/blog'\r\n const TIME_OUT = 5000\r\n \r\n // 通过Axios.create()方法创建一个自定义配置的axios实例\r\n@@ -29,9 +29,10 @@\n     if (error && error.response) {\r\n       errorHandle(error.response.status, error.response)\r\n       return Promise.reject(error.response)\r\n     }\r\n-    console.log('网络请求失败, 请刷新重试')\r\n+    // console.log('网络请求失败, 请刷新重试')\r\n+    $message.error('网络请求失败, 请刷新重试')\r\n     return Promise.reject(error)\r\n   }\r\n )\r\n // 当捕获到错误请求时，可以自定义错误处理：\r\n"
+                },
+                {
+                    "date": 1647173843023,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import Axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios'\r\n import { ElMessage as $message } from 'element-plus'\r\n+import * as nProgress from 'nprogress';\r\n const BASE_URL = 'http://127.0.0.1:8000/blog'\r\n const TIME_OUT = 5000\r\n \r\n // 通过Axios.create()方法创建一个自定义配置的axios实例\r\n@@ -12,11 +13,17 @@\n     // 'access-control-allow-origin': '*'\r\n \r\n   }\r\n })\r\n+instance.interceptors.request.use((config) => {\r\n+  nProgress.start()\r\n+\r\n+  return config;\r\n+})\r\n // 使用后置拦截器，对获取的响应进行拦截：\r\n instance.interceptors.response.use(\r\n   (res: AxiosResponse) => {\r\n+    nProgress.done()\r\n     if (String(res.status).indexOf('2') !== 0) {\r\n       return {\r\n         code: res.status,\r\n         message: res.data.message || '请求异常，请刷新重试',\r\n"
+                },
+                {
+                    "date": 1647173906777,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import Axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios'\r\n import { ElMessage as $message } from 'element-plus'\r\n-import * as nProgress from 'nprogress';\r\n+import * as nProgress from 'nprogress'\r\n const BASE_URL = 'http://127.0.0.1:8000/blog'\r\n const TIME_OUT = 5000\r\n \r\n // 通过Axios.create()方法创建一个自定义配置的axios实例\r\n"
                 }
             ],
             "date": 1646391894477,

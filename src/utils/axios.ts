@@ -1,16 +1,28 @@
 import Axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios'
-
-const BASE_URL = 'https://api.example.com'
-const TIME_OUT = 10 * 1000
+import { ElMessage as $message } from 'element-plus'
+import * as nProgress from 'nprogress'
+const BASE_URL = 'http://127.0.0.1:8000/blog'
+const TIME_OUT = 5000
 
 // 通过Axios.create()方法创建一个自定义配置的axios实例
 const instance = Axios.create({
   baseURL: BASE_URL,
-  timeout: TIME_OUT
+  timeout: TIME_OUT,
+  headers: {
+    'content-type': 'application/json',
+    // 'access-control-allow-origin': '*'
+
+  }
+})
+instance.interceptors.request.use((config) => {
+  nProgress.start()
+
+  return config;
 })
 // 使用后置拦截器，对获取的响应进行拦截：
 instance.interceptors.response.use(
   (res: AxiosResponse) => {
+    nProgress.done()
     if (String(res.status).indexOf('2') !== 0) {
       return {
         code: res.status,
@@ -25,7 +37,8 @@ instance.interceptors.response.use(
       errorHandle(error.response.status, error.response)
       return Promise.reject(error.response)
     }
-    console.log('网络请求失败, 请刷新重试')
+    // console.log('网络请求失败, 请刷新重试')
+    $message.error('网络请求失败, 请刷新重试')
     return Promise.reject(error)
   }
 )
@@ -47,7 +60,7 @@ const errorHandle = (status: number, error): void => {
 }
 const getPromise = (method, url, params, config = {}) => {
   return new Promise((resolve, reject) => {
-    instance[method](method, url)(params, config).catch(e => e.response.data)
+    instance[method](url, params, config).catch(e => e.data)
       .then(res => resolve(res))
       .catch(err => reject(err))
   })
@@ -55,10 +68,14 @@ const getPromise = (method, url, params, config = {}) => {
 // 导出我们常用的请求方法：
 const get = (url: string, params?: any) => getPromise('get', url, { params })
 const post = (url: string, params: any, config?: AxiosRequestConfig) => getPromise('post', url, params, config)
-
+const del = (url: string, params?: any, config?: AxiosRequestConfig) => getPromise('delete', url, params, config)
+const put = (url: string, params?: any, config?: AxiosRequestConfig) => getPromise('put', url, params, config)
 export {
   get,
   post,
+  del,
+  put,
+  instance
 }
 
 

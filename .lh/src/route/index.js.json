@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 16,
+            "activePatchIndex": 18,
             "patches": [
                 {
                     "date": 1646380259106,
@@ -72,6 +72,14 @@
                 {
                     "date": 1646993992786,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,8 @@\n   routes: [\r\n     {\r\n       path: '/',\r\n       component: () => import('../components/Main/index.vue'),\r\n-      name: 'category'\r\n     },\r\n     {\r\n       path: '/admin/article',\r\n       component: () => import('../view/Article/index.vue'),\r\n"
+                },
+                {
+                    "date": 1647177064755,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,18 @@\n       path: '/admin/category',\r\n       component: () => import('../view/Category/index.vue'),\r\n       name: 'category'\r\n     },\r\n+    {\r\n+      path: '/admin/addArticle',\r\n+      component: () => import('../view/AddFile/index.vue'),\r\n+      name: 'addarticle'\r\n+    },\r\n+    {\r\n+      path: '/admin/updateArticle',\r\n+      component: () => import('../view/AddFile/index.vue'),\r\n+      name: 'updatearticle'\r\n+    },\r\n \r\n   ]\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647177072428,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,14 +19,14 @@\n     },\r\n     {\r\n       path: '/admin/addArticle',\r\n       component: () => import('../view/AddFile/index.vue'),\r\n-      name: 'addarticle'\r\n+      name: 'addArticle'\r\n     },\r\n     {\r\n       path: '/admin/updateArticle',\r\n       component: () => import('../view/AddFile/index.vue'),\r\n-      name: 'updatearticle'\r\n+      name: 'updateArticle'\r\n     },\r\n \r\n   ]\r\n })\r\n"
                 }
             ],
             "date": 1646380259106,

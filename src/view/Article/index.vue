@@ -33,12 +33,13 @@
           @selection-change="handleSelectionChange"
         >
           <el-table-column type="selection" width="55" />
-          <el-table-column label="创建时间" width="120">
-            <template #default="scope">{{ scope.row.date }}</template>
+          <el-table-column type="index" label="index" width="120" />
+          <el-table-column label="创建时间" width="180">
+            <template #default="scope">{{ scope.row.createTime }}</template>
           </el-table-column>
-          <el-table-column property="name" label="标题" width="120" />
-          <el-table-column property="address" label="分类" show-overflow-tooltip />
-          <el-table-column label="Operations">
+          <el-table-column property="title" label="标题" width="180" />
+          <el-table-column property="categoryName" label="分类" show-overflow-tooltip />
+          <el-table-column label="操作">
             <template #default="scope">
               <el-button :icon="Edit" size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
               <el-button
@@ -55,7 +56,6 @@
     <!-- 删除..按钮 -->
     <el-row>
       <el-col :span="24" class="del-btn">
-        <el-button @click="toggleSelection([tableData[1], tableData[2]])">切换第二行和第三行的选择状态</el-button>
         <el-button @click="toggleSelection()">取消选择</el-button>
         <el-button type="danger" :icon="Minus">批量删除</el-button>
       </el-col>
@@ -66,12 +66,11 @@
         <el-pagination
           v-model:currentPage="currentPage"
           v-model:page-size="pageSize"
-          :page-sizes="[100, 200, 300, 400]"
-          :small="small"
+          :page-sizes="[5, 10, 15, 20]"
           :disabled="disabled"
           :background="background"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="400"
+          :total="40"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
           class="pagination"
@@ -81,20 +80,29 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed, reactive } from 'vue';
 import { Search, Plus, Minus, Edit } from '@element-plus/icons-vue'
 import type { ElTable } from 'element-plus'
+import { useArticle } from '../../store';
+import { reactify } from '_@vueuse_shared@7.7.1@@vueuse/shared';
+import router from '../../route';
+
+//获取仓库
+const articleStore = useArticle()
+
 // 要搜索的值
 const input = ref('')
-interface User {
-  date: string
-  name: string
-  address: string
+interface Article {
+  id: number,
+  categoryId: number,
+  createTime: string,
+  updateTime: string,
+  title: string,
 }
 
 const multipleTableRef = ref<InstanceType<typeof ElTable>>()
-const multipleSelection = ref<User[]>([])
-const toggleSelection = (rows?: User[]) => {
+const multipleSelection = ref<Article[]>([])
+const toggleSelection = (rows?: Article[]) => {
   if (rows) {
     rows.forEach((row) => {
       multipleTableRef.value!.toggleRowSelection(row, undefined)
@@ -103,68 +111,59 @@ const toggleSelection = (rows?: User[]) => {
     multipleTableRef.value!.clearSelection()
   }
 }
-const handleSelectionChange = (val: User[]) => {
+const handleSelectionChange = (val: Article[]) => {
   multipleSelection.value = val
 }
-// 表格数据
-const tableData: User[] = [
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-08',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-06',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-07',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-]
+
 // 编辑按钮
-const handleEdit = (index: number, row: User) => {
-  console.log(index, row)
+const handleEdit = (index: number, row: Article) => {
+  router.push({name:'updateArticle'})
 }
 // 删除按钮
-const handleDelete = (index: number, row: User) => {
-  console.log(index, row)
-}
-// 分页
-const currentPage = ref(4)
-const pageSize = ref(100)
-const small = ref(false)
-const background = ref(false)
-const disabled = ref(false)
+const handleDelete = async (index: number, row: Article) => {
+  let id = row.id
+  await articleStore.delArticle(id)
+  await articleStore.getArticleList({ num: pageSize.value, page: page.value })
 
+
+}
+// 分页器----------------------->
+// 当前第几页
+const currentPage = ref(1)
+// 每页多少数据
+const pageSize = ref(10)
+const background = ref(true)
+const disabled = ref(false)
+const total = computed(() => {
+  return articleStore.articleList.length
+})
+
+// 改变每页显示多少数据
 const handleSizeChange = (val: number) => {
-  console.log(`${val} items per page`)
+  pageSize.value = val
+  articleStore.getArticleList({ num: pageSize.value, page: page.value })
 }
+// 改变页码
 const handleCurrentChange = (val: number) => {
-  console.log(`current page: ${val}`)
+  currentPage.value = val
+  articleStore.getArticleList({ num: pageSize.value, page: page.value })
 }
+
+
+let page = computed(() => {
+  return pageSize.value * (currentPage.value - 1)
+})
+articleStore.getArticleList({ num: pageSize.value, page: page.value })
+const articleList = computed({
+  get: () => {
+    return articleStore.articleList
+  },
+  set: () => { }
+})
+// 表格数据
+const tableData = computed(() => {
+  return articleList.value
+})
 </script>
 <style lang="less" scoped>
 .search-btn {

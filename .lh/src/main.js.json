@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 15,
+            "activePatchIndex": 26,
             "patches": [
                 {
                     "date": 1646380363217,
@@ -68,6 +68,50 @@
                 {
                     "date": 1646920323158,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import router from './route'\n import { createPinia } from 'pinia'\n-import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n+// import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n const app = createApp(App)\n app.use(router)\n app.use(createPinia())\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1647174015545,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,12 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import router from './route'\n import { createPinia } from 'pinia'\n+import { mavonEditor } from 'mavon-editor'\n+import 'mavon-editor/dist/css/index.css'\n // import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n const app = createApp(App)\n+app.component('mavonEditor', mavonEditor)\n app.use(router)\n app.use(createPinia())\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1647174192742,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import router from './route'\n import { createPinia } from 'pinia'\n import { mavonEditor } from 'mavon-editor'\n import 'mavon-editor/dist/css/index.css'\n+import '../node_modules/_nprogress @0.2.0@nprogress/nprogress.css'\n // import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n const app = createApp(App)\n app.component('mavonEditor', mavonEditor)\n app.use(router)\n"
+                },
+                {
+                    "date": 1647174208657,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import router from './route'\n import { createPinia } from 'pinia'\n import { mavonEditor } from 'mavon-editor'\n import 'mavon-editor/dist/css/index.css'\n-import '../node_modules/_nprogress @0.2.0@nprogress/nprogress.css'\n+import 'nprogress/nprogress.css'\n // import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n const app = createApp(App)\n app.component('mavonEditor', mavonEditor)\n app.use(router)\n"
+                },
+                {
+                    "date": 1647174276467,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,8 @@\n import 'mavon-editor/dist/css/index.css'\n import 'nprogress/nprogress.css'\n // import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n const app = createApp(App)\n-app.component('mavonEditor', mavonEditor)\n+app.use(mavonEditor)\n app.use(router)\n app.use(createPinia())\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1647177861845,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,7 +7,8 @@\n import 'nprogress/nprogress.css'\n // import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n const app = createApp(App)\n app.use(mavonEditor)\n+app.component('mavon-editor', mavonEditor)\n app.use(router)\n app.use(createPinia())\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1647177886592,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,7 @@\n import 'nprogress/nprogress.css'\n // import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n const app = createApp(App)\n app.use(mavonEditor)\n-app.component('mavon-editor', mavonEditor)\n app.use(router)\n app.use(createPinia())\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1647177981493,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import router from './route'\n import { createPinia } from 'pinia'\n-import { mavonEditor } from 'mavon-editor'\n+\n import 'mavon-editor/dist/css/index.css'\n import 'nprogress/nprogress.css'\n // import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n const app = createApp(App)\n-app.use(mavonEditor)\n+\n app.use(router)\n app.use(createPinia())\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1647178171574,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import router from './route'\n import { createPinia } from 'pinia'\n-\n+import mavonEditor from 'mavon-editor'\n import 'mavon-editor/dist/css/index.css'\n import 'nprogress/nprogress.css'\n // import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n const app = createApp(App)\n"
+                },
+                {
+                    "date": 1647178677992,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,9 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import router from './route'\n import { createPinia } from 'pinia'\n-import mavonEditor from 'mavon-editor'\n-import 'mavon-editor/dist/css/index.css'\n+\n import 'nprogress/nprogress.css'\n // import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n const app = createApp(App)\n \n"
+                },
+                {
+                    "date": 1647178812359,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,15 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import router from './route'\n import { createPinia } from 'pinia'\n+import 'nprogress/nprogress.css'\n+import VueMarkdownEditor from '@kangc/v-md-editor';\n+import '@kangc/v-md-editor/lib/style/base-editor.css';\n+import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';\n+import '@kangc/v-md-editor/lib/theme/style/vuepress.css';\n \n-import 'nprogress/nprogress.css'\n+import Prism from 'prismjs';\n // import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n const app = createApp(App)\n \n app.use(router)\n"
+                },
+                {
+                    "date": 1647178847405,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,10 @@\n \n import Prism from 'prismjs';\n // import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n const app = createApp(App)\n-\n+VueMarkdownEditor.use(vuepressTheme, {\n+  Prism,\n+});\n app.use(router)\n app.use(createPinia())\n app.mount('#app')\n"
                 }
             ],
             "date": 1646380363217,

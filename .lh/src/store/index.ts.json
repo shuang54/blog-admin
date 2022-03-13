@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 11,
+            "activePatchIndex": 49,
             "patches": [
                 {
                     "date": 1646392986930,
@@ -52,6 +52,158 @@
                 {
                     "date": 1646394536403,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,8 @@\n   },\r\n \r\n   actions: {\r\n     changeCount() {\r\n-      count\r\n+      this.count++\r\n     }\r\n   }\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647076059480,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,21 +1,32 @@\n+import axios, { Axios } from 'axios'\r\n+import { url } from 'inspector'\r\n import { defineStore } from 'pinia'\r\n-\r\n-export const useHello = defineStore('hello', {\r\n+import { get, del } from '../utils/axios'\r\n+export const useCategory = defineStore('category', {\r\n   // 状态/数据\r\n   state: () => {\r\n     return {\r\n-      helloWorld: 'helloWorld',\r\n-      count: 0\r\n+      categoryList: [],\r\n     }\r\n   },\r\n \r\n   getters: {\r\n \r\n   },\r\n \r\n   actions: {\r\n-    changeCount() {\r\n-      this.count++\r\n+    async getCategoryList() {\r\n+      this.categoryList = await get('category')\r\n+    },\r\n+    async delCategoryById(id: number) {\r\n+      let result = await del(`category/${id}`)\r\n+      if (result == 1) {\r\n+        this.getCategoryList()\r\n+        return 'ok'\r\n+      } else {\r\n+        return ''\r\n+      }\r\n+      // let result = await axios.put(`http://127.0.0.1:8000/blog/category/5/12`)\r\n     }\r\n   }\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647076127201,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n     async getCategoryList() {\r\n       this.categoryList = await get('category')\r\n     },\r\n     async delCategoryById(id: number) {\r\n-      let result = await del(`category/${id}`)\r\n+      let result = await del(`catccegory/${id}`)\r\n       if (result == 1) {\r\n         this.getCategoryList()\r\n         return 'ok'\r\n       } else {\r\n"
+                },
+                {
+                    "date": 1647076148484,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n     async getCategoryList() {\r\n       this.categoryList = await get('category')\r\n     },\r\n     async delCategoryById(id: number) {\r\n-      let result = await del(`catccegory/${id}`)\r\n+      let result = await del(`category/${id}`)\r\n       if (result == 1) {\r\n         this.getCategoryList()\r\n         return 'ok'\r\n       } else {\r\n"
+                },
+                {
+                    "date": 1647131385227,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,7 +26,10 @@\n       } else {\r\n         return ''\r\n       }\r\n       // let result = await axios.put(`http://127.0.0.1:8000/blog/category/5/12`)\r\n+    },\r\n+    async updateCategory(params) {\r\n+      let result = await axios.put(`category/${params.id}/${params.categoryName}`)\r\n     }\r\n   }\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647131431802,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,5 @@\n import axios, { Axios } from 'axios'\r\n-import { url } from 'inspector'\r\n import { defineStore } from 'pinia'\r\n import { get, del } from '../utils/axios'\r\n export const useCategory = defineStore('category', {\r\n   // 状态/数据\r\n@@ -21,15 +20,20 @@\n     async delCategoryById(id: number) {\r\n       let result = await del(`category/${id}`)\r\n       if (result == 1) {\r\n         this.getCategoryList()\r\n+        ElMessage({\r\n+          message: '删除成功',\r\n+          type: 'success'\r\n+        })\r\n         return 'ok'\r\n       } else {\r\n         return ''\r\n       }\r\n       // let result = await axios.put(`http://127.0.0.1:8000/blog/category/5/12`)\r\n     },\r\n     async updateCategory(params) {\r\n       let result = await axios.put(`category/${params.id}/${params.categoryName}`)\r\n+\r\n     }\r\n   }\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647131448036,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import axios, { Axios } from 'axios'\r\n import { defineStore } from 'pinia'\r\n import { get, del } from '../utils/axios'\r\n+import { ElMessage } from 'element-plus'\r\n export const useCategory = defineStore('category', {\r\n   // 状态/数据\r\n   state: () => {\r\n     return {\r\n"
+                },
+                {
+                    "date": 1647131525584,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,12 +21,10 @@\n     async delCategoryById(id: number) {\r\n       let result = await del(`category/${id}`)\r\n       if (result == 1) {\r\n         this.getCategoryList()\r\n-        ElMessage({\r\n-          message: '删除成功',\r\n-          type: 'success'\r\n-        })\r\n+        ElMessage('删除成功'\r\n+        )\r\n         return 'ok'\r\n       } else {\r\n         return ''\r\n       }\r\n"
+                },
+                {
+                    "date": 1647131564943,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n import axios, { Axios } from 'axios'\r\n import { defineStore } from 'pinia'\r\n import { get, del } from '../utils/axios'\r\n-import { ElMessage } from 'element-plus'\r\n export const useCategory = defineStore('category', {\r\n   // 状态/数据\r\n   state: () => {\r\n     return {\r\n@@ -21,10 +20,9 @@\n     async delCategoryById(id: number) {\r\n       let result = await del(`category/${id}`)\r\n       if (result == 1) {\r\n         this.getCategoryList()\r\n-        ElMessage('删除成功'\r\n-        )\r\n+\r\n         return 'ok'\r\n       } else {\r\n         return ''\r\n       }\r\n"
+                },
+                {
+                    "date": 1647131708075,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n     async delCategoryById(id: number) {\r\n       let result = await del(`category/${id}`)\r\n       if (result == 1) {\r\n         this.getCategoryList()\r\n-\r\n+        ElMessage.success('按需引入');\r\n         return 'ok'\r\n       } else {\r\n         return ''\r\n       }\r\n"
+                },
+                {
+                    "date": 1647131713537,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import axios, { Axios } from 'axios'\r\n import { defineStore } from 'pinia'\r\n import { get, del } from '../utils/axios'\r\n+import { ElMessage } from 'element-plus'\r\n export const useCategory = defineStore('category', {\r\n   // 状态/数据\r\n   state: () => {\r\n     return {\r\n"
+                },
+                {
+                    "date": 1647131787601,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import axios, { Axios } from 'axios'\r\n import { defineStore } from 'pinia'\r\n import { get, del } from '../utils/axios'\r\n-import { ElMessage } from 'element-plus'\r\n+import { ElMessage as message } from 'element-plus'\r\n export const useCategory = defineStore('category', {\r\n   // 状态/数据\r\n   state: () => {\r\n     return {\r\n@@ -21,9 +21,9 @@\n     async delCategoryById(id: number) {\r\n       let result = await del(`category/${id}`)\r\n       if (result == 1) {\r\n         this.getCategoryList()\r\n-        ElMessage.success('按需引入');\r\n+        message.success('按需引入');\r\n         return 'ok'\r\n       } else {\r\n         return ''\r\n       }\r\n"
+                },
+                {
+                    "date": 1647131807636,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n     async delCategoryById(id: number) {\r\n       let result = await del(`category/${id}`)\r\n       if (result == 1) {\r\n         this.getCategoryList()\r\n-        message.success('按需引入');\r\n+        // message.success('按需引入');\r\n         return 'ok'\r\n       } else {\r\n         return ''\r\n       }\r\n"
+                },
+                {
+                    "date": 1647131889825,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,12 +21,11 @@\n     async delCategoryById(id: number) {\r\n       let result = await del(`category/${id}`)\r\n       if (result == 1) {\r\n         this.getCategoryList()\r\n-        // message.success('按需引入');\r\n-        return 'ok'\r\n+        message.success('删除成功');\r\n       } else {\r\n-        return ''\r\n+        message.success('删除失败')\r\n       }\r\n       // let result = await axios.put(`http://127.0.0.1:8000/blog/category/5/12`)\r\n     },\r\n     async updateCategory(params) {\r\n"
+                },
+                {
+                    "date": 1647132350195,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,8 +29,7 @@\n       // let result = await axios.put(`http://127.0.0.1:8000/blog/category/5/12`)\r\n     },\r\n     async updateCategory(params) {\r\n       let result = await axios.put(`category/${params.id}/${params.categoryName}`)\r\n-\r\n     }\r\n   }\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647134445726,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import axios, { Axios } from 'axios'\r\n import { defineStore } from 'pinia'\r\n-import { get, del } from '../utils/axios'\r\n+import { get, del, put, post } from '../utils/axios'\r\n import { ElMessage as message } from 'element-plus'\r\n export const useCategory = defineStore('category', {\r\n   // 状态/数据\r\n   state: () => {\r\n@@ -28,8 +28,14 @@\n       }\r\n       // let result = await axios.put(`http://127.0.0.1:8000/blog/category/5/12`)\r\n     },\r\n     async updateCategory(params) {\r\n-      let result = await axios.put(`category/${params.id}/${params.categoryName}`)\r\n+      let result = await put(`category/${params.id}/${params.categoryName}`)\r\n+      if (result == 1) {\r\n+        this.getCategoryList()\r\n+        message.success('删除成功');\r\n+      } else {\r\n+        message.success('删除失败')\r\n+      }\r\n     }\r\n   }\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647134500548,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,11 +31,11 @@\n     async updateCategory(params) {\r\n       let result = await put(`category/${params.id}/${params.categoryName}`)\r\n       if (result == 1) {\r\n         this.getCategoryList()\r\n-        message.success('删除成功');\r\n+        message.success('编辑成功');\r\n       } else {\r\n-        message.success('删除失败')\r\n+        message.success('编辑失败')\r\n       }\r\n     }\r\n   }\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647134715389,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,10 @@\n       }\r\n       // let result = await axios.put(`http://127.0.0.1:8000/blog/category/5/12`)\r\n     },\r\n     async updateCategory(params) {\r\n+      console.log(params);\r\n+\r\n       let result = await put(`category/${params.id}/${params.categoryName}`)\r\n       if (result == 1) {\r\n         this.getCategoryList()\r\n         message.success('编辑成功');\r\n"
+                },
+                {
+                    "date": 1647135616321,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n       console.log(params);\r\n \r\n       let result = await put(`category/${params.id}/${params.categoryName}`)\r\n       if (result == 1) {\r\n-        this.getCategoryList()\r\n+        // this.getCategoryList()\r\n         message.success('编辑成功');\r\n       } else {\r\n         message.success('编辑失败')\r\n       }\r\n"
+                },
+                {
+                    "date": 1647135639945,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,11 +32,11 @@\n       console.log(params);\r\n \r\n       let result = await put(`category/${params.id}/${params.categoryName}`)\r\n       if (result == 1) {\r\n-        // this.getCategoryList()\r\n         message.success('编辑成功');\r\n       } else {\r\n+        this.getCategoryList()\r\n         message.success('编辑失败')\r\n       }\r\n     }\r\n   }\r\n"
+                },
+                {
+                    "date": 1647135657581,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n       if (result == 1) {\r\n         message.success('编辑成功');\r\n       } else {\r\n         this.getCategoryList()\r\n-        message.success('编辑失败')\r\n+        message.error('编辑失败')\r\n       }\r\n     }\r\n   }\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647135882419,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,10 +28,8 @@\n       }\r\n       // let result = await axios.put(`http://127.0.0.1:8000/blog/category/5/12`)\r\n     },\r\n     async updateCategory(params) {\r\n-      console.log(params);\r\n-\r\n       let result = await put(`category/${params.id}/${params.categoryName}`)\r\n       if (result == 1) {\r\n         message.success('编辑成功');\r\n       } else {\r\n"
+                },
+                {
+                    "date": 1647141061056,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,7 +35,16 @@\n       } else {\r\n         this.getCategoryList()\r\n         message.error('编辑失败')\r\n       }\r\n-    }\r\n+    },\r\n+    async addCategory(params) {\r\n+      let result = await put(`category/${params.id}/${params.categoryName}`)\r\n+      if (result == 1) {\r\n+        message.success('编辑成功');\r\n+      } else {\r\n+        this.getCategoryList()\r\n+        message.error('编辑失败')\r\n+      }\r\n+    },\r\n   }\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647141121593,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n         message.error('编辑失败')\r\n       }\r\n     },\r\n     async addCategory(params) {\r\n-      let result = await put(`category/${params.id}/${params.categoryName}`)\r\n+      let result = await post(`category`, params)\r\n       if (result == 1) {\r\n         message.success('编辑成功');\r\n       } else {\r\n         this.getCategoryList()\r\n"
+                },
+                {
+                    "date": 1647141147417,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,13 +38,13 @@\n       }\r\n     },\r\n     async addCategory(params) {\r\n       let result = await post(`category`, params)\r\n-      if (result == 1) {\r\n-        message.success('编辑成功');\r\n+      if (result !== []) {\r\n+        message.success('添加成功');\r\n       } else {\r\n         this.getCategoryList()\r\n-        message.error('编辑失败')\r\n+        message.error('添加失败')\r\n       }\r\n     },\r\n   }\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647141247442,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,8 +39,9 @@\n     },\r\n     async addCategory(params) {\r\n       let result = await post(`category`, params)\r\n       if (result !== []) {\r\n+        this.getCategoryList()\r\n         message.success('添加成功');\r\n       } else {\r\n         this.getCategoryList()\r\n         message.error('添加失败')\r\n"
+                },
+                {
+                    "date": 1647142992917,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,8 +30,9 @@\n     },\r\n     async updateCategory(params) {\r\n       let result = await put(`category/${params.id}/${params.categoryName}`)\r\n       if (result == 1) {\r\n+        this.getCategoryList()\r\n         message.success('编辑成功');\r\n       } else {\r\n         this.getCategoryList()\r\n         message.error('编辑失败')\r\n"
+                },
+                {
+                    "date": 1647151510364,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,66 @@\n+import axios, { Axios } from 'axios'\r\n+import { defineStore } from 'pinia'\r\n+import { get, del, put, post } from '../utils/axios'\r\n+import { ElMessage as message } from 'element-plus'\r\n+export const useCategory = defineStore('category', {\r\n+  // 状态/数据\r\n+  state: () => {\r\n+    return {\r\n+      categoryList: [],\r\n+    }\r\n+  },\r\n+\r\n+  getters: {\r\n+\r\n+  },\r\n+\r\n+  actions: {\r\n+    async getCategoryList() {\r\n+      this.categoryList = await get('category')\r\n+    },\r\n+    async delCategoryById(id: number) {\r\n+      let result = await del(`category/${id}`)\r\n+      if (result == 1) {\r\n+        this.getCategoryList()\r\n+        message.success('删除成功');\r\n+      } else {\r\n+        message.success('删除失败')\r\n+      }\r\n+      // let result = await axios.put(`http://127.0.0.1:8000/blog/category/5/12`)\r\n+    },\r\n+    async updateCategory(params) {\r\n+      let result = await put(`category/${params.id}/${params.categoryName}`)\r\n+      if (result == 1) {\r\n+        this.getCategoryList()\r\n+        message.success('编辑成功');\r\n+      } else {\r\n+        this.getCategoryList()\r\n+        message.error('编辑失败')\r\n+      }\r\n+    },\r\n+    async addCategory(params) {\r\n+      let result = await post(`category`, params)\r\n+      if (result !== []) {\r\n+        this.getCategoryList()\r\n+        message.success('添加成功');\r\n+      } else {\r\n+        this.getCategoryList()\r\n+        message.error('添加失败')\r\n+      }\r\n+    },\r\n+  }\r\n+})\r\n+export const useArticle = defineStore('article', {\r\n+  state: () => {\r\n+    return {\r\n+\r\n+    }\r\n+  },\r\n+  actions: () => {\r\n+\r\n+  },\r\n+  getters: () => {\r\n+\r\n+  }\r\n+\r\n+})\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647151677006,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,67 +52,17 @@\n })\r\n export const useArticle = defineStore('article', {\r\n   state: () => {\r\n     return {\r\n-\r\n+      articleList: [],\r\n     }\r\n   },\r\n-  actions: () => {\r\n+  actions: {\r\n \r\n   },\r\n-  getters: () => {\r\n-\r\n-  }\r\n-\r\n-})\n-import axios, { Axios } from 'axios'\r\n-import { defineStore } from 'pinia'\r\n-import { get, del, put, post } from '../utils/axios'\r\n-import { ElMessage as message } from 'element-plus'\r\n-export const useCategory = defineStore('category', {\r\n-  // 状态/数据\r\n-  state: () => {\r\n-    return {\r\n-      categoryList: [],\r\n-    }\r\n-  },\r\n-\r\n   getters: {\r\n-\r\n-  },\r\n-\r\n-  actions: {\r\n-    async getCategoryList() {\r\n-      this.categoryList = await get('category')\r\n+    getArticleList: async () => {\r\n+      this.articleList = await get('articleList')\r\n     },\r\n-    async delCategoryById(id: number) {\r\n-      let result = await del(`category/${id}`)\r\n-      if (result == 1) {\r\n-        this.getCategoryList()\r\n-        message.success('删除成功');\r\n-      } else {\r\n-        message.success('删除失败')\r\n-      }\r\n-      // let result = await axios.put(`http://127.0.0.1:8000/blog/category/5/12`)\r\n-    },\r\n-    async updateCategory(params) {\r\n-      let result = await put(`category/${params.id}/${params.categoryName}`)\r\n-      if (result == 1) {\r\n-        this.getCategoryList()\r\n-        message.success('编辑成功');\r\n-      } else {\r\n-        this.getCategoryList()\r\n-        message.error('编辑失败')\r\n-      }\r\n-    },\r\n-    async addCategory(params) {\r\n-      let result = await post(`category`, params)\r\n-      if (result !== []) {\r\n-        this.getCategoryList()\r\n-        message.success('添加成功');\r\n-      } else {\r\n-        this.getCategoryList()\r\n-        message.error('添加失败')\r\n-      }\r\n-    },\r\n   }\r\n+\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647151707294,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,9 @@\n \r\n   },\r\n   getters: {\r\n     getArticleList: async () => {\r\n-      this.articleList = await get('articleList')\r\n+      this.articleList = await get('articlelist')\r\n     },\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647151721622,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,10 +59,10 @@\n   actions: {\r\n \r\n   },\r\n   getters: {\r\n-    getArticleList: async () => {\r\n-      this.articleList = await get('articlelist')\r\n+    getArticleList: async (params) => {\r\n+      this.articleList = await get('articlelist', params)\r\n     },\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647151777002,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,10 +59,10 @@\n   actions: {\r\n \r\n   },\r\n   getters: {\r\n-    getArticleList: async (params) => {\r\n-      this.articleList = await get('articlelist', params)\r\n+    async getArticleList(data) {\r\n+      this.articleList = await get('articlelist', data)\r\n     },\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647151852844,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,7 +62,8 @@\n   getters: {\r\n     async getArticleList(data) {\r\n       this.articleList = await get('articlelist', data)\r\n     },\r\n+    async getArticle\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647151863381,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,8 +62,8 @@\n   getters: {\r\n     async getArticleList(data) {\r\n       this.articleList = await get('articlelist', data)\r\n     },\r\n-    async getArticle\r\n+    async getArticle()\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647151932374,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,8 +62,11 @@\n   getters: {\r\n     async getArticleList(data) {\r\n       this.articleList = await get('articlelist', data)\r\n     },\r\n-    async getArticle()\r\n+    async getArticle(id) {\r\n+      this.articleData = await get(`article/${id}`)\r\n+    },\r\n+    async addArticle()\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647151972416,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,8 +65,11 @@\n     },\r\n     async getArticle(id) {\r\n       this.articleData = await get(`article/${id}`)\r\n     },\r\n-    async addArticle()\r\n+    async addArticle(data) {\r\n+      let result = await put('article', data)\r\n+      if (result ==)\r\n+    }\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647152073133,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -67,9 +67,14 @@\n       this.articleData = await get(`article/${id}`)\r\n     },\r\n     async addArticle(data) {\r\n       let result = await put('article', data)\r\n-      if (result ==)\r\n-    }\r\n+      if (result != []) {\r\n+        message.success('添加成功')\r\n+      } else {\r\n+        message.error('添加失败')\r\n+      }\r\n+    },\r\n+    async delArticle()\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647152081440,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -73,8 +73,10 @@\n       } else {\r\n         message.error('添加失败')\r\n       }\r\n     },\r\n-    async delArticle()\r\n+    async delArticle(id) {\r\n+\r\n+    }\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647152184665,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n         message.error('删除失败')\r\n       }\r\n     },\r\n     async updetaArticle(data) {\r\n-\r\n+      \r\n     }\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1646392986930,

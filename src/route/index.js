@@ -17,6 +17,16 @@ const router = createRouter({
       component: () => import('../view/Category/index.vue'),
       name: 'category'
     },
+    {
+      path: '/admin/addArticle',
+      component: () => import('../view/AddFile/index.vue'),
+      name: 'addArticle'
+    },
+    {
+      path: '/admin/updateArticle',
+      component: () => import('../view/AddFile/index.vue'),
+      name: 'updateArticle'
+    },
 
   ]
 })

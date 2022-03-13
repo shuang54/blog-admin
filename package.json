@@ -9,9 +9,12 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^1.1.1",
+    "@kangc/v-md-editor": "^2.3.14",
     "axios": "^0.26.0",
     "element-plus": "^2.0.5",
     "lodash": "^4.17.21",
+    "mavon-editor": "^2.10.4",
+    "nprogress": "^0.2.0",
     "pinia": "^2.0.11",
     "vue": "^3.2.25",
     "vue-router": "^4.0.13"
