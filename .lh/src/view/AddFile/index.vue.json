@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 52,
+            "activePatchIndex": 53,
             "patches": [
                 {
                     "date": 1647174806852,
@@ -216,6 +216,10 @@
                 {
                     "date": 1647253735286,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,8 +42,9 @@\n }\r\n \r\n \r\n onBeforeMount(() => {\r\n+  \r\n })\r\n const getArticleData = () => {\r\n   const categorySotre = useCategory()\r\n   categorySotre.getCategoryList()\r\n"
+                },
+                {
+                    "date": 1647256248869,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n   return categorySotre.categoryList\r\n })\r\n const router = useRouter()\r\n const route = useRoute()\r\n-console.log();\r\n+console.log(r);\r\n \r\n \r\n \r\n // 添加文章\r\n"
                 }
             ],
             "date": 1647174806852,

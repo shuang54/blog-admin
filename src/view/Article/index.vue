@@ -9,7 +9,7 @@
       </el-col>
       <el-col :md="6" :lg="5" :xl="3" class="search-btn">
         <div>
-          <el-button type="primary" size="large">
+          <el-button @click="search" type="primary" size="large">
             <el-icon size="small">
               <Search />
             </el-icon>查询
@@ -34,12 +34,16 @@
         >
           <el-table-column type="selection" width="55" />
           <el-table-column type="index" label="index" width="120" />
-          <el-table-column label="创建时间" width="180">
+          <el-table-column label="创建时间" min-width="180">
             <template #default="scope">{{ scope.row.createTime }}</template>
           </el-table-column>
-          <el-table-column property="title" label="标题" width="180" />
+
+          <el-table-column property="title" label="标题" min-width="180" />
           <el-table-column property="categoryName" label="分类" show-overflow-tooltip />
-          <el-table-column label="操作">
+          <el-table-column label="最后一次修改时间" min-width="180">
+            <template #default="scope">{{ scope.row.updateTime }}</template>
+          </el-table-column>
+          <el-table-column fixed="right" min-width="180" label="操作">
             <template #default="scope">
               <el-button :icon="Edit" size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
               <el-button
@@ -70,7 +74,7 @@
           :disabled="disabled"
           :background="background"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="40"
+          :total="total"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
           class="pagination"
@@ -93,6 +97,13 @@ const articleStore = useArticle()
 
 // 要搜索的值
 const input = ref('')
+// 搜索文章
+const search = async () => {
+  await articleStore.getArticleList({ num: pageSize.value, page: page.value, search: input.value })
+  await articleStore.getTotal({ search: input.value })
+}
+
+
 interface Article {
   id: number,
   categoryId: number,
@@ -123,7 +134,7 @@ const handleSelectionChange = (val: Article[]) => {
 
 // 编辑按钮
 const handleEdit = (index: number, row: Article) => {
-  router.push({ name: 'updateArticle' })
+  router.push({ name: 'updateArticle', params: { id: row.id } })
 }
 // 删除按钮
 const handleDelete = async (index: number, row: Article) => {
@@ -140,8 +151,10 @@ const currentPage = ref(1)
 const pageSize = ref(10)
 const background = ref(true)
 const disabled = ref(false)
+// 获取文章总数
+articleStore.getTotal()
 const total = computed(() => {
-  return articleStore.articleList.length
+  return articleStore.total
 })
 
 // 改变每页显示多少数据

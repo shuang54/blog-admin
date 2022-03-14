@@ -54,7 +54,8 @@ export const useArticle = defineStore('article', {
   state: () => {
     return {
       articleList: [],
-      articleData: []
+      articleData: [],
+      total: 0,
     }
   },
   getters: {
@@ -63,6 +64,7 @@ export const useArticle = defineStore('article', {
   actions: {
     async getArticleList(data) {
       this.articleList = await get('articlelist', data)
+
     },
     async getArticle(id) {
       this.articleData = await get(`article/${id}`)
@@ -84,14 +86,23 @@ export const useArticle = defineStore('article', {
         message.error('删除失败')
       }
     },
-    async updetaArticle(data) {
+    async updateArticle(data) {
       let result = await put(`article?id=${data.id}&title=${data.title}&categoryid=${data.categoryId}&markdown=${data.markdown}`)
-      if (result != []) {
+      if (result == 1 || result == 0) {
+        message.success('更新成功')
+      } else {
+        message.error('更新失败')
+      }
+    },
+    async getTotal(data = { search: '' }) {
+      let result = await get('total', data)
+      this.total = result
+      if (result) {
         message.success('更新成功')
       } else {
         message.error('更新失败')
       }
     }
-  }
+  },
 
 })
