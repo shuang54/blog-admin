@@ -26,8 +26,9 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import { useCategory } from '../../store';
+import { computed, onBeforeMount, onMounted, reactive, ref } from 'vue';
+import router from '../../route';
+import { useCategory, useArticle } from '../../store';
 const html = ref('')
 const markdown = ref('')
 const title = ref('')
@@ -35,13 +36,17 @@ const categoryId = ref('')
 
 // 添加文章
 const add = async () => {
-  let data = { markdown, title, categoryId }
-
+  let data = { markdown: markdown.value, title: title.value, categoryId: categoryId.value }
+  useArticle().addArticle(data)
+  router.push({ name: 'article' })
 }
+
 
 const categorySotre = useCategory()
 categorySotre.getCategoryList()
-const category = categorySotre.categoryList
+let category = computed(() => {
+  return categorySotre.categoryList
+})
 
 </script>
 

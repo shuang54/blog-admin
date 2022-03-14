@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 35,
+            "activePatchIndex": 52,
             "patches": [
                 {
                     "date": 1647174806852,
@@ -148,6 +148,74 @@
                 {
                     "date": 1647180255837,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n         @change=\"change\"\r\n         @imgAdd=\"$imgAdd\"\r\n         style=\"min-height: 800px\"\r\n       />-->\r\n-      <v-md-editor fontSize=\"20\" v-model=\"markdown\" height=\"800px\" right-toolbar=\"sync-scroll\"></v-md-editor>\r\n+      <v-md-editor fontSize=\"20\" v-model=\"markdown\" height=\"800px\"></v-md-editor>\r\n     </div>\r\n   </div>\r\n </template>\r\n \r\n"
+                },
+                {
+                    "date": 1647251613980,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,74 @@\n+<template>\r\n+  <div id=\"add-file-container\">\r\n+    <div class=\"file-name\">\r\n+      <el-select v-model=\"categoryId\" placeholder=\"请选择文章分类\">\r\n+        <el-option\r\n+          v-for=\"item in category\"\r\n+          :key=\"item.id\"\r\n+          :label=\"item.categoryName\"\r\n+          :value=\"item.id\"\r\n+        ></el-option>\r\n+      </el-select>\r\n+      <el-input v-model=\"title\" placeholder=\"请输入标题\"></el-input>\r\n+      <button type=\"button\" class=\"btn\" @click=\"add\">提交</button>\r\n+    </div>\r\n+    <div class=\"box\">\r\n+      <!-- <mavon-editor\r\n+        v-model=\"markdown\"\r\n+        ref=\"md\"\r\n+        @change=\"change\"\r\n+        @imgAdd=\"$imgAdd\"\r\n+        style=\"min-height: 800px\"\r\n+      />-->\r\n+      <v-md-editor fontSize=\"20\" v-model=\"markdown\" height=\"800px\"></v-md-editor>\r\n+    </div>\r\n+  </div>\r\n+</template>\r\n+\r\n+<script setup lang=\"ts\">\r\n+import { onMounted, ref } from 'vue';\r\n+import { useCategory } from '../../store';\r\n+const html = ref('')\r\n+const markdown = ref('')\r\n+const title = ref('')\r\n+const categoryId = ref('')\r\n+\r\n+// 添加文章\r\n+const add = async () => {\r\n+  let data = { markdown, title, categoryId }\r\n+  console.log(data);\r\n+\r\n+}\r\n+\r\n+const categorySotre = useCategory()\r\n+categorySotre.getCategoryList()\r\n+const category = categorySotre.categoryList\r\n+\r\n+</script>\r\n+\r\n+<style scoped lang=\"less\">\r\n+#add-file-container {\r\n+  width: 100%;\r\n+  height: 100%;\r\n+  margin: 0 auto;\r\n+  background-color: white;\r\n+  .file-name {\r\n+    width: 100%;\r\n+    height: 60px;\r\n+    display: flex;\r\n+    flex-direction: row;\r\n+    justify-content: space-between;\r\n+    background-color: #ccc;\r\n+    line-height: 60px;\r\n+    margin-bottom: 10px;\r\n+    align-items: center;\r\n+    .btn {\r\n+      margin: 10px;\r\n+      width: 156px;\r\n+      height: 40px;\r\n+      border-radius: 5px;\r\n+      line-height: 40px;\r\n+    }\r\n+  }\r\n+}\r\n+</style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647251854072,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,8 +42,9 @@\n \r\n const categorySotre = useCategory()\r\n categorySotre.getCategoryList()\r\n const category = categorySotre.categoryList\r\n+console.log(category);\r\n \r\n </script>\r\n \r\n <style scoped lang=\"less\">\r\n@@ -70,78 +71,5 @@\n       line-height: 40px;\r\n     }\r\n   }\r\n }\r\n-</style>\n-<template>\r\n-  <div id=\"add-file-container\">\r\n-    <div class=\"file-name\">\r\n-      <el-select v-model=\"categoryId\" placeholder=\"请选择文章分类\">\r\n-        <el-option\r\n-          v-for=\"item in category\"\r\n-          :key=\"item.id\"\r\n-          :label=\"item.categoryName\"\r\n-          :value=\"item.id\"\r\n-        ></el-option>\r\n-      </el-select>\r\n-      <el-input v-model=\"title\" placeholder=\"请输入标题\"></el-input>\r\n-      <button type=\"button\" class=\"btn\" @click=\"add\">提交</button>\r\n-    </div>\r\n-    <div class=\"box\">\r\n-      <!-- <mavon-editor\r\n-        v-model=\"markdown\"\r\n-        ref=\"md\"\r\n-        @change=\"change\"\r\n-        @imgAdd=\"$imgAdd\"\r\n-        style=\"min-height: 800px\"\r\n-      />-->\r\n-      <v-md-editor fontSize=\"20\" v-model=\"markdown\" height=\"800px\"></v-md-editor>\r\n-    </div>\r\n-  </div>\r\n-</template>\r\n-\r\n-<script setup lang=\"ts\">\r\n-import { onMounted, ref } from 'vue';\r\n-import { useCategory } from '../../store';\r\n-const html = ref('')\r\n-const markdown = ref('')\r\n-const title = ref('')\r\n-const categoryId = ref('')\r\n-\r\n-// 添加文章\r\n-const add = async () => {\r\n-  let data = { markdown, title, categoryId }\r\n-\r\n-}\r\n-\r\n-const categorySotre = useCategory()\r\n-categorySotre.getCategoryList()\r\n-const category = categorySotre.categoryList\r\n-\r\n-</script>\r\n-\r\n-<style scoped lang=\"less\">\r\n-#add-file-container {\r\n-  width: 100%;\r\n-  height: 100%;\r\n-  margin: 0 auto;\r\n-  background-color: white;\r\n-  .file-name {\r\n-    width: 100%;\r\n-    height: 60px;\r\n-    display: flex;\r\n-    flex-direction: row;\r\n-    justify-content: space-between;\r\n-    background-color: #ccc;\r\n-    line-height: 60px;\r\n-    margin-bottom: 10px;\r\n-    align-items: center;\r\n-    .btn {\r\n-      margin: 10px;\r\n-      width: 156px;\r\n-      height: 40px;\r\n-      border-radius: 5px;\r\n-      line-height: 40px;\r\n-    }\r\n-  }\r\n-}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647252242405,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,19 +26,18 @@\n </template>\r\n \r\n <script setup lang=\"ts\">\r\n import { onMounted, ref } from 'vue';\r\n-import { useCategory } from '../../store';\r\n+import { useCategory, useArticle } from '../../store';\r\n const html = ref('')\r\n const markdown = ref('')\r\n const title = ref('')\r\n const categoryId = ref('')\r\n \r\n // 添加文章\r\n const add = async () => {\r\n   let data = { markdown, title, categoryId }\r\n-  console.log(data);\r\n-\r\n+  useArticle().addArticle(data)\r\n }\r\n \r\n const categorySotre = useCategory()\r\n categorySotre.getCategoryList()\r\n"
+                },
+                {
+                    "date": 1647252275800,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,9 @@\n </template>\r\n \r\n <script setup lang=\"ts\">\r\n import { onMounted, ref } from 'vue';\r\n+import router from '../../route';\r\n import { useCategory, useArticle } from '../../store';\r\n const html = ref('')\r\n const markdown = ref('')\r\n const title = ref('')\r\n@@ -36,8 +37,9 @@\n // 添加文章\r\n const add = async () => {\r\n   let data = { markdown, title, categoryId }\r\n   useArticle().addArticle(data)\r\n+  router.push({ name: 'article' })\r\n }\r\n \r\n const categorySotre = useCategory()\r\n categorySotre.getCategoryList()\r\n"
+                },
+                {
+                    "date": 1647252624898,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n const categoryId = ref('')\r\n \r\n // 添加文章\r\n const add = async () => {\r\n-  let data = { markdown, title, categoryId }\r\n+  let data = { markdown: markdown.value, title: title.value, categoryId: categoryId.value }\r\n   useArticle().addArticle(data)\r\n   router.push({ name: 'article' })\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1647252776225,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n   </div>\r\n </template>\r\n \r\n <script setup lang=\"ts\">\r\n-import { onMounted, ref } from 'vue';\r\n+import { onBeforeMount, onMounted, ref } from 'vue';\r\n import router from '../../route';\r\n import { useCategory, useArticle } from '../../store';\r\n const html = ref('')\r\n const markdown = ref('')\r\n@@ -40,12 +40,14 @@\n   useArticle().addArticle(data)\r\n   router.push({ name: 'article' })\r\n }\r\n \r\n-const categorySotre = useCategory()\r\n-categorySotre.getCategoryList()\r\n-const category = categorySotre.categoryList\r\n-console.log(category);\r\n+onBeforeMount(() => {\r\n+  const categorySotre = useCategory()\r\n+  categorySotre.getCategoryList()\r\n+  const category = categorySotre.categoryList\r\n+  console.log(category);\r\n+})\r\n \r\n </script>\r\n \r\n <style scoped lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1647253169484,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,10 +40,11 @@\n   useArticle().addArticle(data)\r\n   router.push({ name: 'article' })\r\n }\r\n \r\n+const categorySotre = useCategory()\r\n+\r\n onBeforeMount(() => {\r\n-  const categorySotre = useCategory()\r\n   categorySotre.getCategoryList()\r\n   const category = categorySotre.categoryList\r\n   console.log(category);\r\n })\r\n"
+                },
+                {
+                    "date": 1647253251750,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n }\r\n \r\n const categorySotre = useCategory()\r\n \r\n-onBeforeMount(() => {\r\n+onMounted(() => {\r\n   categorySotre.getCategoryList()\r\n   const category = categorySotre.categoryList\r\n   console.log(category);\r\n })\r\n"
+                },
+                {
+                    "date": 1647253314855,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n }\r\n \r\n const categorySotre = useCategory()\r\n \r\n-onMounted(() => {\r\n+onBeforeMount(() => {\r\n   categorySotre.getCategoryList()\r\n   const category = categorySotre.categoryList\r\n   console.log(category);\r\n })\r\n"
+                },
+                {
+                    "date": 1647253372934,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,8 +45,9 @@\n \r\n onBeforeMount(() => {\r\n   categorySotre.getCategoryList()\r\n   const category = categorySotre.categoryList\r\n+  return category\r\n   console.log(category);\r\n })\r\n \r\n </script>\r\n"
+                },
+                {
+                    "date": 1647253380096,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,8 @@\n \r\n onBeforeMount(() => {\r\n   categorySotre.getCategoryList()\r\n   const category = categorySotre.categoryList\r\n-  return category\r\n   console.log(category);\r\n })\r\n \r\n </script>\r\n"
+                },
+                {
+                    "date": 1647253559804,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,11 +44,11 @@\n const categorySotre = useCategory()\r\n \r\n onBeforeMount(() => {\r\n   categorySotre.getCategoryList()\r\n-  const category = categorySotre.categoryList\r\n   console.log(category);\r\n })\r\n+const category = categorySotre.categoryList\r\n \r\n </script>\r\n \r\n <style scoped lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1647253575709,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,11 +44,13 @@\n const categorySotre = useCategory()\r\n \r\n onBeforeMount(() => {\r\n   categorySotre.getCategoryList()\r\n-  console.log(category);\r\n+  console.log('1');\r\n+\r\n })\r\n const category = categorySotre.categoryList\r\n+console.log(category);\r\n \r\n </script>\r\n \r\n <style scoped lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1647253608117,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n   categorySotre.getCategoryList()\r\n   console.log('1');\r\n \r\n })\r\n-const category = categorySotre.categoryList\r\n+// const category = categorySotre.categoryList\r\n console.log(category);\r\n \r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1647253627388,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n   categorySotre.getCategoryList()\r\n   console.log('1');\r\n \r\n })\r\n-// const category = categorySotre.categoryList\r\n+const category = categorySotre.categoryList\r\n console.log(category);\r\n \r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1647253647859,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,8 @@\n \r\n onBeforeMount(() => {\r\n   categorySotre.getCategoryList()\r\n   console.log('1');\r\n-\r\n })\r\n const category = categorySotre.categoryList\r\n console.log(category);\r\n \r\n"
+                },
+                {
+                    "date": 1647253735286,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,8 +42,9 @@\n }\r\n \r\n \r\n onBeforeMount(() => {\r\n+  \r\n })\r\n const getArticleData = () => {\r\n   const categorySotre = useCategory()\r\n   categorySotre.getCategoryList()\r\n"
                 }
             ],
             "date": 1647174806852,

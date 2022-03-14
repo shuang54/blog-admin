@@ -14,7 +14,7 @@
               <Search />
             </el-icon>查询
           </el-button>
-          <el-button type="primary" size="large">
+          <el-button type="primary" @click="addArticle" size="large">
             <el-icon>
               <Plus />
             </el-icon>添加
@@ -80,12 +80,13 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, computed, reactive } from 'vue';
+import { ref, computed, reactive, onMounted } from 'vue';
 import { Search, Plus, Minus, Edit } from '@element-plus/icons-vue'
 import type { ElTable } from 'element-plus'
 import { useArticle } from '../../store';
 import { reactify } from '_@vueuse_shared@7.7.1@@vueuse/shared';
-import router from '../../route';
+// import router from '../../route';
+import { useRouter } from 'vue-router';
 
 //获取仓库
 const articleStore = useArticle()
@@ -98,6 +99,11 @@ interface Article {
   createTime: string,
   updateTime: string,
   title: string,
+}
+const router = useRouter()
+// 添加文章
+const addArticle = () => {
+  router.push({ name: 'addArticle' })
 }
 
 const multipleTableRef = ref<InstanceType<typeof ElTable>>()
@@ -117,7 +123,7 @@ const handleSelectionChange = (val: Article[]) => {
 
 // 编辑按钮
 const handleEdit = (index: number, row: Article) => {
-  router.push({name:'updateArticle'})
+  router.push({ name: 'updateArticle' })
 }
 // 删除按钮
 const handleDelete = async (index: number, row: Article) => {
