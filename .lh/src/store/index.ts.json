@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 49,
+            "activePatchIndex": 50,
             "patches": [
                 {
                     "date": 1646392986930,
@@ -204,6 +204,10 @@
                 {
                     "date": 1647152184665,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n         message.error('删除失败')\r\n       }\r\n     },\r\n     async updetaArticle(data) {\r\n-\r\n+      \r\n     }\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1647338379963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,108 @@\n+import axios, { Axios } from 'axios'\r\n+import { defineStore } from 'pinia'\r\n+import { get, del, put, post } from '../utils/axios'\r\n+import { ElMessage as message } from 'element-plus'\r\n+export const useCategory = defineStore('category', {\r\n+  // 状态/数据\r\n+  state: () => {\r\n+    return {\r\n+      categoryList: [],\r\n+    }\r\n+  },\r\n+\r\n+  getters: {\r\n+\r\n+  },\r\n+\r\n+  actions: {\r\n+    async getCategoryList() {\r\n+      this.categoryList = await get('category')\r\n+    },\r\n+    async delCategoryById(id: number) {\r\n+      let result = await del(`category/${id}`)\r\n+      if (result == 1) {\r\n+        this.getCategoryList()\r\n+        message.success('删除成功');\r\n+      } else {\r\n+        message.success('删除失败')\r\n+      }\r\n+      // let result = await axios.put(`http://127.0.0.1:8000/blog/category/5/12`)\r\n+    },\r\n+    async updateCategory(params) {\r\n+      let result = await put(`category/${params.id}/${params.categoryName}`)\r\n+      if (result == 1) {\r\n+        this.getCategoryList()\r\n+        message.success('更新成功');\r\n+      } else {\r\n+        this.getCategoryList()\r\n+        message.error('更新失败')\r\n+      }\r\n+    },\r\n+    async addCategory(params) {\r\n+      let result = await post(`category`, params)\r\n+      if (result !== []) {\r\n+        this.getCategoryList()\r\n+        message.success('添加成功');\r\n+      } else {\r\n+        this.getCategoryList()\r\n+        message.error('添加失败')\r\n+      }\r\n+    },\r\n+  }\r\n+})\r\n+export const useArticle = defineStore('article', {\r\n+  state: () => {\r\n+    return {\r\n+      articleList: [],\r\n+      articleData: [],\r\n+      total: 0,\r\n+    }\r\n+  },\r\n+  getters: {\r\n+\r\n+  },\r\n+  actions: {\r\n+    async getArticleList(data) {\r\n+      this.articleList = await get('articlelist', data)\r\n+\r\n+    },\r\n+    async getArticle(id) {\r\n+      this.articleData = await get(`article/${id}`)\r\n+    },\r\n+    async addArticle(data) {\r\n+      let result = await post('article', data)\r\n+      if (result != []) {\r\n+        message.success('添加成功')\r\n+      } else {\r\n+        message.error('添加失败')\r\n+      }\r\n+    },\r\n+    async delArticle(id) {\r\n+      let result = await del(`article/${id}`)\r\n+      if (result == 1) {\r\n+        message.success('删除成功')\r\n+        return 'ok'\r\n+      } else {\r\n+        message.error('删除失败')\r\n+      }\r\n+    },\r\n+    async updateArticle(data) {\r\n+      let result = await put(`article?id=${data.id}&title=${data.title}&categoryid=${data.categoryId}&markdown=${data.markdown}`)\r\n+      if (result == 1 || result == 0) {\r\n+        message.success('更新成功')\r\n+      } else {\r\n+        message.error('更新失败')\r\n+      }\r\n+    },\r\n+    async getTotal(data = { search: '' }) {\r\n+      let result = await get('total', data)\r\n+      this.total = result\r\n+      if (result) {\r\n+        message.success('更新成功')\r\n+      } else {\r\n+        message.error('更新失败')\r\n+      }\r\n+    }\r\n+  },\r\n+\r\n+})\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1646392986930,

@@ -60,8 +60,8 @@
     <!-- 删除..按钮 -->
     <el-row>
       <el-col :span="24" class="del-btn">
-        <el-button @click="toggleSelection()">取消选择</el-button>
-        <el-button type="danger" :icon="Minus">批量删除</el-button>
+        <el-button type="primary" @click="toggleSelection()">取消选择</el-button>
+        <el-button @click="batchDeleteArticle()" type="danger" :icon="Minus">批量删除</el-button>
       </el-col>
     </el-row>
     <!-- 分页器 -->
@@ -131,6 +131,21 @@ const toggleSelection = (rows?: Article[]) => {
 const handleSelectionChange = (val: Article[]) => {
   multipleSelection.value = val
 }
+// 批量删除文章
+const batchDeleteArticle = async () => {
+  let data: any = []
+  multipleSelection.value.forEach((item) => {
+    // await articleStore.delArticle()
+    // console.log(item.id);
+    data.push(item.id)
+  })
+  data = JSON.stringify(data)
+
+
+  await articleStore.delBatchArticle({ id: data })
+  await articleStore.getArticleList({ num: pageSize.value, page: page.value })
+
+}
 
 // 编辑按钮
 const handleEdit = (index: number, row: Article) => {
@@ -168,7 +183,6 @@ const handleCurrentChange = (val: number) => {
   articleStore.getArticleList({ num: pageSize.value, page: page.value })
 }
 
-
 let page = computed(() => {
   return pageSize.value * (currentPage.value - 1)
 })
@@ -183,6 +197,8 @@ const articleList = computed({
 const tableData = computed(() => {
   return articleList.value
 })
+articleStore.getArticleList({ num: pageSize.value, page: page.value })
+
 </script>
 <style lang="less" scoped>
 .search-btn {

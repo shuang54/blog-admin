@@ -40,7 +40,7 @@ export const useCategory = defineStore('category', {
     },
     async addCategory(params) {
       let result = await post(`category`, params)
-      if (result !== []) {
+      if (result != []) {
         this.getCategoryList()
         message.success('添加成功');
       } else {
@@ -98,9 +98,18 @@ export const useArticle = defineStore('article', {
       let result = await get('total', data)
       this.total = result
       if (result) {
-        message.success('更新成功')
+        // message.success('更新成功')
       } else {
         message.error('更新失败')
+      }
+    },
+    async delBatchArticle(data) {
+      let result = await post('delarticle', data)
+
+      if (result != 0) {
+        message.success('删除成功')
+      } else {
+        message.error('删除失败')
       }
     }
   },
