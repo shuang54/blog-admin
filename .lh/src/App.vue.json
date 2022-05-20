@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 74,
+            "activePatchIndex": 80,
             "patches": [
                 {
                     "date": 1646380413199,
@@ -304,6 +304,30 @@
                 {
                     "date": 1646998222680,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n   height: 100vh;\n }\n \n .el-main {\n-  background-color: #e9eef3;\n+  background-color: white;\n   color: var(--el-text-color-primary);\n   text-align: center;\n }\n \n"
+                },
+                {
+                    "date": 1648353656241,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,20 +6,9 @@\n )\n </script>\n <template>\n   <el-container>\n-    <!-- 头部 -->\n-    <el-header>博客后台管理系统</el-header>\n-    <el-container>\n-      <!-- 侧边栏 -->\n-      <el-aside width=\"200px\">\n-        <Aside></Aside>\n-      </el-aside>\n-      <!-- 主体内容 -->\n-      <el-main>\n-        <router-view></router-view>\n-      </el-main>\n-    </el-container>\n+    <router-view></router-view>\n   </el-container>\n </template>\n \n <style scoped lang=\"less\">\n"
+                },
+                {
+                    "date": 1648353674778,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,20 @@\n </script>\n <template>\n   <el-container>\n     <router-view></router-view>\n+    <!-- 头部 -->\n+    <el-header>博客后台管理系统</el-header>\n+    <el-container>\n+      <!-- 侧边栏 -->\n+      <el-aside width=\"200px\">\n+        <Aside></Aside>\n+      </el-aside>\n+      <!-- 主体内容 -->\n+      <el-main>\n+        <router-view></router-view>\n+      </el-main>\n+    </el-container>\n   </el-container>\n </template>\n \n <style scoped lang=\"less\">\n"
+                },
+                {
+                    "date": 1648353768898,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,20 +7,8 @@\n </script>\n <template>\n   <el-container>\n     <router-view></router-view>\n-    <!-- 头部 -->\n-    <el-header>博客后台管理系统</el-header>\n-    <el-container>\n-      <!-- 侧边栏 -->\n-      <el-aside width=\"200px\">\n-        <Aside></Aside>\n-      </el-aside>\n-      <!-- 主体内容 -->\n-      <el-main>\n-        <router-view></router-view>\n-      </el-main>\n-    </el-container>\n   </el-container>\n </template>\n \n <style scoped lang=\"less\">\n"
+                },
+                {
+                    "date": 1648353842722,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,40 +11,6 @@\n   </el-container>\n </template>\n \n <style scoped lang=\"less\">\n-.el-header,\n-.el-footer {\n-  background-color: #b3c0d1;\n-  color: var(--el-text-color-primary);\n-  text-align: center;\n-  line-height: 60px;\n-}\n-\n-.el-aside {\n-  background-color: #d3dce6;\n-  color: var(--el-text-color-primary);\n-  text-align: center;\n-  line-height: 200px;\n-  height: 100vh;\n-}\n-\n-.el-main {\n-  background-color: white;\n-  color: var(--el-text-color-primary);\n-  text-align: center;\n-}\n-\n-body > .el-container {\n-  margin-bottom: 40px;\n-}\n-\n-.el-container:nth-child(5) .el-aside,\n-.el-container:nth-child(6) .el-aside {\n-  line-height: 260px;\n-}\n-\n-.el-container:nth-child(7) .el-aside {\n-  line-height: 320px;\n-}\n </style>\n \n"
+                },
+                {
+                    "date": 1648353878042,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,6 @@\n <script lang=\"ts\" setup>\n-import { defineAsyncComponent } from \"vue\";\n-//异步导入组件\n-const Aside = defineAsyncComponent(() =>\n-  import('./components/Aside/index.vue')\n-)\n+\n </script>\n <template>\n   <el-container>\n     <router-view></router-view>\n"
+                },
+                {
+                    "date": 1648353914383,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,9 @@\n <script lang=\"ts\" setup>\n \n </script>\n <template>\n-  <el-container>\n-    <router-view></router-view>\n-  </el-container>\n+  <router-view></router-view>\n </template>\n \n <style scoped lang=\"less\">\n </style>\n"
                 }
             ],
             "date": 1646380413199,

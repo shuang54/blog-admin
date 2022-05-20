@@ -26,7 +26,8 @@ export default defineConfig({
         drop_debugger: true // 生产环境去除 debugger
       },
     },
-    chunkSizeWarningLimit: 1500 // chunk 大小警告的限制（以 kbs 为单位）
+    chunkSizeWarningLimit: 1500,// chunk 大小警告的限制（以 kbs 为单位）
+    cssCodeSplit: false,
   },
   resolve: {
     alias: {

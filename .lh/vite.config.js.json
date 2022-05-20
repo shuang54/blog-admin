@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 5,
+            "activePatchIndex": 7,
             "patches": [
                 {
                     "date": 1646384783229,
@@ -28,6 +28,14 @@
                 {
                     "date": 1646917526740,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,8 @@\n import vue from '@vitejs/plugin-vue'\n import { resolve } from 'path'\n import AutoImport from 'unplugin-auto-import/vite'\n import Components from 'unplugin-vue-components/vite'\n-import viteCompression from 'vite-plugin-compression';\n import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'\n \n const pathResolve = (dir) => resolve(__dirname, dir)\n \n"
+                },
+                {
+                    "date": 1647517607028,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,9 @@\n         drop_debugger: true // 生产环境去除 debugger\n       },\n     },\n     chunkSizeWarningLimit: 1500 // chunk 大小警告的限制（以 kbs 为单位）\n+    , cssCodeSplit: false,\n   },\n   resolve: {\n     alias: {\n       '@': pathResolve('./src'), // 设置 `@` 指向 `src` 目录\n@@ -37,18 +38,20 @@\n     },\n   },\n   base: './', // 设置公共基础路径\n   server: {\n+    // hostname: 'localhost',\n     port: 4000, // 设置服务启动端口号\n     open: true, // 设置服务启动时是否自动打开浏览器\n     cors: true, // 允许跨域\n-\n+    host: 'localhost',\n+    // base: './',\n     // 设置代理，根据我们项目实际情况配置\n     proxy: {\n       '/blog': {\n-        target: 'http://127.0.0.1:8000',\n+        target: 'http://127.0.0.1:4000',\n         changeOrigin: true,\n-        secure: false,\n+        // secure: false,\n         // rewrite: path => path.replace(/^/api /, '')\n       }\n     }\n   }\n"
+                },
+                {
+                    "date": 1647517612596,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,10 +25,10 @@\n         drop_console: true, // 生产环境去除 console\n         drop_debugger: true // 生产环境去除 debugger\n       },\n     },\n-    chunkSizeWarningLimit: 1500 // chunk 大小警告的限制（以 kbs 为单位）\n-    , cssCodeSplit: false,\n+    chunkSizeWarningLimit: 1500,// chunk 大小警告的限制（以 kbs 为单位）\n+    cssCodeSplit: false,\n   },\n   resolve: {\n     alias: {\n       '@': pathResolve('./src'), // 设置 `@` 指向 `src` 目录\n"
                 }
             ],
             "date": 1646384783229,

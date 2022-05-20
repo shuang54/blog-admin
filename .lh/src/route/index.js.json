@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 18,
+            "activePatchIndex": 116,
             "patches": [
                 {
                     "date": 1646380259106,
@@ -80,6 +80,398 @@
                 {
                     "date": 1647177072428,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,14 +19,14 @@\n     },\r\n     {\r\n       path: '/admin/addArticle',\r\n       component: () => import('../view/AddFile/index.vue'),\r\n-      name: 'addarticle'\r\n+      name: 'addArticle'\r\n     },\r\n     {\r\n       path: '/admin/updateArticle',\r\n       component: () => import('../view/AddFile/index.vue'),\r\n-      name: 'updatearticle'\r\n+      name: 'updateArticle'\r\n     },\r\n \r\n   ]\r\n })\r\n"
+                },
+                {
+                    "date": 1647601146621,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,7 @@\n       path: '/admin/updateArticle',\r\n       component: () => import('../view/AddFile/index.vue'),\r\n       name: 'updateArticle'\r\n     },\r\n-\r\n   ]\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648352659609,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,12 @@\n       path: '/',\r\n       component: () => import('../components/Main/index.vue'),\r\n     },\r\n     {\r\n+      path: '/login',\r\n+      component: () => import('../view/Login/index.vue')\r\n+    },\r\n+    {\r\n       path: '/admin/article',\r\n       component: () => import('../view/Article/index.vue'),\r\n       name: 'article'\r\n     },\r\n"
+                },
+                {
+                    "date": 1648353999131,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,12 @@\n   history: routerHistory,\r\n   routes: [\r\n     {\r\n       path: '/',\r\n+      redirect: '/admin'\r\n+    },\r\n+    {\r\n+      path: '/admin',\r\n       component: () => import('../components/Main/index.vue'),\r\n     },\r\n     {\r\n       path: '/login',\r\n"
+                },
+                {
+                    "date": 1648354080282,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n     },\r\n     {\r\n       path: '/admin',\r\n       component: () => import('../components/Main/index.vue'),\r\n+      children: []\r\n     },\r\n     {\r\n       path: '/login',\r\n       component: () => import('../view/Login/index.vue')\r\n"
+                },
+                {
+                    "date": 1648354114253,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,33 +9,35 @@\n     },\r\n     {\r\n       path: '/admin',\r\n       component: () => import('../components/Main/index.vue'),\r\n-      children: []\r\n+      children: [\r\n+        {\r\n+          path: '/admin/article',\r\n+          component: () => import('../view/Article/index.vue'),\r\n+          name: 'article'\r\n+        },\r\n+        {\r\n+          path: '/admin/category',\r\n+          component: () => import('../view/Category/index.vue'),\r\n+          name: 'category'\r\n+        },\r\n+        {\r\n+          path: '/admin/addArticle',\r\n+          component: () => import('../view/AddFile/index.vue'),\r\n+          name: 'addArticle'\r\n+        },\r\n+        {\r\n+          path: '/admin/updateArticle',\r\n+          component: () => import('../view/AddFile/index.vue'),\r\n+          name: 'updateArticle'\r\n+        },\r\n+      ],\r\n     },\r\n     {\r\n       path: '/login',\r\n       component: () => import('../view/Login/index.vue')\r\n     },\r\n-    {\r\n-      path: '/admin/article',\r\n-      component: () => import('../view/Article/index.vue'),\r\n-      name: 'article'\r\n-    },\r\n-    {\r\n-      path: '/admin/category',\r\n-      component: () => import('../view/Category/index.vue'),\r\n-      name: 'category'\r\n-    },\r\n-    {\r\n-      path: '/admin/addArticle',\r\n-      component: () => import('../view/AddFile/index.vue'),\r\n-      name: 'addArticle'\r\n-    },\r\n-    {\r\n-      path: '/admin/updateArticle',\r\n-      component: () => import('../view/AddFile/index.vue'),\r\n-      name: 'updateArticle'\r\n-    },\r\n+\r\n   ]\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648380197507,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,5 +39,9 @@\n     },\r\n \r\n   ]\r\n })\r\n+router.beforeEach((to, from, next) => {\r\n+  if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login' })\r\n+  else next()\r\n+})\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648380227947,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,8 +40,8 @@\n \r\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n-  if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login' })\r\n+  if (to.name !== 'Login' && ) next({ name: 'Login' })\r\n   else next()\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648380235370,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,8 +40,8 @@\n \r\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n-  if (to.name !== 'Login' && ) next({ name: 'Login' })\r\n+  if (to.name !== 'Login') next({ name: 'Login' })\r\n   else next()\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648380254314,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,14 +34,15 @@\n       ],\r\n     },\r\n     {\r\n       path: '/login',\r\n-      component: () => import('../view/Login/index.vue')\r\n+      component: () => import('../view/Login/index.vue'),\r\n+      name: 'login'\r\n     },\r\n \r\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n-  if (to.name !== 'Login') next({ name: 'Login' })\r\n+  if (to.name !== 'Login') next({ name: 'login' })\r\n   else next()\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648380271880,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,8 +41,8 @@\n \r\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n-  if (to.name !== 'Login') next({ name: 'login' })\r\n+  if (to.name !== 'Login') { next({ name: 'login' }) }\r\n   else next()\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648380287764,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,8 +41,7 @@\n \r\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n-  if (to.name !== 'Login') { next({ name: 'login' }) }\r\n-  else next()\r\n+\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648380304707,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,7 +41,7 @@\n \r\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n-\r\n+  next()\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648380354445,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,7 +41,8 @@\n \r\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n-  next()\r\n+  if (window.get)\r\n+    next()\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648380395677,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,8 +41,7 @@\n \r\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n-  if (window.get)\r\n-    next()\r\n+\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648380407993,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,7 +41,7 @@\n \r\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n-\r\n+  next()\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648380687293,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,8 +40,9 @@\n     },\r\n \r\n   ]\r\n })\r\n+\r\n router.beforeEach((to, from, next) => {\r\n   next()\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648380813350,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n import { createRouter, createWebHistory } from 'vue-router'\r\n+import { useUser } from '../store'\r\n+const userStore = useUser()\r\n const routerHistory = createWebHistory()\r\n const router = createRouter({\r\n   history: routerHistory,\r\n   routes: [\r\n@@ -42,7 +44,10 @@\n   ]\r\n })\r\n \r\n router.beforeEach((to, from, next) => {\r\n-  next()\r\n+  if (!userStore.isLogin) {\r\n+    next()\r\n+  }\r\n+  next('/login')\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648380986731,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,11 +42,10 @@\n     },\r\n \r\n   ]\r\n })\r\n-\r\n router.beforeEach((to, from, next) => {\r\n-  if (!userStore.isLogin) {\r\n+  if (window.sessionStorage.getItem('token')) {\r\n     next()\r\n   }\r\n   next('/login')\r\n })\r\n"
+                },
+                {
+                    "date": 1648381155090,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { createRouter, createWebHistory } from 'vue-router'\r\n import { useUser } from '../store'\r\n-const userStore = useUser()\r\n+let userStore = useUser()\r\n const routerHistory = createWebHistory()\r\n const router = createRouter({\r\n   history: routerHistory,\r\n   routes: [\r\n"
+                },
+                {
+                    "date": 1648381414850,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { createRouter, createWebHistory } from 'vue-router'\r\n import { useUser } from '../store'\r\n-let userStore = useUser()\r\n+import { userStore } from 'vue'\r\n+\r\n const routerHistory = createWebHistory()\r\n const router = createRouter({\r\n   history: routerHistory,\r\n   routes: [\r\n"
+                },
+                {
+                    "date": 1648381444919,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n \r\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n-  if (window.sessionStorage.getItem('token')) {\r\n+  if (userStore.istoken) {\r\n     next()\r\n   }\r\n   next('/login')\r\n })\r\n"
+                },
+                {
+                    "date": 1648381557896,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,5 @@\n import { createRouter, createWebHistory } from 'vue-router'\r\n-import { useUser } from '../store'\r\n-import { userStore } from 'vue'\r\n \r\n const routerHistory = createWebHistory()\r\n const router = createRouter({\r\n   history: routerHistory,\r\n"
+                },
+                {
+                    "date": 1648381565067,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,10 +42,7 @@\n \r\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n-  if (userStore.istoken) {\r\n-    next()\r\n-  }\r\n-  next('/login')\r\n+  next()\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648382120227,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { createRouter, createWebHistory } from 'vue-router'\r\n-\r\n+import { useUser } from '../store'\r\n const routerHistory = createWebHistory()\r\n const router = createRouter({\r\n   history: routerHistory,\r\n   routes: [\r\n@@ -42,7 +42,12 @@\n \r\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n-  next()\r\n+  let userStore = useUser()\r\n+  if (userStore.isToken) {\r\n+    next()\r\n+  } else {\r\n+    next('/')\r\n+  }\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648382194037,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,11 +43,7 @@\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n   let userStore = useUser()\r\n-  if (userStore.isToken) {\r\n-    next()\r\n-  } else {\r\n-    next('/')\r\n-  }\r\n+  console.log(userStore.isToken);\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648382207477,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,8 +42,7 @@\n \r\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n-  let userStore = useUser()\r\n-  console.log(userStore.isToken);\r\n+  next()\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648382240683,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,6 +43,8 @@\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n   next()\r\n+  let userStore = useUser()\r\n+  console.log(userStore.isToken);\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648382251724,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n \r\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n-  next()\r\n   let userStore = useUser()\r\n   console.log(userStore.isToken);\r\n+  next()\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648382290689,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,8 +43,12 @@\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n   let userStore = useUser()\r\n-  console.log(userStore.isToken);\r\n-  next()\r\n+  if (false) {\r\n+    next()\r\n+\r\n+  } else {\r\n+    next('/login')\r\n+  }\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648382310943,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,8 +47,8 @@\n   if (false) {\r\n     next()\r\n \r\n   } else {\r\n-    next('/login')\r\n+    next({ name: 'login' })\r\n   }\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648382324269,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,8 @@\n router.beforeEach((to, from, next) => {\r\n   let userStore = useUser()\r\n   if (false) {\r\n     next()\r\n-\r\n   } else {\r\n     next({ name: 'login' })\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1648382465608,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n \r\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n-  let userStore = useUser()\r\n+  // let userStore = useUser()\r\n   if (false) {\r\n     next()\r\n   } else {\r\n     next({ name: 'login' })\r\n"
+                },
+                {
+                    "date": 1648382476935,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n   // let userStore = useUser()\r\n-  if (false) {\r\n+  if (1 = 1) {\r\n     next()\r\n   } else {\r\n     next({ name: 'login' })\r\n   }\r\n"
+                },
+                {
+                    "date": 1648382487773,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n   // let userStore = useUser()\r\n-  if (1 = 1) {\r\n+  if (1 == 1) {\r\n     next()\r\n   } else {\r\n     next({ name: 'login' })\r\n   }\r\n"
+                },
+                {
+                    "date": 1648382494440,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n   // let userStore = useUser()\r\n-  if (1 == 1) {\r\n+  if (1 != 1) {\r\n     next()\r\n   } else {\r\n     next({ name: 'login' })\r\n   }\r\n"
+                },
+                {
+                    "date": 1648382509296,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,8 +46,8 @@\n   // let userStore = useUser()\r\n   if (1 != 1) {\r\n     next()\r\n   } else {\r\n-    next({ name: 'login' })\r\n+    next({ 'login' })\r\n   }\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648382538704,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,8 +46,8 @@\n   // let userStore = useUser()\r\n   if (1 != 1) {\r\n     next()\r\n   } else {\r\n-    next({ 'login' })\r\n+    next({ path: '/login' })\r\n   }\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648382553036,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,8 +46,9 @@\n   // let userStore = useUser()\r\n   if (1 != 1) {\r\n     next()\r\n   } else {\r\n+    console.log('a');\r\n     next({ path: '/login' })\r\n   }\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648382607247,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n   // let userStore = useUser()\r\n-  if (1 != 1) {\r\n+  if (to.path = 'login' || 1 != 1) {\r\n     next()\r\n   } else {\r\n     console.log('a');\r\n     next({ path: '/login' })\r\n"
+                },
+                {
+                    "date": 1648382668992,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n   // let userStore = useUser()\r\n-  if (to.path = 'login' || 1 != 1) {\r\n+  if (to.path != 'login' && false) {\r\n     next()\r\n   } else {\r\n     console.log('a');\r\n     next({ path: '/login' })\r\n"
+                },
+                {
+                    "date": 1648382674695,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n   // let userStore = useUser()\r\n-  if (to.path != 'login' && false) {\r\n+  if (to.path != 'login' || false) {\r\n     next()\r\n   } else {\r\n     console.log('a');\r\n     next({ path: '/login' })\r\n"
+                },
+                {
+                    "date": 1648382691385,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n   // let userStore = useUser()\r\n-  if (to.path != 'login' || false) {\r\n+  if (to.path != 'login') {\r\n     next()\r\n   } else {\r\n     console.log('a');\r\n     next({ path: '/login' })\r\n"
+                },
+                {
+                    "date": 1648382697259,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n   // let userStore = useUser()\r\n-  if (to.path != 'login') {\r\n+  if (to.path == 'login') {\r\n     next()\r\n   } else {\r\n     console.log('a');\r\n     next({ path: '/login' })\r\n"
+                },
+                {
+                    "date": 1648382708373,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n   // let userStore = useUser()\r\n-  if (to.path == 'login') {\r\n+  if (to.path == '/login') {\r\n     next()\r\n   } else {\r\n     console.log('a');\r\n     next({ path: '/login' })\r\n"
+                },
+                {
+                    "date": 1648382730371,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n \r\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n-  // let userStore = useUser()\r\n+  let userStore = useUser()\r\n   if (to.path == '/login') {\r\n     next()\r\n   } else {\r\n     console.log('a');\r\n"
+                },
+                {
+                    "date": 1648382752336,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,8 +43,9 @@\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n   let userStore = useUser()\r\n+  console.log(userStore.isToken);\r\n   if (to.path == '/login') {\r\n     next()\r\n   } else {\r\n     console.log('a');\r\n"
+                },
+                {
+                    "date": 1648382808996,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,10 +43,9 @@\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n   let userStore = useUser()\r\n-  console.log(userStore.isToken);\r\n-  if (to.path == '/login') {\r\n+  if (to.path == '/login' || userStore.isToken) {\r\n     next()\r\n   } else {\r\n     console.log('a');\r\n     next({ path: '/login' })\r\n"
+                },
+                {
+                    "date": 1648382833996,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,12 +43,12 @@\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n   let userStore = useUser()\r\n+  console.log(userStore.isToken);\r\n   if (to.path == '/login' || userStore.isToken) {\r\n     next()\r\n   } else {\r\n-    console.log('a');\r\n     next({ path: '/login' })\r\n   }\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648384183352,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,12 +43,13 @@\n   ]\r\n })\r\n router.beforeEach((to, from, next) => {\r\n   let userStore = useUser()\r\n-  console.log(userStore.isToken);\r\n-  if (to.path == '/login' || userStore.isToken) {\r\n-    next()\r\n-  } else {\r\n-    next({ path: '/login' })\r\n+  let token = userStore.token\r\n+  let name = userStore.name\r\n+  if (token) {\r\n+\r\n+  } {\r\n+    next({ paht: '/login' })\r\n   }\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648384220247,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,10 +45,10 @@\n router.beforeEach((to, from, next) => {\r\n   let userStore = useUser()\r\n   let token = userStore.token\r\n   let name = userStore.name\r\n-  if (token) {\r\n-\r\n+  if (token || to.path == '/login') {\r\n+    if ()\r\n   } {\r\n     next({ paht: '/login' })\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1648384256429,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,13 @@\n   let userStore = useUser()\r\n   let token = userStore.token\r\n   let name = userStore.name\r\n   if (token || to.path == '/login') {\r\n-    if ()\r\n+    if (name) {\r\n+\r\n+    } else {\r\n+\r\n+    }\r\n   } {\r\n     next({ paht: '/login' })\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1648384304678,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n   let token = userStore.token\r\n   let name = userStore.name\r\n   if (token || to.path == '/login') {\r\n     if (name) {\r\n-\r\n+      next()\r\n     } else {\r\n \r\n     }\r\n   } {\r\n"
+                },
+                {
+                    "date": 1648384483070,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,17 +41,17 @@\n     },\r\n \r\n   ]\r\n })\r\n-router.beforeEach((to, from, next) => {\r\n+router.beforeEach(async (to, from, next) => {\r\n   let userStore = useUser()\r\n   let token = userStore.token\r\n   let name = userStore.name\r\n   if (token || to.path == '/login') {\r\n     if (name) {\r\n       next()\r\n     } else {\r\n-\r\n+      let result = await userStore.\r\n     }\r\n   } {\r\n     next({ paht: '/login' })\r\n   }\r\n"
+                },
+                {
+                    "date": 1648384515502,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,9 +49,9 @@\n   if (token || to.path == '/login') {\r\n     if (name) {\r\n       next()\r\n     } else {\r\n-      let result = await userStore.\r\n+      let result = await userStore.getUserInfo()\r\n     }\r\n   } {\r\n     next({ paht: '/login' })\r\n   }\r\n"
+                },
+                {
+                    "date": 1648384561915,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,9 +49,15 @@\n   if (token || to.path == '/login') {\r\n     if (name) {\r\n       next()\r\n     } else {\r\n-      let result = await userStore.getUserInfo()\r\n+      try {\r\n+\r\n+        let result = await userStore.getUserInfo()\r\n+      } catch (err) {\r\n+\r\n+      }\r\n+\r\n     }\r\n   } {\r\n     next({ paht: '/login' })\r\n   }\r\n"
+                },
+                {
+                    "date": 1648384646056,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n       try {\r\n \r\n         let result = await userStore.getUserInfo()\r\n       } catch (err) {\r\n-\r\n+        userStore.signOut()\r\n       }\r\n \r\n     }\r\n   } {\r\n"
+                },
+                {
+                    "date": 1648384654091,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n       next()\r\n     } else {\r\n       try {\r\n \r\n-        let result = await userStore.getUserInfo()\r\n+        await userStore.getUserInfo()\r\n       } catch (err) {\r\n         userStore.signOut()\r\n       }\r\n \r\n"
+                },
+                {
+                    "date": 1648384664034,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,8 +52,9 @@\n     } else {\r\n       try {\r\n \r\n         await userStore.getUserInfo()\r\n+        next()\r\n       } catch (err) {\r\n         userStore.signOut()\r\n       }\r\n \r\n"
+                },
+                {
+                    "date": 1648385113251,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,14 +45,16 @@\n router.beforeEach(async (to, from, next) => {\r\n   let userStore = useUser()\r\n   let token = userStore.token\r\n   let name = userStore.name\r\n-  if (token || to.path == '/login') {\r\n+  if (to.path == '/login') {\r\n+    next()\r\n+  }\r\n+  if (token) {\r\n     if (name) {\r\n       next()\r\n     } else {\r\n       try {\r\n-\r\n         await userStore.getUserInfo()\r\n         next()\r\n       } catch (err) {\r\n         userStore.signOut()\r\n"
+                },
+                {
+                    "date": 1648385197938,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,8 +45,9 @@\n router.beforeEach(async (to, from, next) => {\r\n   let userStore = useUser()\r\n   let token = userStore.token\r\n   let name = userStore.name\r\n+  console.log(token, name);\r\n   if (to.path == '/login') {\r\n     next()\r\n   }\r\n   if (token) {\r\n"
+                },
+                {
+                    "date": 1648385209697,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,21 +49,21 @@\n   console.log(token, name);\r\n   if (to.path == '/login') {\r\n     next()\r\n   }\r\n-  if (token) {\r\n-    if (name) {\r\n-      next()\r\n-    } else {\r\n-      try {\r\n-        await userStore.getUserInfo()\r\n-        next()\r\n-      } catch (err) {\r\n-        userStore.signOut()\r\n-      }\r\n+  // if (token) {\r\n+  //   if (name) {\r\n+  //     next()\r\n+  //   } else {\r\n+  //     try {\r\n+  //       await userStore.getUserInfo()\r\n+  //       next()\r\n+  //     } catch (err) {\r\n+  //       userStore.signOut()\r\n+  //     }\r\n \r\n-    }\r\n-  } {\r\n-    next({ paht: '/login' })\r\n-  }\r\n+  //   }\r\n+  // } {\r\n+  //   next({ paht: '/login' })\r\n+  // }\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648385228523,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,8 +46,9 @@\n   let userStore = useUser()\r\n   let token = userStore.token\r\n   let name = userStore.name\r\n   console.log(token, name);\r\n+  next()\r\n   if (to.path == '/login') {\r\n     next()\r\n   }\r\n   // if (token) {\r\n"
+                },
+                {
+                    "date": 1648385254624,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,30 +41,30 @@\n     },\r\n \r\n   ]\r\n })\r\n-router.beforeEach(async (to, from, next) => {\r\n-  let userStore = useUser()\r\n-  let token = userStore.token\r\n-  let name = userStore.name\r\n-  console.log(token, name);\r\n-  next()\r\n-  if (to.path == '/login') {\r\n-    next()\r\n-  }\r\n-  // if (token) {\r\n-  //   if (name) {\r\n-  //     next()\r\n-  //   } else {\r\n-  //     try {\r\n-  //       await userStore.getUserInfo()\r\n-  //       next()\r\n-  //     } catch (err) {\r\n-  //       userStore.signOut()\r\n-  //     }\r\n+// router.beforeEach(async (to, from, next) => {\r\n+//   let userStore = useUser()\r\n+//   let token = userStore.token\r\n+//   let name = userStore.name\r\n+//   console.log(token, name);\r\n+//   next()\r\n+//   if (to.path == '/login') {\r\n+//     next()\r\n+//   }\r\n+//   // if (token) {\r\n+//   //   if (name) {\r\n+//   //     next()\r\n+//   //   } else {\r\n+//   //     try {\r\n+//   //       await userStore.getUserInfo()\r\n+//   //       next()\r\n+//   //     } catch (err) {\r\n+//   //       userStore.signOut()\r\n+//   //     }\r\n \r\n-  //   }\r\n-  // } {\r\n-  //   next({ paht: '/login' })\r\n-  // }\r\n-})\r\n+//   //   }\r\n+//   // } {\r\n+//   //   next({ paht: '/login' })\r\n+//   // }\r\n+// })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648385288286,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,30 +41,30 @@\n     },\r\n \r\n   ]\r\n })\r\n-// router.beforeEach(async (to, from, next) => {\r\n-//   let userStore = useUser()\r\n-//   let token = userStore.token\r\n-//   let name = userStore.name\r\n-//   console.log(token, name);\r\n-//   next()\r\n-//   if (to.path == '/login') {\r\n-//     next()\r\n-//   }\r\n-//   // if (token) {\r\n-//   //   if (name) {\r\n-//   //     next()\r\n-//   //   } else {\r\n-//   //     try {\r\n-//   //       await userStore.getUserInfo()\r\n-//   //       next()\r\n-//   //     } catch (err) {\r\n-//   //       userStore.signOut()\r\n-//   //     }\r\n+router.beforeEach(async (to, from, next) => {\r\n+  let userStore = useUser()\r\n+  let token = userStore.token\r\n+  let name = userStore.name\r\n+  console.log(token, name);\r\n+  next()\r\n+  if (to.path == '/login') {\r\n+    next()\r\n+  }\r\n+  // if (token) {\r\n+  //   if (name) {\r\n+  //     next()\r\n+  //   } else {\r\n+  //     try {\r\n+  //       await userStore.getUserInfo()\r\n+  //       next()\r\n+  //     } catch (err) {\r\n+  //       userStore.signOut()\r\n+  //     }\r\n \r\n-//   //   }\r\n-//   // } {\r\n-//   //   next({ paht: '/login' })\r\n-//   // }\r\n-// })\r\n+  //   }\r\n+  // } {\r\n+  //   next({ paht: '/login' })\r\n+  // }\r\n+})\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648385293680,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,11 +47,11 @@\n   let token = userStore.token\r\n   let name = userStore.name\r\n   console.log(token, name);\r\n   next()\r\n-  if (to.path == '/login') {\r\n-    next()\r\n-  }\r\n+  // if (to.path == '/login') {\r\n+  //   next()\r\n+  // }\r\n   // if (token) {\r\n   //   if (name) {\r\n   //     next()\r\n   //   } else {\r\n"
+                },
+                {
+                    "date": 1648385445169,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,11 +47,11 @@\n   let token = userStore.token\r\n   let name = userStore.name\r\n   console.log(token, name);\r\n   next()\r\n-  // if (to.path == '/login') {\r\n-  //   next()\r\n-  // }\r\n+  if (to.path == '/login') {\r\n+    next()\r\n+  }\r\n   // if (token) {\r\n   //   if (name) {\r\n   //     next()\r\n   //   } else {\r\n"
+                },
+                {
+                    "date": 1648385452918,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,8 @@\n   let userStore = useUser()\r\n   let token = userStore.token\r\n   let name = userStore.name\r\n   console.log(token, name);\r\n-  next()\r\n   if (to.path == '/login') {\r\n     next()\r\n   }\r\n   // if (token) {\r\n"
+                },
+                {
+                    "date": 1648385474392,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,21 +49,21 @@\n   console.log(token, name);\r\n   if (to.path == '/login') {\r\n     next()\r\n   }\r\n-  // if (token) {\r\n-  //   if (name) {\r\n-  //     next()\r\n-  //   } else {\r\n-  //     try {\r\n-  //       await userStore.getUserInfo()\r\n-  //       next()\r\n-  //     } catch (err) {\r\n-  //       userStore.signOut()\r\n-  //     }\r\n+  if (token) {\r\n+    if (name) {\r\n+      next()\r\n+    } else {\r\n+      try {\r\n+        await userStore.getUserInfo()\r\n+        next()\r\n+      } catch (err) {\r\n+        userStore.signOut()\r\n+      }\r\n \r\n-  //   }\r\n-  // } {\r\n-  //   next({ paht: '/login' })\r\n-  // }\r\n+    }\r\n+  } {\r\n+    next({ paht: '/login' })\r\n+  }\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648385496091,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,9 +49,9 @@\n   console.log(token, name);\r\n   if (to.path == '/login') {\r\n     next()\r\n   }\r\n-  if (token) {\r\n+  if (token != undefined) {\r\n     if (name) {\r\n       next()\r\n     } else {\r\n       try {\r\n"
+                },
+                {
+                    "date": 1648385578971,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,8 +62,8 @@\n       }\r\n \r\n     }\r\n   } {\r\n-    next({ paht: '/login' })\r\n+    next({ path: '/login' })\r\n   }\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648385650780,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n   ]\r\n })\r\n router.beforeEach(async (to, from, next) => {\r\n   let userStore = useUser()\r\n-  let token = userStore.token\r\n+  let token = window.localStorage.getItem('token')\r\n   let name = userStore.name\r\n   console.log(token, name);\r\n   if (to.path == '/login') {\r\n     next()\r\n"
+                },
+                {
+                    "date": 1648385709019,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n   ]\r\n })\r\n router.beforeEach(async (to, from, next) => {\r\n   let userStore = useUser()\r\n-  let token = window.localStorage.getItem('token')\r\n+  let token = userStore.token\r\n   let name = userStore.name\r\n   console.log(token, name);\r\n   if (to.path == '/login') {\r\n     next()\r\n"
+                },
+                {
+                    "date": 1648385732795,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n   ]\r\n })\r\n router.beforeEach(async (to, from, next) => {\r\n   let userStore = useUser()\r\n-  let token = userStore.token\r\n+  let token = window.localStorage.getItem('token')\r\n   let name = userStore.name\r\n   console.log(token, name);\r\n   if (to.path == '/login') {\r\n     next()\r\n"
+                },
+                {
+                    "date": 1648385804007,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,8 +53,9 @@\n   if (token != undefined) {\r\n     if (name) {\r\n       next()\r\n     } else {\r\n+      console.log('name');\r\n       try {\r\n         await userStore.getUserInfo()\r\n         next()\r\n       } catch (err) {\r\n@@ -62,8 +63,9 @@\n       }\r\n \r\n     }\r\n   } {\r\n+\r\n     next({ path: '/login' })\r\n   }\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648385864616,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,8 +59,9 @@\n         await userStore.getUserInfo()\r\n         next()\r\n       } catch (err) {\r\n         userStore.signOut()\r\n+        next({ path: '/login' })\r\n       }\r\n \r\n     }\r\n   } {\r\n"
+                },
+                {
+                    "date": 1648385997828,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,13 +53,13 @@\n   if (token != undefined) {\r\n     if (name) {\r\n       next()\r\n     } else {\r\n-      console.log('name');\r\n       try {\r\n         await userStore.getUserInfo()\r\n         next()\r\n       } catch (err) {\r\n+        console.log('name');\r\n         userStore.signOut()\r\n         next({ path: '/login' })\r\n       }\r\n \r\n"
+                },
+                {
+                    "date": 1648386007383,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,10 +56,11 @@\n     } else {\r\n       try {\r\n         await userStore.getUserInfo()\r\n         next()\r\n+        console.log('try');\r\n       } catch (err) {\r\n-        console.log('name');\r\n+        console.log('err');\r\n         userStore.signOut()\r\n         next({ path: '/login' })\r\n       }\r\n \r\n"
+                },
+                {
+                    "date": 1648386052907,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,10 +55,10 @@\n       next()\r\n     } else {\r\n       try {\r\n         await userStore.getUserInfo()\r\n+        console.log('try');\r\n         next()\r\n-        console.log('try');\r\n       } catch (err) {\r\n         console.log('err');\r\n         userStore.signOut()\r\n         next({ path: '/login' })\r\n"
+                },
+                {
+                    "date": 1648386428601,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,8 @@\n router.beforeEach(async (to, from, next) => {\r\n   let userStore = useUser()\r\n   let token = window.localStorage.getItem('token')\r\n   let name = userStore.name\r\n-  console.log(token, name);\r\n   if (to.path == '/login') {\r\n     next()\r\n   }\r\n   if (token != undefined) {\r\n"
+                },
+                {
+                    "date": 1648386461650,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,12 +54,10 @@\n       next()\r\n     } else {\r\n       try {\r\n         await userStore.getUserInfo()\r\n-        console.log('try');\r\n         next()\r\n       } catch (err) {\r\n-        console.log('err');\r\n         userStore.signOut()\r\n         next({ path: '/login' })\r\n       }\r\n \r\n"
+                },
+                {
+                    "date": 1648386963854,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n router.beforeEach(async (to, from, next) => {\r\n   let userStore = useUser()\r\n   let token = window.localStorage.getItem('token')\r\n   let name = userStore.name\r\n-  if (to.path == '/login') {\r\n+  if (to.path.indexOf('/login') != -1) {\r\n     next()\r\n   }\r\n   if (token != undefined) {\r\n     if (name) {\r\n"
+                },
+                {
+                    "date": 1648388231186,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,8 +46,9 @@\n   let userStore = useUser()\r\n   let token = window.localStorage.getItem('token')\r\n   let name = userStore.name\r\n   if (to.path.indexOf('/login') != -1) {\r\n+    console.log('login');\r\n     next()\r\n   }\r\n   if (token != undefined) {\r\n     if (name) {\r\n"
+                },
+                {
+                    "date": 1648388294337,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,21 +51,24 @@\n     next()\r\n   }\r\n   if (token != undefined) {\r\n     if (name) {\r\n+      console.log('a');\r\n       next()\r\n     } else {\r\n       try {\r\n         await userStore.getUserInfo()\r\n+        console.log('b');\r\n         next()\r\n       } catch (err) {\r\n         userStore.signOut()\r\n+        console.log('v');\r\n         next({ path: '/login' })\r\n       }\r\n \r\n     }\r\n   } {\r\n-\r\n+    console.log('d');\r\n     next({ path: '/login' })\r\n   }\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648388378808,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,9 @@\n         next({ path: '/login' })\r\n       }\r\n \r\n     }\r\n-  } {\r\n+  } else {\r\n     console.log('d');\r\n     next({ path: '/login' })\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1648388446713,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,8 +45,9 @@\n router.beforeEach(async (to, from, next) => {\r\n   let userStore = useUser()\r\n   let token = window.localStorage.getItem('token')\r\n   let name = userStore.name\r\n+  console.log(to.path);\r\n   if (to.path.indexOf('/login') != -1) {\r\n     console.log('login');\r\n     next()\r\n   }\r\n"
+                },
+                {
+                    "date": 1648388491687,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,10 +49,9 @@\n   console.log(to.path);\r\n   if (to.path.indexOf('/login') != -1) {\r\n     console.log('login');\r\n     next()\r\n-  }\r\n-  if (token != undefined) {\r\n+  } else if (token != undefined) {\r\n     if (name) {\r\n       console.log('a');\r\n       next()\r\n     } else {\r\n"
+                },
+                {
+                    "date": 1648388515069,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,30 +45,24 @@\n router.beforeEach(async (to, from, next) => {\r\n   let userStore = useUser()\r\n   let token = window.localStorage.getItem('token')\r\n   let name = userStore.name\r\n-  console.log(to.path);\r\n   if (to.path.indexOf('/login') != -1) {\r\n-    console.log('login');\r\n     next()\r\n   } else if (token != undefined) {\r\n     if (name) {\r\n-      console.log('a');\r\n       next()\r\n     } else {\r\n       try {\r\n         await userStore.getUserInfo()\r\n-        console.log('b');\r\n         next()\r\n       } catch (err) {\r\n         userStore.signOut()\r\n-        console.log('v');\r\n         next({ path: '/login' })\r\n       }\r\n \r\n     }\r\n   } else {\r\n-    console.log('d');\r\n     next({ path: '/login' })\r\n   }\r\n })\r\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648388567407,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,8 +45,10 @@\n router.beforeEach(async (to, from, next) => {\r\n   let userStore = useUser()\r\n   let token = window.localStorage.getItem('token')\r\n   let name = userStore.name\r\n+  console.log(to.path);\r\n+  console.log(to.path.indexOf('/login'));\r\n   if (to.path.indexOf('/login') != -1) {\r\n     next()\r\n   } else if (token != undefined) {\r\n     if (name) {\r\n"
+                },
+                {
+                    "date": 1653051460422,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,8 +34,13 @@\n         },\r\n       ],\r\n     },\r\n     {\r\n+      path: '/article',\r\n+      component: () => import('../view/Article/index.vue'),\r\n+      name: 'article'\r\n+    },\r\n+    {\r\n       path: '/login',\r\n       component: () => import('../view/Login/index.vue'),\r\n       name: 'login'\r\n     },\r\n"
+                },
+                {
+                    "date": 1653051928344,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,26 +10,23 @@\n     },\r\n     {\r\n       path: '/admin',\r\n       component: () => import('../components/Main/index.vue'),\r\n+\r\n+    },\r\n+\r\n+    {\r\n+      path: '/category',\r\n+      component: () => import('../view/Category/index.vue'),\r\n+      name: 'category',\r\n       children: [\r\n         {\r\n-          path: '/admin/article',\r\n-          component: () => import('../view/Article/index.vue'),\r\n-          name: 'article'\r\n-        },\r\n-        {\r\n-          path: '/admin/category',\r\n-          component: () => import('../view/Category/index.vue'),\r\n-          name: 'category'\r\n-        },\r\n-        {\r\n-          path: '/admin/addArticle',\r\n+          path: '/category/addArticle',\r\n           component: () => import('../view/AddFile/index.vue'),\r\n           name: 'addArticle'\r\n         },\r\n         {\r\n-          path: '/admin/updateArticle',\r\n+          path: '/category/updateArticle',\r\n           component: () => import('../view/AddFile/index.vue'),\r\n           name: 'updateArticle'\r\n         },\r\n       ],\r\n"
+                },
+                {
+                    "date": 1653051969678,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,34 +10,32 @@\n     },\r\n     {\r\n       path: '/admin',\r\n       component: () => import('../components/Main/index.vue'),\r\n-\r\n-    },\r\n-\r\n-    {\r\n-      path: '/category',\r\n-      component: () => import('../view/Category/index.vue'),\r\n-      name: 'category',\r\n       children: [\r\n         {\r\n-          path: '/category/addArticle',\r\n+          path: '/admin/article',\r\n+          component: () => import('../view/Article/index.vue'),\r\n+          name: 'article'\r\n+        },\r\n+        {\r\n+          path: '/admin/category',\r\n+          component: () => import('../view/Category/index.vue'),\r\n+          name: 'category'\r\n+        },\r\n+        {\r\n+          path: '/admin/addArticle',\r\n           component: () => import('../view/AddFile/index.vue'),\r\n           name: 'addArticle'\r\n         },\r\n         {\r\n-          path: '/category/updateArticle',\r\n+          path: '/admin/updateArticle',\r\n           component: () => import('../view/AddFile/index.vue'),\r\n           name: 'updateArticle'\r\n         },\r\n       ],\r\n     },\r\n     {\r\n-      path: '/article',\r\n-      component: () => import('../view/Article/index.vue'),\r\n-      name: 'article'\r\n-    },\r\n-    {\r\n       path: '/login',\r\n       component: () => import('../view/Login/index.vue'),\r\n       name: 'login'\r\n     },\r\n"
+                },
+                {
+                    "date": 1653052133813,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,25 +5,21 @@\n   history: routerHistory,\r\n   routes: [\r\n     {\r\n       path: '/',\r\n-      redirect: '/admin'\r\n+      redirect: '/'\r\n     },\r\n     {\r\n-      path: '/admin',\r\n+      path: '/',\r\n       component: () => import('../components/Main/index.vue'),\r\n       children: [\r\n         {\r\n           path: '/admin/article',\r\n           component: () => import('../view/Article/index.vue'),\r\n           name: 'article'\r\n         },\r\n+\r\n         {\r\n-          path: '/admin/category',\r\n-          component: () => import('../view/Category/index.vue'),\r\n-          name: 'category'\r\n-        },\r\n-        {\r\n           path: '/admin/addArticle',\r\n           component: () => import('../view/AddFile/index.vue'),\r\n           name: 'addArticle'\r\n         },\r\n@@ -34,8 +30,13 @@\n         },\r\n       ],\r\n     },\r\n     {\r\n+      path: '/admin/category',\r\n+      component: () => import('../view/Category/index.vue'),\r\n+      name: 'category'\r\n+    },\r\n+    {\r\n       path: '/login',\r\n       component: () => import('../view/Login/index.vue'),\r\n       name: 'login'\r\n     },\r\n"
+                },
+                {
+                    "date": 1653052162469,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,21 +5,25 @@\n   history: routerHistory,\r\n   routes: [\r\n     {\r\n       path: '/',\r\n-      redirect: '/'\r\n+      redirect: '/admin'\r\n     },\r\n     {\r\n-      path: '/',\r\n+      path: '/admin',\r\n       component: () => import('../components/Main/index.vue'),\r\n       children: [\r\n         {\r\n           path: '/admin/article',\r\n           component: () => import('../view/Article/index.vue'),\r\n           name: 'article'\r\n         },\r\n-\r\n         {\r\n+          path: '/admin/category',\r\n+          component: () => import('../view/Category/index.vue'),\r\n+          name: 'category'\r\n+        },\r\n+        {\r\n           path: '/admin/addArticle',\r\n           component: () => import('../view/AddFile/index.vue'),\r\n           name: 'addArticle'\r\n         },\r\n@@ -30,13 +34,8 @@\n         },\r\n       ],\r\n     },\r\n     {\r\n-      path: '/admin/category',\r\n-      component: () => import('../view/Category/index.vue'),\r\n-      name: 'category'\r\n-    },\r\n-    {\r\n       path: '/login',\r\n       component: () => import('../view/Login/index.vue'),\r\n       name: 'login'\r\n     },\r\n"
+                },
+                {
+                    "date": 1653052295167,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,27 +3,28 @@\n const routerHistory = createWebHistory()\r\n const router = createRouter({\r\n   history: routerHistory,\r\n   routes: [\r\n+    // {\r\n+    //   path: '/',\r\n+    //   redirect: '/admin'\r\n+    // },\r\n     {\r\n-      path: '/',\r\n-      redirect: '/admin'\r\n+      path: '/category',\r\n+      component: () => import('../view/Category/index.vue'),\r\n+      name: 'category'\r\n     },\r\n     {\r\n-      path: '/admin',\r\n+      path: '/',\r\n       component: () => import('../components/Main/index.vue'),\r\n       children: [\r\n         {\r\n           path: '/admin/article',\r\n           component: () => import('../view/Article/index.vue'),\r\n           name: 'article'\r\n         },\r\n+\r\n         {\r\n-          path: '/admin/category',\r\n-          component: () => import('../view/Category/index.vue'),\r\n-          name: 'category'\r\n-        },\r\n-        {\r\n           path: '/admin/addArticle',\r\n           component: () => import('../view/AddFile/index.vue'),\r\n           name: 'addArticle'\r\n         },\r\n"
+                },
+                {
+                    "date": 1653052330124,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,24 +7,24 @@\n     // {\r\n     //   path: '/',\r\n     //   redirect: '/admin'\r\n     // },\r\n+\r\n     {\r\n-      path: '/category',\r\n-      component: () => import('../view/Category/index.vue'),\r\n-      name: 'category'\r\n-    },\r\n-    {\r\n       path: '/',\r\n       component: () => import('../components/Main/index.vue'),\r\n       children: [\r\n         {\r\n           path: '/admin/article',\r\n           component: () => import('../view/Article/index.vue'),\r\n           name: 'article'\r\n         },\r\n-\r\n         {\r\n+          path: '/category',\r\n+          component: () => import('../view/Category/index.vue'),\r\n+          name: 'category'\r\n+        },\r\n+        {\r\n           path: '/admin/addArticle',\r\n           component: () => import('../view/AddFile/index.vue'),\r\n           name: 'addArticle'\r\n         },\r\n"
+                },
+                {
+                    "date": 1653052382484,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n       path: '/',\r\n       component: () => import('../components/Main/index.vue'),\r\n       children: [\r\n         {\r\n-          path: '/admin/article',\r\n+          path: '/article',\r\n           component: () => import('../view/Article/index.vue'),\r\n           name: 'article'\r\n         },\r\n         {\r\n@@ -23,14 +23,14 @@\n           component: () => import('../view/Category/index.vue'),\r\n           name: 'category'\r\n         },\r\n         {\r\n-          path: '/admin/addArticle',\r\n+          path: '/addArticle',\r\n           component: () => import('../view/AddFile/index.vue'),\r\n           name: 'addArticle'\r\n         },\r\n         {\r\n-          path: '/admin/updateArticle',\r\n+          path: '/updateArticle',\r\n           component: () => import('../view/AddFile/index.vue'),\r\n           name: 'updateArticle'\r\n         },\r\n       ],\r\n"
+                },
+                {
+                    "date": 1653052501238,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,13 @@\n           component: () => import('../view/Article/index.vue'),\r\n           name: 'article'\r\n         },\r\n         {\r\n+          path: '/admin',\r\n+          component: () => import('../view/Admin/index.vue'),\r\n+          name: 'admin'\r\n+        },\r\n+        {\r\n           path: '/category',\r\n           component: () => import('../view/Category/index.vue'),\r\n           name: 'category'\r\n         },\r\n"
+                },
+                {
+                    "date": 1653052822254,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,12 +3,12 @@\n const routerHistory = createWebHistory()\r\n const router = createRouter({\r\n   history: routerHistory,\r\n   routes: [\r\n-    // {\r\n-    //   path: '/',\r\n-    //   redirect: '/admin'\r\n-    // },\r\n+    {\r\n+      path: '/',\r\n+      redirect: '/admin'\r\n+    },\r\n \r\n     {\r\n       path: '/',\r\n       component: () => import('../components/Main/index.vue'),\r\n"
                 }
             ],
             "date": 1646380259106,

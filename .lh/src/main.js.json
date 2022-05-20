@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 26,
+            "activePatchIndex": 29,
             "patches": [
                 {
                     "date": 1646380363217,
@@ -112,6 +112,18 @@
                 {
                     "date": 1647178847405,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,10 @@\n \n import Prism from 'prismjs';\n // import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n const app = createApp(App)\n-\n+VueMarkdownEditor.use(vuepressTheme, {\n+  Prism,\n+});\n app.use(router)\n app.use(createPinia())\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1648381371806,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,14 +6,17 @@\n import VueMarkdownEditor from '@kangc/v-md-editor';\n import '@kangc/v-md-editor/lib/style/base-editor.css';\n import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';\n import '@kangc/v-md-editor/lib/theme/style/vuepress.css';\n-\n+import { useUser } from './store'\n import Prism from 'prismjs';\n // import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n const app = createApp(App)\n VueMarkdownEditor.use(vuepressTheme, {\n   Prism,\n });\n+let userStore = useUser()\n+app.use(userStore)\n+app.use(VueMarkdownEditor);\n app.use(router)\n app.use(createPinia())\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1648381532521,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,17 +6,14 @@\n import VueMarkdownEditor from '@kangc/v-md-editor';\n import '@kangc/v-md-editor/lib/style/base-editor.css';\n import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';\n import '@kangc/v-md-editor/lib/theme/style/vuepress.css';\n-import { useUser } from './store'\n import Prism from 'prismjs';\n // import '_element-plus@2.0.5@element-plus/theme-chalk/index.css';\n const app = createApp(App)\n VueMarkdownEditor.use(vuepressTheme, {\n   Prism,\n });\n-let userStore = useUser()\n-app.use(userStore)\n app.use(VueMarkdownEditor);\n app.use(router)\n app.use(createPinia())\n app.mount('#app')\n"
+                },
+                {
+                    "date": 1648382014346,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,7 +13,7 @@\n VueMarkdownEditor.use(vuepressTheme, {\n   Prism,\n });\n app.use(VueMarkdownEditor);\n+app.use(createPinia())\n app.use(router)\n-app.use(createPinia())\n app.mount('#app')\n"
                 }
             ],
             "date": 1646380363217,

@@ -1,0 +1,494 @@
+{
+    "sourceFile": "src/view/Login/index.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 119,
+            "patches": [
+                {
+                    "date": 1647601248002,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1647601272554,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n <template></template>\r\n-<script>\r\n+<script lang=\"ts\" setup>\r\n </script>\r\n-<style>\r\n+<style lang=\"less\" scoped>\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648354266563,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n-<template></template>\r\n+<template>\r\n+  <p>login</p>\r\n+</template>\r\n <script lang=\"ts\" setup>\r\n </script>\r\n <style lang=\"less\" scoped>\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648354276051,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,5 @@\n-<template>\r\n-  <p>login</p>\r\n-</template>\r\n+<template></template>\r\n <script lang=\"ts\" setup>\r\n </script>\r\n <style lang=\"less\" scoped>\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648355055497,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,339 @@\n-<template></template>\r\n-<script lang=\"ts\" setup>\r\n+//登录\r\n+\r\n+<template>\r\n+  <div class=\"login\" id=\"login\">\r\n+    <a href=\"javascript:;\" class=\"log-close\">\r\n+      <i class=\"icons close\"></i>\r\n+    </a>\r\n+    <div class=\"log-bg\">\r\n+      <div class=\"log-cloud cloud1\"></div>\r\n+      <div class=\"log-cloud cloud2\"></div>\r\n+      <div class=\"log-cloud cloud3\"></div>\r\n+      <div class=\"log-cloud cloud4\"></div>\r\n+\r\n+      <div class=\"log-logo\">Welcome!</div>\r\n+      <div class=\"log-text\">@doterlin</div>\r\n+    </div>\r\n+    <div class=\"log-email\">\r\n+      <input\r\n+        type=\"text\"\r\n+        placeholder=\"Email\"\r\n+        :class=\"'log-input' + (account == '' ? ' log-input-empty' : '')\"\r\n+        v-model=\"account\"\r\n+      />\r\n+      <input\r\n+        type=\"password\"\r\n+        placeholder=\"Password\"\r\n+        :class=\"'log-input' + (password == '' ? ' log-input-empty' : '')\"\r\n+        v-model=\"password\"\r\n+      />\r\n+      <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">Login</a>\r\n+    </div>\r\n+    <Loading v-if=\"isLoging\" marginTop=\"-30%\"></Loading>\r\n+  </div>\r\n+</template>\r\n+\r\n+<script>\r\n+import Loading from './Loading.vue'\r\n+export default {\r\n+  name: 'Login',\r\n+  data() {\r\n+    return {\r\n+      isLoging: false,\r\n+      account: '',\r\n+      password: ''\r\n+    }\r\n+  },\r\n+  components: {\r\n+    Loading\r\n+  },\r\n+  methods: {\r\n+    //登录逻辑\r\n+    login() {\r\n+      if (this.account != '' && this.password != '') {\r\n+        this.toLogin();\r\n+      }\r\n+    },\r\n+    //登录请求\r\n+    toLogin() {\r\n+      //一般要跟后端了解密码的加密规则\r\n+      //这里例子用的哈希算法来自./js/sha1.min.js\r\n+      let password_sha = hex_sha1(hex_sha1(this.password));\r\n+      //需要想后端发送的登录参数\r\n+      let loginParam = {\r\n+        account: this.account,\r\n+        password_sha\r\n+      }\r\n+      //设置在登录状态\r\n+      this.isLoging = true;\r\n+\r\n+      //请求后端,比如:\r\n+      /*this.$http.post( 'example.com/login.php', {\r\n+      param: loginParam).then((response) => {\r\n+        if(response.data.code == 1){\r\n+          let expireDays = 1000 * 60 * 60 * 24 * 15;\r\n+          this.setCookie('session', response.data.session, expireDays);\r\n+          //登录成功后\r\n+          this.$router.push('/user_info'); \r\n+        }\r\n+      }, (response) => {\r\n+          //Error\r\n+      });\r\n+      */\r\n+\r\n+      //演示用\r\n+      setTimeout(() => {\r\n+        //登录状态15天后过期\r\n+        let expireDays = 1000 * 60 * 60 * 24 * 15;\r\n+        this.setCookie('session', 'blablablablabla...', expireDays);\r\n+        this.isLoging = false;\r\n+        //登录成功后\r\n+        this.$router.push('/user_info/');\r\n+      }, 3000)\r\n+    }\r\n+  }\r\n+}\r\n </script>\r\n-<style lang=\"less\" scoped>\r\n+\r\n+<style scoped>\r\n+.login {\r\n+  position: fixed;\r\n+  overflow: hidden;\r\n+  left: 50%;\r\n+  margin-left: -250px;\r\n+  top: 50%;\r\n+  margin-top: -350px;\r\n+  width: 500px;\r\n+  min-height: 555px;\r\n+  z-index: 10;\r\n+  right: 140px;\r\n+  background: #fff;\r\n+  -webkit-border-radius: 5px;\r\n+  -moz-border-radius: 5px;\r\n+  -ms-border-radius: 5px;\r\n+  -o-border-radius: 5px;\r\n+  border-radius: 5px;\r\n+  -webkit-box-shadow: 0px 3px 16px -5px #070707;\r\n+  box-shadow: 0px 3px 16px -5px #070707;\r\n+}\r\n+.log-close {\r\n+  display: block;\r\n+  position: absolute;\r\n+  top: 12px;\r\n+  right: 12px;\r\n+  opacity: 1;\r\n+}\r\n+.log-close:hover .icons {\r\n+  transform: rotate(180deg);\r\n+}\r\n+.log-close .icons {\r\n+  opacity: 1;\r\n+  transition: all 0.3s;\r\n+}\r\n+.log-cloud {\r\n+  background-image: url(../images/login-cloud.png);\r\n+  width: 63px;\r\n+  height: 40px;\r\n+  position: absolute;\r\n+  z-index: 1;\r\n+}\r\n+.login .cloud1 {\r\n+  top: 21px;\r\n+  left: -30px;\r\n+  transform: scale(0.6);\r\n+  animation: cloud1 20s linear infinite;\r\n+}\r\n+.login .cloud2 {\r\n+  top: 87px;\r\n+  right: 20px;\r\n+  animation: cloud2 19s linear infinite;\r\n+}\r\n+.login .cloud3 {\r\n+  top: 160px;\r\n+  left: 5px;\r\n+  transform: scale(0.8);\r\n+  animation: cloud3 21s linear infinite;\r\n+}\r\n+.login .cloud4 {\r\n+  top: 150px;\r\n+  left: -40px;\r\n+  transform: scale(0.4);\r\n+  animation: cloud4 19s linear infinite;\r\n+}\r\n+.log-bg {\r\n+  background: url(../images/login-bg.jpg);\r\n+  width: 100%;\r\n+  height: 312px;\r\n+  overflow: hidden;\r\n+}\r\n+.log-logo {\r\n+  height: 80px;\r\n+  margin: 120px auto 25px;\r\n+  text-align: center;\r\n+  color: #1fcab3;\r\n+  font-weight: bold;\r\n+  font-size: 40px;\r\n+}\r\n+.log-text {\r\n+  color: #57d4c3;\r\n+  font-size: 13px;\r\n+  text-align: center;\r\n+  margin: 0 auto;\r\n+}\r\n+.log-logo,\r\n+.log-text {\r\n+  z-index: 2;\r\n+}\r\n+.icons {\r\n+  background: url(../images/icons.png) no-repeat;\r\n+  display: inline-block;\r\n+}\r\n+.close {\r\n+  height: 16px;\r\n+  width: 16px;\r\n+  background-position: -13px 0;\r\n+}\r\n+.login-email {\r\n+  height: 17px;\r\n+  width: 29px;\r\n+  background-position: -117px 0;\r\n+}\r\n+.log-btns {\r\n+  padding: 15px 0;\r\n+  margin: 0 auto;\r\n+}\r\n+.log-btn {\r\n+  width: 402px;\r\n+  display: block;\r\n+  text-align: left;\r\n+  line-height: 50px;\r\n+  margin: 0 auto 15px;\r\n+  height: 50px;\r\n+  color: #fff;\r\n+  font-size: 13px;\r\n+  -webkit-border-radius: 5px;\r\n+  background-color: #3b5999;\r\n+  -moz-border-radius: 5px;\r\n+  -ms-border-radius: 5px;\r\n+  -o-border-radius: 5px;\r\n+  border-radius: 5px;\r\n+  position: relative;\r\n+}\r\n+.log-btn.tw {\r\n+  background-color: #13b4e9;\r\n+}\r\n+.log-btn.email {\r\n+  background-color: #50e3ce;\r\n+}\r\n+.log-btn:hover,\r\n+.log-btn:focus {\r\n+  color: #fff;\r\n+  opacity: 0.8;\r\n+}\r\n+.log-email {\r\n+  text-align: center;\r\n+  margin-top: 20px;\r\n+}\r\n+.log-email .log-btn {\r\n+  background-color: #50e3ce;\r\n+  text-align: center;\r\n+}\r\n+.log-input-empty {\r\n+  border: 1px solid #f37474 !important;\r\n+}\r\n+.isloading {\r\n+  background: #d6d6d6;\r\n+}\r\n+.log-btn .icons {\r\n+  margin-left: 30px;\r\n+  vertical-align: middle;\r\n+}\r\n+.log-btn .text {\r\n+  left: 95px;\r\n+  line-height: 50px;\r\n+  text-align: left;\r\n+  position: absolute;\r\n+}\r\n+.log-input {\r\n+  width: 370px;\r\n+  overflow: hidden;\r\n+  padding: 0 15px;\r\n+  font-size: 13px;\r\n+  border: 1px solid #ebebeb;\r\n+  margin: 0 auto 15px;\r\n+  height: 48px;\r\n+  line-height: 48px;\r\n+  -webkit-border-radius: 5px;\r\n+  -moz-border-radius: 5px;\r\n+  -ms-border-radius: 5px;\r\n+  -o-border-radius: 5px;\r\n+  border-radius: 5px;\r\n+}\r\n+.log-input.warn {\r\n+  border: 1px solid #f88787;\r\n+}\r\n+@-webkit-keyframes cloud1 {\r\n+  0% {\r\n+    left: 200px;\r\n+  }\r\n+  100% {\r\n+    left: -130px;\r\n+  }\r\n+}\r\n+@keyframes cloud1 {\r\n+  0% {\r\n+    left: 200px;\r\n+  }\r\n+  100% {\r\n+    left: -130px;\r\n+  }\r\n+}\r\n+@-webkit-keyframes cloud2 {\r\n+  0% {\r\n+    left: 500px;\r\n+  }\r\n+  100% {\r\n+    left: -90px;\r\n+  }\r\n+}\r\n+@keyframes cloud2 {\r\n+  0% {\r\n+    left: 500px;\r\n+  }\r\n+  100% {\r\n+    left: -90px;\r\n+  }\r\n+}\r\n+@-webkit-keyframes cloud3 {\r\n+  0% {\r\n+    left: 620px;\r\n+  }\r\n+  100% {\r\n+    left: -70px;\r\n+  }\r\n+}\r\n+@keyframes cloud3 {\r\n+  0% {\r\n+    left: 620px;\r\n+  }\r\n+  100% {\r\n+    left: -70px;\r\n+  }\r\n+}\r\n+@-webkit-keyframes cloud4 {\r\n+  0% {\r\n+    left: 100px;\r\n+  }\r\n+  100% {\r\n+    left: -70px;\r\n+  }\r\n+}\r\n+@keyframes cloud4 {\r\n+  0% {\r\n+    left: 100px;\r\n+  }\r\n+  100% {\r\n+    left: -70px;\r\n+  }\r\n+}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648355076740,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,12 +32,11 @@\n     <Loading v-if=\"isLoging\" marginTop=\"-30%\"></Loading>\r\n   </div>\r\n </template>\r\n \r\n-<script>\r\n+<!-- <script>\r\n import Loading from './Loading.vue'\r\n export default {\r\n-  name: 'Login',\r\n   data() {\r\n     return {\r\n       isLoging: false,\r\n       account: '',\r\n@@ -92,9 +91,9 @@\n       }, 3000)\r\n     }\r\n   }\r\n }\r\n-</script>\r\n+</script> -->\r\n \r\n <style scoped>\r\n .login {\r\n   position: fixed;\r\n"
+                },
+                {
+                    "date": 1648355117925,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n     <Loading v-if=\"isLoging\" marginTop=\"-30%\"></Loading>\r\n   </div>\r\n </template>\r\n \r\n-<!-- <script>\r\n+<script lang=\"ts\" setup>\r\n import Loading from './Loading.vue'\r\n export default {\r\n   data() {\r\n     return {\r\n@@ -91,9 +91,9 @@\n       }, 3000)\r\n     }\r\n   }\r\n }\r\n-</script> -->\r\n+</script>\r\n \r\n <style scoped>\r\n .login {\r\n   position: fixed;\r\n"
+                },
+                {
+                    "date": 1648355543897,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,66 +33,61 @@\n   </div>\r\n </template>\r\n \r\n <script lang=\"ts\" setup>\r\n-import Loading from './Loading.vue'\r\n-export default {\r\n-  data() {\r\n-    return {\r\n-      isLoging: false,\r\n-      account: '',\r\n-      password: ''\r\n-    }\r\n-  },\r\n-  components: {\r\n-    Loading\r\n-  },\r\n-  methods: {\r\n-    //登录逻辑\r\n-    login() {\r\n-      if (this.account != '' && this.password != '') {\r\n-        this.toLogin();\r\n-      }\r\n-    },\r\n-    //登录请求\r\n-    toLogin() {\r\n-      //一般要跟后端了解密码的加密规则\r\n-      //这里例子用的哈希算法来自./js/sha1.min.js\r\n-      let password_sha = hex_sha1(hex_sha1(this.password));\r\n-      //需要想后端发送的登录参数\r\n-      let loginParam = {\r\n-        account: this.account,\r\n-        password_sha\r\n-      }\r\n-      //设置在登录状态\r\n-      this.isLoging = true;\r\n+import { useRouter, useRoute } from 'vue-router'\r\n+let router = useRouter()\r\n+let route = useRoute()\r\n+let isLoging = false\r\n+let account = ''\r\n+let password = ''\r\n \r\n-      //请求后端,比如:\r\n-      /*this.$http.post( 'example.com/login.php', {\r\n-      param: loginParam).then((response) => {\r\n-        if(response.data.code == 1){\r\n-          let expireDays = 1000 * 60 * 60 * 24 * 15;\r\n-          this.setCookie('session', response.data.session, expireDays);\r\n-          //登录成功后\r\n-          this.$router.push('/user_info'); \r\n-        }\r\n-      }, (response) => {\r\n-          //Error\r\n-      });\r\n-      */\r\n \r\n-      //演示用\r\n-      setTimeout(() => {\r\n-        //登录状态15天后过期\r\n-        let expireDays = 1000 * 60 * 60 * 24 * 15;\r\n-        this.setCookie('session', 'blablablablabla...', expireDays);\r\n-        this.isLoging = false;\r\n-        //登录成功后\r\n-        this.$router.push('/user_info/');\r\n-      }, 3000)\r\n-    }\r\n+//登录逻辑\r\n+const login = () => {\r\n+  if (account != '' && password != '') {\r\n+    toLogin();\r\n   }\r\n }\r\n+//登录请求\r\n+const toLogin = () => {\r\n+  //一般要跟后端了解密码的加密规则\r\n+  //这里例子用的哈希算法来自./js/sha1.min.js\r\n+  let password_sha = hex_sha1(hex_sha1(this.password));\r\n+  //需要想后端发送的登录参数\r\n+  let loginParam = {\r\n+    account: account,\r\n+    password_sha\r\n+  }\r\n+  //设置在登录状态\r\n+  isLoging = true;\r\n+\r\n+  //请求后端,比如:\r\n+  /*this.$http.post( 'example.com/login.php', {\r\n+  param: loginParam).then((response) => {\r\n+    if(response.data.code == 1){\r\n+      let expireDays = 1000 * 60 * 60 * 24 * 15;\r\n+      this.setCookie('session', response.data.session, expireDays);\r\n+      //登录成功后\r\n+      this.$router.push('/user_info'); \r\n+    }\r\n+  }, (response) => {\r\n+      //Error\r\n+  });\r\n+  */\r\n+\r\n+  //演示用\r\n+  setTimeout(() => {\r\n+    //登录状态15天后过期\r\n+    let expireDays = 1000 * 60 * 60 * 24 * 15;\r\n+    setCookie('session', 'blablablablabla...', expireDays);\r\n+    isLoging = false;\r\n+    //登录成功后\r\n+    router.push('/user_info/');\r\n+  }, 3000)\r\n+}\r\n+\r\n+\r\n </script>\r\n \r\n <style scoped>\r\n .login {\r\n"
+                },
+                {
+                    "date": 1648355572407,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,10 @@\n //登录请求\r\n const toLogin = () => {\r\n   //一般要跟后端了解密码的加密规则\r\n   //这里例子用的哈希算法来自./js/sha1.min.js\r\n-  let password_sha = hex_sha1(hex_sha1(this.password));\r\n+  // let password_sha = hex_sha1(hex_sha1(password));\r\n+  let password_sha = password\r\n   //需要想后端发送的登录参数\r\n   let loginParam = {\r\n     account: account,\r\n     password_sha\r\n"
+                },
+                {
+                    "date": 1648355620938,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,8 +34,9 @@\n </template>\r\n \r\n <script lang=\"ts\" setup>\r\n import { useRouter, useRoute } from 'vue-router'\r\n+import { setCookie }\r\n let router = useRouter()\r\n let route = useRoute()\r\n let isLoging = false\r\n let account = ''\r\n"
+                },
+                {
+                    "date": 1648355805322,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,8 @@\n </template>\r\n \r\n <script lang=\"ts\" setup>\r\n import { useRouter, useRoute } from 'vue-router'\r\n-import { setCookie }\r\n let router = useRouter()\r\n let route = useRoute()\r\n let isLoging = false\r\n let account = ''\r\n"
+                },
+                {
+                    "date": 1648356206944,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -155,9 +155,9 @@\n   transform: scale(0.4);\r\n   animation: cloud4 19s linear infinite;\r\n }\r\n .log-bg {\r\n-  background: url(../images/login-bg.jpg);\r\n+  background: url(./images/login-bg.jpg);\r\n   width: 100%;\r\n   height: 312px;\r\n   overflow: hidden;\r\n }\r\n"
+                },
+                {
+                    "date": 1648356218311,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -179,9 +179,9 @@\n .log-text {\r\n   z-index: 2;\r\n }\r\n .icons {\r\n-  background: url(../images/icons.png) no-repeat;\r\n+  background: url(./images/icons.png) no-repeat;\r\n   display: inline-block;\r\n }\r\n .close {\r\n   height: 16px;\r\n"
+                },
+                {
+                    "date": 1648356359311,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,8 +33,9 @@\n   </div>\r\n </template>\r\n \r\n <script lang=\"ts\" setup>\r\n+import { }\r\n import { useRouter, useRoute } from 'vue-router'\r\n let router = useRouter()\r\n let route = useRoute()\r\n let isLoging = false\r\n"
+                },
+                {
+                    "date": 1648356368976,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n   </div>\r\n </template>\r\n \r\n <script lang=\"ts\" setup>\r\n-import { }\r\n+import { } from ''\r\n import { useRouter, useRoute } from 'vue-router'\r\n let router = useRouter()\r\n let route = useRoute()\r\n let isLoging = false\r\n"
+                },
+                {
+                    "date": 1648356382933,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n   </div>\r\n </template>\r\n \r\n <script lang=\"ts\" setup>\r\n-import { } from ''\r\n+import { setCookie } from 'vue3-cookies'\r\n import { useRouter, useRoute } from 'vue-router'\r\n let router = useRouter()\r\n let route = useRoute()\r\n let isLoging = false\r\n"
+                },
+                {
+                    "date": 1648356392991,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,11 +33,12 @@\n   </div>\r\n </template>\r\n \r\n <script lang=\"ts\" setup>\r\n-import { setCookie } from 'vue3-cookies'\r\n+import { useCookies } from 'vue3-cookies'\r\n import { useRouter, useRoute } from 'vue-router'\r\n-let router = useRouter()\r\n+let\r\n+  let router = useRouter()\r\n let route = useRoute()\r\n let isLoging = false\r\n let account = ''\r\n let password = ''\r\n"
+                },
+                {
+                    "date": 1648356407598,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,10 +35,10 @@\n \r\n <script lang=\"ts\" setup>\r\n import { useCookies } from 'vue3-cookies'\r\n import { useRouter, useRoute } from 'vue-router'\r\n-let\r\n-  let router = useRouter()\r\n+const { cookies } = useCookies()\r\n+let router = useRouter()\r\n let route = useRoute()\r\n let isLoging = false\r\n let account = ''\r\n let password = ''\r\n"
+                },
+                {
+                    "date": 1648356421650,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -81,9 +81,9 @@\n   //演示用\r\n   setTimeout(() => {\r\n     //登录状态15天后过期\r\n     let expireDays = 1000 * 60 * 60 * 24 * 15;\r\n-    setCookie('session', 'blablablablabla...', expireDays);\r\n+    cookies.set('session', 'blablablablabla...', expireDays);\r\n     isLoging = false;\r\n     //登录成功后\r\n     router.push('/user_info/');\r\n   }, 3000)\r\n"
+                },
+                {
+                    "date": 1648356509087,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -127,9 +127,9 @@\n   opacity: 1;\r\n   transition: all 0.3s;\r\n }\r\n .log-cloud {\r\n-  background-image: url(../images/login-cloud.png);\r\n+  background-image: url(./images/login-cloud.png);\r\n   width: 63px;\r\n   height: 40px;\r\n   position: absolute;\r\n   z-index: 1;\r\n"
+                },
+                {
+                    "date": 1648356862309,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,8 @@\n       <div class=\"log-cloud cloud3\"></div>\r\n       <div class=\"log-cloud cloud4\"></div>\r\n \r\n       <div class=\"log-logo\">Welcome!</div>\r\n-      <div class=\"log-text\">@doterlin</div>\r\n     </div>\r\n     <div class=\"log-email\">\r\n       <input\r\n         type=\"text\"\r\n"
+                },
+                {
+                    "date": 1648356872935,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n       <div class=\"log-cloud cloud3\"></div>\r\n       <div class=\"log-cloud cloud4\"></div>\r\n \r\n       <div class=\"log-logo\">Welcome!</div>\r\n+      <div class=\"log-text\">@doterlin</div>\r\n     </div>\r\n     <div class=\"log-email\">\r\n       <input\r\n         type=\"text\"\r\n"
+                },
+                {
+                    "date": 1648356881990,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,8 @@\n       <div class=\"log-cloud cloud3\"></div>\r\n       <div class=\"log-cloud cloud4\"></div>\r\n \r\n       <div class=\"log-logo\">Welcome!</div>\r\n-      <div class=\"log-text\">@doterlin</div>\r\n     </div>\r\n     <div class=\"log-email\">\r\n       <input\r\n         type=\"text\"\r\n"
+                },
+                {
+                    "date": 1648356901346,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,15 +15,15 @@\n     </div>\r\n     <div class=\"log-email\">\r\n       <input\r\n         type=\"text\"\r\n-        placeholder=\"Email\"\r\n+        placeholder=\"邮箱\"\r\n         :class=\"'log-input' + (account == '' ? ' log-input-empty' : '')\"\r\n         v-model=\"account\"\r\n       />\r\n       <input\r\n         type=\"password\"\r\n-        placeholder=\"Password\"\r\n+        placeholder=\"密码\"\r\n         :class=\"'log-input' + (password == '' ? ' log-input-empty' : '')\"\r\n         v-model=\"password\"\r\n       />\r\n       <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">Login</a>\r\n"
+                },
+                {
+                    "date": 1648357271548,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,4 @@\n-//登录\r\n-\r\n <template>\r\n   <div class=\"login\" id=\"login\">\r\n     <a href=\"javascript:;\" class=\"log-close\">\r\n       <i class=\"icons close\"></i>\r\n"
+                },
+                {
+                    "date": 1648359596822,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n         placeholder=\"密码\"\r\n         :class=\"'log-input' + (password == '' ? ' log-input-empty' : '')\"\r\n         v-model=\"password\"\r\n       />\r\n-      <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">Login</a>\r\n+      <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">登录</a>\r\n     </div>\r\n     <Loading v-if=\"isLoging\" marginTop=\"-30%\"></Loading>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1648359605368,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,8 @@\n         v-model=\"password\"\r\n       />\r\n       <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">登录</a>\r\n     </div>\r\n-    <Loading v-if=\"isLoging\" marginTop=\"-30%\"></Loading>\r\n   </div>\r\n </template>\r\n \r\n <script lang=\"ts\" setup>\r\n"
+                },
+                {
+                    "date": 1648359623718,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     </div>\r\n     <div class=\"log-email\">\r\n       <input\r\n         type=\"text\"\r\n-        placeholder=\"邮箱\"\r\n+        placeholder=\"请输入邮箱\"\r\n         :class=\"'log-input' + (account == '' ? ' log-input-empty' : '')\"\r\n         v-model=\"account\"\r\n       />\r\n       <input\r\n"
+                },
+                {
+                    "date": 1648359650111,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n         v-model=\"account\"\r\n       />\r\n       <input\r\n         type=\"password\"\r\n-        placeholder=\"密码\"\r\n+        placeholder=\"请输入密码\"\r\n         :class=\"'log-input' + (password == '' ? ' log-input-empty' : '')\"\r\n         v-model=\"password\"\r\n       />\r\n       <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">登录</a>\r\n"
+                },
+                {
+                    "date": 1648365261215,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     </div>\r\n     <div class=\"log-email\">\r\n       <input\r\n         type=\"text\"\r\n-        placeholder=\"请输入邮箱\"\r\n+        placeholder=\"请输入用户名\"\r\n         :class=\"'log-input' + (account == '' ? ' log-input-empty' : '')\"\r\n         v-model=\"account\"\r\n       />\r\n       <input\r\n"
+                },
+                {
+                    "date": 1648365930828,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,8 +31,9 @@\n \r\n <script lang=\"ts\" setup>\r\n import { useCookies } from 'vue3-cookies'\r\n import { useRouter, useRoute } from 'vue-router'\r\n+import { useUser } from 'store';\r\n const { cookies } = useCookies()\r\n let router = useRouter()\r\n let route = useRoute()\r\n let isLoging = false\r\n@@ -50,14 +51,9 @@\n const toLogin = () => {\r\n   //一般要跟后端了解密码的加密规则\r\n   //这里例子用的哈希算法来自./js/sha1.min.js\r\n   // let password_sha = hex_sha1(hex_sha1(password));\r\n-  let password_sha = password\r\n-  //需要想后端发送的登录参数\r\n-  let loginParam = {\r\n-    account: account,\r\n-    password_sha\r\n-  }\r\n+\r\n   //设置在登录状态\r\n   isLoging = true;\r\n \r\n   //请求后端,比如:\r\n"
+                },
+                {
+                    "date": 1648366008067,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,17 +31,17 @@\n \r\n <script lang=\"ts\" setup>\r\n import { useCookies } from 'vue3-cookies'\r\n import { useRouter, useRoute } from 'vue-router'\r\n-import { useUser } from 'store';\r\n+import { useUser } from '../../store';\r\n const { cookies } = useCookies()\r\n let router = useRouter()\r\n let route = useRoute()\r\n let isLoging = false\r\n let account = ''\r\n let password = ''\r\n+let userStore = useUser()\r\n \r\n-\r\n //登录逻辑\r\n const login = () => {\r\n   if (account != '' && password != '') {\r\n     toLogin();\r\n@@ -53,10 +53,10 @@\n   //这里例子用的哈希算法来自./js/sha1.min.js\r\n   // let password_sha = hex_sha1(hex_sha1(password));\r\n \r\n   //设置在登录状态\r\n-  isLoging = true;\r\n-\r\n+  // isLoging = true;\r\n+  userStore.login({})\r\n   //请求后端,比如:\r\n   /*this.$http.post( 'example.com/login.php', {\r\n   param: loginParam).then((response) => {\r\n     if(response.data.code == 1){\r\n"
+                },
+                {
+                    "date": 1648366023922,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,9 @@\n   // let password_sha = hex_sha1(hex_sha1(password));\r\n \r\n   //设置在登录状态\r\n   // isLoging = true;\r\n-  userStore.login({})\r\n+  userStore.login({ 'name': account, 'password': password })\r\n   //请求后端,比如:\r\n   /*this.$http.post( 'example.com/login.php', {\r\n   param: loginParam).then((response) => {\r\n     if(response.data.code == 1){\r\n"
+                },
+                {
+                    "date": 1648366060329,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,16 +47,17 @@\n     toLogin();\r\n   }\r\n }\r\n //登录请求\r\n-const toLogin = () => {\r\n+const toLogin = async () => {\r\n   //一般要跟后端了解密码的加密规则\r\n   //这里例子用的哈希算法来自./js/sha1.min.js\r\n   // let password_sha = hex_sha1(hex_sha1(password));\r\n \r\n   //设置在登录状态\r\n   // isLoging = true;\r\n-  userStore.login({ 'name': account, 'password': password })\r\n+  let result = await userStore.login({ 'name': account, 'password': password })\r\n+\r\n   //请求后端,比如:\r\n   /*this.$http.post( 'example.com/login.php', {\r\n   param: loginParam).then((response) => {\r\n     if(response.data.code == 1){\r\n"
+                },
+                {
+                    "date": 1648366111713,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,8 +42,10 @@\n let userStore = useUser()\r\n \r\n //登录逻辑\r\n const login = () => {\r\n+  console.log('a');\r\n+\r\n   if (account != '' && password != '') {\r\n     toLogin();\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1648366123024,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,11 +42,11 @@\n let userStore = useUser()\r\n \r\n //登录逻辑\r\n const login = () => {\r\n-  console.log('a');\r\n \r\n   if (account != '' && password != '') {\r\n+    console.log('a');\r\n     toLogin();\r\n   }\r\n }\r\n //登录请求\r\n"
+                },
+                {
+                    "date": 1648366149970,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,10 +14,10 @@\n     <div class=\"log-email\">\r\n       <input\r\n         type=\"text\"\r\n         placeholder=\"请输入用户名\"\r\n-        :class=\"'log-input' + (account == '' ? ' log-input-empty' : '')\"\r\n-        v-model=\"account\"\r\n+        :class=\"'log-input' + (name == '' ? ' log-input-empty' : '')\"\r\n+        v-model=\"name\"\r\n       />\r\n       <input\r\n         type=\"password\"\r\n         placeholder=\"请输入密码\"\r\n@@ -36,16 +36,16 @@\n const { cookies } = useCookies()\r\n let router = useRouter()\r\n let route = useRoute()\r\n let isLoging = false\r\n-let account = ''\r\n+let name = ''\r\n let password = ''\r\n let userStore = useUser()\r\n \r\n //登录逻辑\r\n const login = () => {\r\n \r\n-  if (account != '' && password != '') {\r\n+  if (name != '' && password != '') {\r\n     console.log('a');\r\n     toLogin();\r\n   }\r\n }\r\n@@ -56,9 +56,9 @@\n   // let password_sha = hex_sha1(hex_sha1(password));\r\n \r\n   //设置在登录状态\r\n   // isLoging = true;\r\n-  let result = await userStore.login({ 'name': account, 'password': password })\r\n+  let result = await userStore.login({ 'name': name, 'password': password })\r\n \r\n   //请求后端,比如:\r\n   /*this.$http.post( 'example.com/login.php', {\r\n   param: loginParam).then((response) => {\r\n"
+                },
+                {
+                    "date": 1648366178135,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,10 +43,10 @@\n \r\n //登录逻辑\r\n const login = () => {\r\n \r\n+  console.log(name, password);\r\n   if (name != '' && password != '') {\r\n-    console.log('a');\r\n     toLogin();\r\n   }\r\n }\r\n //登录请求\r\n"
+                },
+                {
+                    "date": 1648366248918,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,14 +32,15 @@\n <script lang=\"ts\" setup>\r\n import { useCookies } from 'vue3-cookies'\r\n import { useRouter, useRoute } from 'vue-router'\r\n import { useUser } from '../../store';\r\n+import { ref } from 'vue';\r\n const { cookies } = useCookies()\r\n let router = useRouter()\r\n let route = useRoute()\r\n let isLoging = false\r\n-let name = ''\r\n-let password = ''\r\n+let name = ref('')\r\n+let password = ref('')\r\n let userStore = useUser()\r\n \r\n //登录逻辑\r\n const login = () => {\r\n"
+                },
+                {
+                    "date": 1648366276815,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n //登录逻辑\r\n const login = () => {\r\n \r\n   console.log(name, password);\r\n-  if (name != '' && password != '') {\r\n+  if (name.value != '' && password.value != '') {\r\n     toLogin();\r\n   }\r\n }\r\n //登录请求\r\n"
+                },
+                {
+                    "date": 1648366337266,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,9 +57,9 @@\n   // let password_sha = hex_sha1(hex_sha1(password));\r\n \r\n   //设置在登录状态\r\n   // isLoging = true;\r\n-  let result = await userStore.login({ 'name': name, 'password': password })\r\n+  let result = await userStore.login({ 'name': name.value, 'password': password.value })\r\n \r\n   //请求后端,比如:\r\n   /*this.$http.post( 'example.com/login.php', {\r\n   param: loginParam).then((response) => {\r\n"
+                },
+                {
+                    "date": 1648366350236,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,9 +80,8 @@\n     let expireDays = 1000 * 60 * 60 * 24 * 15;\r\n     cookies.set('session', 'blablablablabla...', expireDays);\r\n     isLoging = false;\r\n     //登录成功后\r\n-    router.push('/user_info/');\r\n   }, 3000)\r\n }\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1648366499348,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,26 +55,10 @@\n   //一般要跟后端了解密码的加密规则\r\n   //这里例子用的哈希算法来自./js/sha1.min.js\r\n   // let password_sha = hex_sha1(hex_sha1(password));\r\n \r\n-  //设置在登录状态\r\n-  // isLoging = true;\r\n   let result = await userStore.login({ 'name': name.value, 'password': password.value })\r\n \r\n-  //请求后端,比如:\r\n-  /*this.$http.post( 'example.com/login.php', {\r\n-  param: loginParam).then((response) => {\r\n-    if(response.data.code == 1){\r\n-      let expireDays = 1000 * 60 * 60 * 24 * 15;\r\n-      this.setCookie('session', response.data.session, expireDays);\r\n-      //登录成功后\r\n-      this.$router.push('/user_info'); \r\n-    }\r\n-  }, (response) => {\r\n-      //Error\r\n-  });\r\n-  */\r\n-\r\n   //演示用\r\n   setTimeout(() => {\r\n     //登录状态15天后过期\r\n     let expireDays = 1000 * 60 * 60 * 24 * 15;\r\n"
+                },
+                {
+                    "date": 1648366654631,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,13 +29,13 @@\n   </div>\r\n </template>\r\n \r\n <script lang=\"ts\" setup>\r\n-import { useCookies } from 'vue3-cookies'\r\n+\r\n import { useRouter, useRoute } from 'vue-router'\r\n import { useUser } from '../../store';\r\n import { ref } from 'vue';\r\n-const { cookies } = useCookies()\r\n+\r\n let router = useRouter()\r\n let route = useRoute()\r\n let isLoging = false\r\n let name = ref('')\r\n"
+                },
+                {
+                    "date": 1648366723116,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,23 +50,17 @@\n     toLogin();\r\n   }\r\n }\r\n //登录请求\r\n-const toLogin = async () => {\r\n+const toLogin = () => {\r\n   //一般要跟后端了解密码的加密规则\r\n   //这里例子用的哈希算法来自./js/sha1.min.js\r\n   // let password_sha = hex_sha1(hex_sha1(password));\r\n \r\n-  let result = await userStore.login({ 'name': name.value, 'password': password.value })\r\n-\r\n-  //演示用\r\n-  setTimeout(() => {\r\n-    //登录状态15天后过期\r\n-    let expireDays = 1000 * 60 * 60 * 24 * 15;\r\n-    cookies.set('session', 'blablablablabla...', expireDays);\r\n-    isLoging = false;\r\n-    //登录成功后\r\n-  }, 3000)\r\n+  let result = userStore.login({ 'name': name.value, 'password': password.value })\r\n+  result.then(){\r\n+    router.push('/')\r\n+  }\r\n }\r\n \r\n \r\n </script>\r\n"
+                },
+                {
+                    "date": 1648366803916,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,8 +33,9 @@\n \r\n import { useRouter, useRoute } from 'vue-router'\r\n import { useUser } from '../../store';\r\n import { ref } from 'vue';\r\n+import { rejects } from 'assert';\r\n \r\n let router = useRouter()\r\n let route = useRoute()\r\n let isLoging = false\r\n@@ -56,11 +57,11 @@\n   //这里例子用的哈希算法来自./js/sha1.min.js\r\n   // let password_sha = hex_sha1(hex_sha1(password));\r\n \r\n   let result = userStore.login({ 'name': name.value, 'password': password.value })\r\n-  result.then(){\r\n+  result.then(() => {\r\n     router.push('/')\r\n-  }\r\n+  })\r\n }\r\n \r\n \r\n </script>\r\n"
+                },
+                {
+                    "date": 1648366834345,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,8 @@\n \r\n //登录逻辑\r\n const login = () => {\r\n \r\n-  console.log(name, password);\r\n   if (name.value != '' && password.value != '') {\r\n     toLogin();\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1648366890517,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,8 @@\n   </div>\r\n </template>\r\n \r\n <script lang=\"ts\" setup>\r\n-\r\n import { useRouter, useRoute } from 'vue-router'\r\n import { useUser } from '../../store';\r\n import { ref } from 'vue';\r\n import { rejects } from 'assert';\r\n@@ -44,28 +43,20 @@\n let userStore = useUser()\r\n \r\n //登录逻辑\r\n const login = () => {\r\n-\r\n   if (name.value != '' && password.value != '') {\r\n     toLogin();\r\n   }\r\n }\r\n //登录请求\r\n const toLogin = () => {\r\n-  //一般要跟后端了解密码的加密规则\r\n-  //这里例子用的哈希算法来自./js/sha1.min.js\r\n-  // let password_sha = hex_sha1(hex_sha1(password));\r\n-\r\n   let result = userStore.login({ 'name': name.value, 'password': password.value })\r\n   result.then(() => {\r\n     router.push('/')\r\n   })\r\n }\r\n-\r\n-\r\n </script>\r\n-\r\n <style scoped>\r\n .login {\r\n   position: fixed;\r\n   overflow: hidden;\r\n"
+                },
+                {
+                    "date": 1648367472885,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,6 @@\n <template>\r\n   <div class=\"login\" id=\"login\">\r\n-    <a href=\"javascript:;\" class=\"log-close\">\r\n-      <i class=\"icons close\"></i>\r\n-    </a>\r\n     <div class=\"log-bg\">\r\n       <div class=\"log-cloud cloud1\"></div>\r\n       <div class=\"log-cloud cloud2\"></div>\r\n       <div class=\"log-cloud cloud3\"></div>\r\n"
+                },
+                {
+                    "date": 1648367496802,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -73,22 +73,8 @@\n   border-radius: 5px;\r\n   -webkit-box-shadow: 0px 3px 16px -5px #070707;\r\n   box-shadow: 0px 3px 16px -5px #070707;\r\n }\r\n-.log-close {\r\n-  display: block;\r\n-  position: absolute;\r\n-  top: 12px;\r\n-  right: 12px;\r\n-  opacity: 1;\r\n-}\r\n-.log-close:hover .icons {\r\n-  transform: rotate(180deg);\r\n-}\r\n-.log-close .icons {\r\n-  opacity: 1;\r\n-  transition: all 0.3s;\r\n-}\r\n .log-cloud {\r\n   background-image: url(./images/login-cloud.png);\r\n   width: 63px;\r\n   height: 40px;\r\n"
+                },
+                {
+                    "date": 1648367884459,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,20 +8,10 @@\n \r\n       <div class=\"log-logo\">Welcome!</div>\r\n     </div>\r\n     <div class=\"log-email\">\r\n-      <input\r\n-        type=\"text\"\r\n-        placeholder=\"请输入用户名\"\r\n-        :class=\"'log-input' + (name == '' ? ' log-input-empty' : '')\"\r\n-        v-model=\"name\"\r\n-      />\r\n-      <input\r\n-        type=\"password\"\r\n-        placeholder=\"请输入密码\"\r\n-        :class=\"'log-input' + (password == '' ? ' log-input-empty' : '')\"\r\n-        v-model=\"password\"\r\n-      />\r\n+      <input type=\"text\" placeholder=\"请输入用户名\" :class=\"'log-input'\" v-model=\"name\" />\r\n+      <input type=\"password\" placeholder=\"请输入密码\" :class=\"'log-input'\" v-model=\"password\" />\r\n       <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">登录</a>\r\n     </div>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1648367956059,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,11 +37,11 @@\n }\r\n //登录请求\r\n const toLogin = () => {\r\n   let result = userStore.login({ 'name': name.value, 'password': password.value })\r\n-  result.then(() => {\r\n+  result.then((rejects) => {\r\n     router.push('/')\r\n-  })\r\n+  }, () => { })\r\n }\r\n </script>\r\n <style scoped>\r\n .login {\r\n"
+                },
+                {
+                    "date": 1648368055618,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,13 +35,13 @@\n     toLogin();\r\n   }\r\n }\r\n //登录请求\r\n-const toLogin = () => {\r\n-  let result = userStore.login({ 'name': name.value, 'password': password.value })\r\n-  result.then((rejects) => {\r\n+const toLogin = async () => {\r\n+  let result: any = await userStore.login({ 'name': name.value, 'password': password.value })\r\n+  if (result == 'ok') {\r\n     router.push('/')\r\n-  }, () => { })\r\n+  }\r\n }\r\n </script>\r\n <style scoped>\r\n .login {\r\n"
+                },
+                {
+                    "date": 1648368390355,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,10 +8,18 @@\n \r\n       <div class=\"log-logo\">Welcome!</div>\r\n     </div>\r\n     <div class=\"log-email\">\r\n-      <input type=\"text\" placeholder=\"请输入用户名\" :class=\"'log-input'\" v-model=\"name\" />\r\n-      <input type=\"password\" placeholder=\"请输入密码\" :class=\"'log-input'\" v-model=\"password\" />\r\n+      <!-- <input type=\"text\" placeholder=\"请输入用户名\" :class=\"'log-input'\" v-model=\"name\" />\r\n+      <input type=\"password\" placeholder=\"请输入密码\" :class=\"'log-input'\" v-model=\"password\" />-->\r\n+      <el-form\r\n+        ref=\"ruleFormRef\"\r\n+        :model=\"ruleForm\"\r\n+        :rules=\"rules\"\r\n+        label-width=\"120px\"\r\n+        class=\"demo-ruleForm\"\r\n+        :size=\"formSize\"\r\n+      ></el-form>\r\n       <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">登录</a>\r\n     </div>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1648368398526,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,13 @@\n         :rules=\"rules\"\r\n         label-width=\"120px\"\r\n         class=\"demo-ruleForm\"\r\n         :size=\"formSize\"\r\n-      ></el-form>\r\n+      >\r\n+        <el-form-item label=\"Activity name\" prop=\"name\">\r\n+          <el-input v-model=\"ruleForm.name\" />\r\n+        </el-form-item>\r\n+      </el-form>\r\n       <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">登录</a>\r\n     </div>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1648368430468,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n import { useRouter, useRoute } from 'vue-router'\r\n import { useUser } from '../../store';\r\n import { ref } from 'vue';\r\n import { rejects } from 'assert';\r\n-\r\n+import type { FormInstance } from 'element-plus'\r\n let router = useRouter()\r\n let route = useRoute()\r\n let isLoging = false\r\n let name = ref('')\r\n"
+                },
+                {
+                    "date": 1648368461421,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n import { useRouter, useRoute } from 'vue-router'\r\n import { useUser } from '../../store';\r\n import { ref } from 'vue';\r\n import { rejects } from 'assert';\r\n-import type { FormInstance } from 'element-plus'\r\n+import FormInstance from 'element-plus'\r\n let router = useRouter()\r\n let route = useRoute()\r\n let isLoging = false\r\n let name = ref('')\r\n"
+                },
+                {
+                    "date": 1648368487284,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,8 +52,23 @@\n   let result: any = await userStore.login({ 'name': name.value, 'password': password.value })\r\n   if (result == 'ok') {\r\n     router.push('/')\r\n   }\r\n+\r\n+  //表单验证\r\n+\r\n+  const formSize = ref('default')\r\n+  const ruleFormRef = ref<FormInstance>()\r\n+  const ruleForm = reactive({\r\n+    name: 'Hello',\r\n+    region: '',\r\n+    date1: '',\r\n+    date2: '',\r\n+    delivery: false,\r\n+    type: [],\r\n+    resource: '',\r\n+    desc: '',\r\n+  })\r\n }\r\n </script>\r\n <style scoped>\r\n .login {\r\n"
+                },
+                {
+                    "date": 1648368539021,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n \r\n <script lang=\"ts\" setup>\r\n import { useRouter, useRoute } from 'vue-router'\r\n import { useUser } from '../../store';\r\n-import { ref } from 'vue';\r\n+import { ref, reactive } from 'vue';\r\n import { rejects } from 'assert';\r\n import FormInstance from 'element-plus'\r\n let router = useRouter()\r\n let route = useRoute()\r\n@@ -58,16 +58,9 @@\n \r\n   const formSize = ref('default')\r\n   const ruleFormRef = ref<FormInstance>()\r\n   const ruleForm = reactive({\r\n-    name: 'Hello',\r\n-    region: '',\r\n-    date1: '',\r\n-    date2: '',\r\n-    delivery: false,\r\n-    type: [],\r\n-    resource: '',\r\n-    desc: '',\r\n+    name: 'Hello'\r\n   })\r\n }\r\n </script>\r\n <style scoped>\r\n"
+                },
+                {
+                    "date": 1648368577996,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,8 +60,14 @@\n   const ruleFormRef = ref<FormInstance>()\r\n   const ruleForm = reactive({\r\n     name: 'Hello'\r\n   })\r\n+  const rules = reactive({\r\n+    name: [\r\n+      { required: true, message: 'Please input Activity name', trigger: 'blur' },\r\n+      { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },\r\n+    ],\r\n+  })\r\n }\r\n </script>\r\n <style scoped>\r\n .login {\r\n"
+                },
+                {
+                    "date": 1648368600859,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,9 +56,9 @@\n \r\n   //表单验证\r\n \r\n   const formSize = ref('default')\r\n-  const ruleFormRef = ref<FormInstance>()\r\n+  const ruleFormRef = ref()\r\n   const ruleForm = reactive({\r\n     name: 'Hello'\r\n   })\r\n   const rules = reactive({\r\n"
+                },
+                {
+                    "date": 1648368646243,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,22 +53,23 @@\n   if (result == 'ok') {\r\n     router.push('/')\r\n   }\r\n \r\n-  //表单验证\r\n \r\n-  const formSize = ref('default')\r\n-  const ruleFormRef = ref()\r\n-  const ruleForm = reactive({\r\n-    name: 'Hello'\r\n-  })\r\n-  const rules = reactive({\r\n-    name: [\r\n-      { required: true, message: 'Please input Activity name', trigger: 'blur' },\r\n-      { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },\r\n-    ],\r\n-  })\r\n }\r\n+//表单验证\r\n+\r\n+const formSize = ref('default')\r\n+const ruleFormRef = ref()\r\n+const ruleForm = reactive({\r\n+  name: 'Hello'\r\n+})\r\n+const rules = reactive({\r\n+  name: [\r\n+    { required: true, message: 'Please input Activity name', trigger: 'blur' },\r\n+    { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },\r\n+  ],\r\n+})\r\n </script>\r\n <style scoped>\r\n .login {\r\n   position: fixed;\r\n"
+                },
+                {
+                    "date": 1648368693761,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n         :model=\"ruleForm\"\r\n         :rules=\"rules\"\r\n         label-width=\"120px\"\r\n         class=\"demo-ruleForm\"\r\n-        :size=\"formSize\"\r\n+        size=\"default\"\r\n       >\r\n         <el-form-item label=\"Activity name\" prop=\"name\">\r\n           <el-input v-model=\"ruleForm.name\" />\r\n         </el-form-item>\r\n@@ -56,10 +56,8 @@\n \r\n \r\n }\r\n //表单验证\r\n-\r\n-const formSize = ref('default')\r\n const ruleFormRef = ref()\r\n const ruleForm = reactive({\r\n   name: 'Hello'\r\n })\r\n"
+                },
+                {
+                    "date": 1648368760419,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,9 @@\n const ruleFormRef = ref()\r\n const ruleForm = reactive({\r\n   name: 'Hello'\r\n })\r\n-const rules = reactive({\r\n+const rules: any = reactive({\r\n   name: [\r\n     { required: true, message: 'Please input Activity name', trigger: 'blur' },\r\n     { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },\r\n   ],\r\n"
+                },
+                {
+                    "date": 1648368842144,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n         class=\"demo-ruleForm\"\r\n         size=\"default\"\r\n       >\r\n         <el-form-item label=\"Activity name\" prop=\"name\">\r\n-          <el-input v-model=\"ruleForm.name\" />\r\n+          <el-input class=\"log-input\" type=\"text\" v-model=\"ruleForm.name\" />\r\n         </el-form-item>\r\n       </el-form>\r\n       <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">登录</a>\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1648368902727,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n         class=\"demo-ruleForm\"\r\n         size=\"default\"\r\n       >\r\n         <el-form-item label=\"Activity name\" prop=\"name\">\r\n-          <el-input class=\"log-input\" type=\"text\" v-model=\"ruleForm.name\" />\r\n+          <el-input v-model=\"ruleForm.name\" />\r\n         </el-form-item>\r\n       </el-form>\r\n       <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">登录</a>\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1648368916529,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n         class=\"demo-ruleForm\"\r\n         size=\"default\"\r\n       >\r\n         <el-form-item label=\"Activity name\" prop=\"name\">\r\n-          <el-input v-model=\"ruleForm.name\" />\r\n+          <el-input type=\"text\" v-model=\"ruleForm.name\" />\r\n         </el-form-item>\r\n       </el-form>\r\n       <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">登录</a>\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1648368982361,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n         label-width=\"120px\"\r\n         class=\"demo-ruleForm\"\r\n         size=\"default\"\r\n       >\r\n-        <el-form-item label=\"Activity name\" prop=\"name\">\r\n+        <el-form-item label=\"用户名\" prop=\"name\">\r\n           <el-input type=\"text\" v-model=\"ruleForm.name\" />\r\n         </el-form-item>\r\n       </el-form>\r\n       <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">登录</a>\r\n"
+                },
+                {
+                    "date": 1648369058670,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n         label-width=\"120px\"\r\n         class=\"demo-ruleForm\"\r\n         size=\"default\"\r\n       >\r\n-        <el-form-item label=\"用户名\" prop=\"name\">\r\n+        <el-form-item label=\"用户名:\" prop=\"name\">\r\n           <el-input type=\"text\" v-model=\"ruleForm.name\" />\r\n         </el-form-item>\r\n       </el-form>\r\n       <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">登录</a>\r\n@@ -36,15 +36,13 @@\n import FormInstance from 'element-plus'\r\n let router = useRouter()\r\n let route = useRoute()\r\n let isLoging = false\r\n-let name = ref('')\r\n-let password = ref('')\r\n let userStore = useUser()\r\n \r\n //登录逻辑\r\n const login = () => {\r\n-  if (name.value != '' && password.value != '') {\r\n+  if (ruleForm.name != '' && ruleForm.password != '') {\r\n     toLogin();\r\n   }\r\n }\r\n //登录请求\r\n@@ -58,9 +56,10 @@\n }\r\n //表单验证\r\n const ruleFormRef = ref()\r\n const ruleForm = reactive({\r\n-  name: 'Hello'\r\n+  name: '',\r\n+  password: ''\r\n })\r\n const rules: any = reactive({\r\n   name: [\r\n     { required: true, message: 'Please input Activity name', trigger: 'blur' },\r\n"
+                },
+                {
+                    "date": 1648369073103,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,9 @@\n         size=\"default\"\r\n       >\r\n         <el-form-item label=\"用户名:\" prop=\"name\">\r\n           <el-input type=\"text\" v-model=\"ruleForm.name\" />\r\n+          <el-input type=\"text\" v-model=\"ruleForm.name\" />\r\n         </el-form-item>\r\n       </el-form>\r\n       <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">登录</a>\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1648369089319,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,10 +20,12 @@\n         size=\"default\"\r\n       >\r\n         <el-form-item label=\"用户名:\" prop=\"name\">\r\n           <el-input type=\"text\" v-model=\"ruleForm.name\" />\r\n-          <el-input type=\"text\" v-model=\"ruleForm.name\" />\r\n         </el-form-item>\r\n+        <el-form-item label=\"密码:\" prop=\"name\">\r\n+          <el-input type=\"password\" v-model=\"ruleForm.name\" />\r\n+        </el-form-item>\r\n       </el-form>\r\n       <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">登录</a>\r\n     </div>\r\n   </div>\r\n"
+                },
+                {
+                    "date": 1648369106103,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,10 +21,10 @@\n       >\r\n         <el-form-item label=\"用户名:\" prop=\"name\">\r\n           <el-input type=\"text\" v-model=\"ruleForm.name\" />\r\n         </el-form-item>\r\n-        <el-form-item label=\"密码:\" prop=\"name\">\r\n-          <el-input type=\"password\" v-model=\"ruleForm.name\" />\r\n+        <el-form-item label=\"密码:\" prop=\"password\">\r\n+          <el-input type=\"password\" v-model=\"ruleForm.password\" />\r\n         </el-form-item>\r\n       </el-form>\r\n       <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">登录</a>\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1648369254257,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n       >\r\n         <el-form-item label=\"用户名:\" prop=\"name\">\r\n           <el-input type=\"text\" v-model=\"ruleForm.name\" />\r\n         </el-form-item>\r\n-        <el-form-item label=\"密码:\" prop=\"password\">\r\n+        <el-form-item label=\"密 码:\" prop=\"password\">\r\n           <el-input type=\"password\" v-model=\"ruleForm.password\" />\r\n         </el-form-item>\r\n       </el-form>\r\n       <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">登录</a>\r\n"
+                },
+                {
+                    "date": 1648369261652,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n       >\r\n         <el-form-item label=\"用户名:\" prop=\"name\">\r\n           <el-input type=\"text\" v-model=\"ruleForm.name\" />\r\n         </el-form-item>\r\n-        <el-form-item label=\"密 码:\" prop=\"password\">\r\n+        <el-form-item label=\"密码:\" prop=\"password\">\r\n           <el-input type=\"password\" v-model=\"ruleForm.password\" />\r\n         </el-form-item>\r\n       </el-form>\r\n       <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">登录</a>\r\n"
+                },
+                {
+                    "date": 1648369370084,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -67,8 +67,9 @@\n   name: [\r\n     { required: true, message: 'Please input Activity name', trigger: 'blur' },\r\n     { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },\r\n   ],\r\n+  password: [{ validator: validatePass, trigger: 'blur' }],\r\n })\r\n </script>\r\n <style scoped>\r\n .login {\r\n"
+                },
+                {
+                    "date": 1648369390405,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,15 +62,27 @@\n const ruleForm = reactive({\r\n   name: '',\r\n   password: ''\r\n })\r\n+const validatePass = (rule: any, value: any, callback: any) => {\r\n+  if (value === '') {\r\n+    callback(new Error('Please input the password'))\r\n+  } else {\r\n+    if (ruleForm.checkPass !== '') {\r\n+      if (!ruleFormRef.value) return\r\n+      ruleFormRef.value.validateField('checkPass', () => null)\r\n+    }\r\n+    callback()\r\n+  }\r\n+}\r\n const rules: any = reactive({\r\n   name: [\r\n     { required: true, message: 'Please input Activity name', trigger: 'blur' },\r\n     { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },\r\n   ],\r\n   password: [{ validator: validatePass, trigger: 'blur' }],\r\n })\r\n+\r\n </script>\r\n <style scoped>\r\n .login {\r\n   position: fixed;\r\n"
+                },
+                {
+                    "date": 1648369397707,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,9 +66,9 @@\n const validatePass = (rule: any, value: any, callback: any) => {\r\n   if (value === '') {\r\n     callback(new Error('Please input the password'))\r\n   } else {\r\n-    if (ruleForm.checkPass !== '') {\r\n+    if (ruleForm.password !== '') {\r\n       if (!ruleFormRef.value) return\r\n       ruleFormRef.value.validateField('checkPass', () => null)\r\n     }\r\n     callback()\r\n"
+                },
+                {
+                    "date": 1648369459657,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,9 +80,12 @@\n     { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },\r\n   ],\r\n   password: [{ validator: validatePass, trigger: 'blur' }],\r\n })\r\n-\r\n+const resetForm = (formEl: FormInstance | undefined) => {\r\n+  if (!formEl) return\r\n+  formEl.resetFields()\r\n+}\r\n </script>\r\n <style scoped>\r\n .login {\r\n   position: fixed;\r\n"
+                },
+                {
+                    "date": 1648369465194,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,9 +80,9 @@\n     { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },\r\n   ],\r\n   password: [{ validator: validatePass, trigger: 'blur' }],\r\n })\r\n-const resetForm = (formEl: FormInstance | undefined) => {\r\n+const resetForm = (formEl) => {\r\n   if (!formEl) return\r\n   formEl.resetFields()\r\n }\r\n </script>\r\n"
+                },
+                {
+                    "date": 1648369552176,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,9 @@\n     callback(new Error('Please input the password'))\r\n   } else {\r\n     if (ruleForm.password !== '') {\r\n       if (!ruleFormRef.value) return\r\n-      ruleFormRef.value.validateField('checkPass', () => null)\r\n+      ruleFormRef.value.validateField('password', () => null)\r\n     }\r\n     callback()\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1648369595343,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n         <el-form-item label=\"用户名:\" prop=\"name\">\r\n           <el-input type=\"text\" v-model=\"ruleForm.name\" />\r\n         </el-form-item>\r\n         <el-form-item label=\"密码:\" prop=\"password\">\r\n-          <el-input type=\"password\" v-model=\"ruleForm.password\" />\r\n+          <el-input type=\"password\" v-model=\"ruleForm.password\" autocomplete=\"off\" />\r\n         </el-form-item>\r\n       </el-form>\r\n       <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">登录</a>\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1648369699013,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -75,10 +75,10 @@\n   }\r\n }\r\n const rules: any = reactive({\r\n   name: [\r\n-    { required: true, message: 'Please input Activity name', trigger: 'blur' },\r\n-    { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },\r\n+    { required: true, message: '请输入用户名', trigger: 'blur' },\r\n+    { min: 3, max: 5, message: '用户名的长度在3~10之间', trigger: 'blur' },\r\n   ],\r\n   password: [{ validator: validatePass, trigger: 'blur' }],\r\n })\r\n const resetForm = (formEl) => {\r\n"
+                },
+                {
+                    "date": 1648369705513,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -76,9 +76,9 @@\n }\r\n const rules: any = reactive({\r\n   name: [\r\n     { required: true, message: '请输入用户名', trigger: 'blur' },\r\n-    { min: 3, max: 5, message: '用户名的长度在3~10之间', trigger: 'blur' },\r\n+    { min: 3, max: 10, message: '用户名的长度在3~10之间', trigger: 'blur' },\r\n   ],\r\n   password: [{ validator: validatePass, trigger: 'blur' }],\r\n })\r\n const resetForm = (formEl) => {\r\n"
+                },
+                {
+                    "date": 1648369757251,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,10 +24,14 @@\n         </el-form-item>\r\n         <el-form-item label=\"密码:\" prop=\"password\">\r\n           <el-input type=\"password\" v-model=\"ruleForm.password\" autocomplete=\"off\" />\r\n         </el-form-item>\r\n+        <el-form-item>\r\n+          <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">Submit</el-button>\r\n+          <el-button @click=\"resetForm(ruleFormRef)\">Reset</el-button>\r\n+        </el-form-item>\r\n       </el-form>\r\n-      <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">登录</a>\r\n+      <!-- <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">登录</a> -->\r\n     </div>\r\n   </div>\r\n </template>\r\n \r\n"
+                },
+                {
+                    "date": 1648369789178,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,8 +84,20 @@\n     { min: 3, max: 10, message: '用户名的长度在3~10之间', trigger: 'blur' },\r\n   ],\r\n   password: [{ validator: validatePass, trigger: 'blur' }],\r\n })\r\n+const submitForm = (formEl) => {\r\n+  if (!formEl) return\r\n+  formEl.validate((valid) => {\r\n+    if (valid) {\r\n+      console.log('submit!')\r\n+    } else {\r\n+      console.log('error submit!')\r\n+      return false\r\n+    }\r\n+  })\r\n+}\r\n+\r\n const resetForm = (formEl) => {\r\n   if (!formEl) return\r\n   formEl.resetFields()\r\n }\r\n"
+                },
+                {
+                    "date": 1648369863950,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,9 @@\n   password: ''\r\n })\r\n const validatePass = (rule: any, value: any, callback: any) => {\r\n   if (value === '') {\r\n-    callback(new Error('Please input the password'))\r\n+    callback(new Error('请输入密码'))\r\n   } else {\r\n     if (ruleForm.password !== '') {\r\n       if (!ruleFormRef.value) return\r\n       ruleFormRef.value.validateField('password', () => null)\r\n"
+                },
+                {
+                    "date": 1648369957293,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n   name: [\r\n     { required: true, message: '请输入用户名', trigger: 'blur' },\r\n     { min: 3, max: 10, message: '用户名的长度在3~10之间', trigger: 'blur' },\r\n   ],\r\n-  password: [{ validator: validatePass, trigger: 'blur' }],\r\n+  password: [{ required: true, message: '请输入用户名', trigger: 'blur' },，{ validator: validatePass, trigger: 'blur' }],\r\n })\r\n const submitForm = (formEl) => {\r\n   if (!formEl) return\r\n   formEl.validate((valid) => {\r\n"
+                },
+                {
+                    "date": 1648369992380,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,25 +66,15 @@\n const ruleForm = reactive({\r\n   name: '',\r\n   password: ''\r\n })\r\n-const validatePass = (rule: any, value: any, callback: any) => {\r\n-  if (value === '') {\r\n-    callback(new Error('请输入密码'))\r\n-  } else {\r\n-    if (ruleForm.password !== '') {\r\n-      if (!ruleFormRef.value) return\r\n-      ruleFormRef.value.validateField('password', () => null)\r\n-    }\r\n-    callback()\r\n-  }\r\n-}\r\n+\r\n const rules: any = reactive({\r\n   name: [\r\n     { required: true, message: '请输入用户名', trigger: 'blur' },\r\n     { min: 3, max: 10, message: '用户名的长度在3~10之间', trigger: 'blur' },\r\n   ],\r\n-  password: [{ required: true, message: '请输入用户名', trigger: 'blur' },，{ validator: validatePass, trigger: 'blur' }],\r\n+  password: [{ required: true, message: '请输入用户名', trigger: 'blur' }, { min: 3, max: 10, message: '用户名的长度在3~10之间', trigger: 'blur' },],\r\n })\r\n const submitForm = (formEl) => {\r\n   if (!formEl) return\r\n   formEl.validate((valid) => {\r\n"
+                },
+                {
+                    "date": 1648370000940,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,12 @@\n   name: [\r\n     { required: true, message: '请输入用户名', trigger: 'blur' },\r\n     { min: 3, max: 10, message: '用户名的长度在3~10之间', trigger: 'blur' },\r\n   ],\r\n-  password: [{ required: true, message: '请输入用户名', trigger: 'blur' }, { min: 3, max: 10, message: '用户名的长度在3~10之间', trigger: 'blur' },],\r\n+  password: [{ required: true, message: '请输入用户名', t0rigger: 'blur' }, {\r\n+    min: 3, max: 1,\r\n+    message: '用户名的长度在3~10之间', trigger: 'blur'\r\n+  },],\r\n })\r\n const submitForm = (formEl) => {\r\n   if (!formEl) return\r\n   formEl.validate((valid) => {\r\n"
+                },
+                {
+                    "date": 1648370006507,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,10 @@\n   name: [\r\n     { required: true, message: '请输入用户名', trigger: 'blur' },\r\n     { min: 3, max: 10, message: '用户名的长度在3~10之间', trigger: 'blur' },\r\n   ],\r\n-  password: [{ required: true, message: '请输入用户名', t0rigger: 'blur' }, {\r\n+  password: [{ required: true, message: '请输入用户名', t0rigger: 'blur' },\r\n+  {\r\n     min: 3, max: 1,\r\n     message: '用户名的长度在3~10之间', trigger: 'blur'\r\n   },],\r\n })\r\n"
+                },
+                {
+                    "date": 1648370263985,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,11 +72,11 @@\n   name: [\r\n     { required: true, message: '请输入用户名', trigger: 'blur' },\r\n     { min: 3, max: 10, message: '用户名的长度在3~10之间', trigger: 'blur' },\r\n   ],\r\n-  password: [{ required: true, message: '请输入用户名', t0rigger: 'blur' },\r\n+  password: [{ required: true, message: '请输入用户名', trigger: 'blur' },\r\n   {\r\n-    min: 3, max: 1,\r\n+    min: 6, max: 18,\r\n     message: '用户名的长度在3~10之间', trigger: 'blur'\r\n   },],\r\n })\r\n const submitForm = (formEl) => {\r\n"
+                },
+                {
+                    "date": 1648370423071,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,8 +61,10 @@\n \r\n \r\n }\r\n //表单验证\r\n+// 昵称格式：限16个字符，支持中英文、数字、减号或下划线\r\n+const regStr = \"^[\\\\u4e00-\\\\u9fa5_a-zA-Z0-9-]{1,16}$\";\r\n const ruleFormRef = ref()\r\n const ruleForm = reactive({\r\n   name: '',\r\n   password: ''\r\n"
+                },
+                {
+                    "date": 1648370442694,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,8 +63,11 @@\n }\r\n //表单验证\r\n // 昵称格式：限16个字符，支持中英文、数字、减号或下划线\r\n const regStr = \"^[\\\\u4e00-\\\\u9fa5_a-zA-Z0-9-]{1,16}$\";\r\n+// 6-20 位，字母、数字、字符\r\n+//String reg = \"^([A-Z]|[a-z]|[0-9]|[`-=[];,./~!@#$%^*()_+}{:?]){6,20}$\";\r\n+const regStr = \"^([A-Z]|[a-z]|[0-9]|[`~!@#$%^&*()+=|{}':;',\\\\\\\\[\\\\\\\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]){6,20}$\";\r\n const ruleFormRef = ref()\r\n const ruleForm = reactive({\r\n   name: '',\r\n   password: ''\r\n"
+                },
+                {
+                    "date": 1648370453585,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,9 @@\n // 昵称格式：限16个字符，支持中英文、数字、减号或下划线\r\n const regStr = \"^[\\\\u4e00-\\\\u9fa5_a-zA-Z0-9-]{1,16}$\";\r\n // 6-20 位，字母、数字、字符\r\n //String reg = \"^([A-Z]|[a-z]|[0-9]|[`-=[];,./~!@#$%^*()_+}{:?]){6,20}$\";\r\n-const regStr = \"^([A-Z]|[a-z]|[0-9]|[`~!@#$%^&*()+=|{}':;',\\\\\\\\[\\\\\\\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]){6,20}$\";\r\n+const regPass = \"^([A-Z]|[a-z]|[0-9]|[`~!@#$%^&*()+=|{}':;',\\\\\\\\[\\\\\\\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]){6,20}$\";\r\n const ruleFormRef = ref()\r\n const ruleForm = reactive({\r\n   name: '',\r\n   password: ''\r\n"
+                },
+                {
+                    "date": 1648370510197,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -75,9 +75,9 @@\n \r\n const rules: any = reactive({\r\n   name: [\r\n     { required: true, message: '请输入用户名', trigger: 'blur' },\r\n-    { min: 3, max: 10, message: '用户名的长度在3~10之间', trigger: 'blur' },\r\n+    { parent: regStr, message: '限16个字符，支持中英文、数字、减号或下划线', trigger: 'blur' },\r\n   ],\r\n   password: [{ required: true, message: '请输入用户名', trigger: 'blur' },\r\n   {\r\n     min: 6, max: 18,\r\n"
+                },
+                {
+                    "date": 1648370530481,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -75,9 +75,9 @@\n \r\n const rules: any = reactive({\r\n   name: [\r\n     { required: true, message: '请输入用户名', trigger: 'blur' },\r\n-    { parent: regStr, message: '限16个字符，支持中英文、数字、减号或下划线', trigger: 'blur' },\r\n+    { patt: regStr, message: '限16个字符，支持中英文、数字、减号或下划线', trigger: 'blur' },\r\n   ],\r\n   password: [{ required: true, message: '请输入用户名', trigger: 'blur' },\r\n   {\r\n     min: 6, max: 18,\r\n"
+                },
+                {
+                    "date": 1648370536198,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -75,9 +75,9 @@\n \r\n const rules: any = reactive({\r\n   name: [\r\n     { required: true, message: '请输入用户名', trigger: 'blur' },\r\n-    { patt: regStr, message: '限16个字符，支持中英文、数字、减号或下划线', trigger: 'blur' },\r\n+    { pattern: regStr, message: '限16个字符，支持中英文、数字、减号或下划线', trigger: 'blur' },\r\n   ],\r\n   password: [{ required: true, message: '请输入用户名', trigger: 'blur' },\r\n   {\r\n     min: 6, max: 18,\r\n"
+                },
+                {
+                    "date": 1648370636176,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,9 +62,9 @@\n \r\n }\r\n //表单验证\r\n // 昵称格式：限16个字符，支持中英文、数字、减号或下划线\r\n-const regStr = \"^[\\\\u4e00-\\\\u9fa5_a-zA-Z0-9-]{1,16}$\";\r\n+const regStr = /(^[\\\\u4e00-\\\\u9fa5_a-zA-Z0-9-]{1,16}$)/;\r\n // 6-20 位，字母、数字、字符\r\n //String reg = \"^([A-Z]|[a-z]|[0-9]|[`-=[];,./~!@#$%^*()_+}{:?]){6,20}$\";\r\n const regPass = \"^([A-Z]|[a-z]|[0-9]|[`~!@#$%^&*()+=|{}':;',\\\\\\\\[\\\\\\\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]){6,20}$\";\r\n const ruleFormRef = ref()\r\n"
+                },
+                {
+                    "date": 1648370762640,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,9 @@\n // 昵称格式：限16个字符，支持中英文、数字、减号或下划线\r\n const regStr = /(^[\\\\u4e00-\\\\u9fa5_a-zA-Z0-9-]{1,16}$)/;\r\n // 6-20 位，字母、数字、字符\r\n //String reg = \"^([A-Z]|[a-z]|[0-9]|[`-=[];,./~!@#$%^*()_+}{:?]){6,20}$\";\r\n-const regPass = \"^([A-Z]|[a-z]|[0-9]|[`~!@#$%^&*()+=|{}':;',\\\\\\\\[\\\\\\\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]){6,20}$\";\r\n+const regPass = /(^([A-Z]|[a-z]|[0-9]|[`~!@#$%^&*()+=|{}':;',\\\\\\\\[\\\\\\\\].<>/ ? ~！@#￥%……&*（）——+| {}【】‘；：”“’。，、？]) { 6, 20 }$) /;\r\n const ruleFormRef = ref()\r\n const ruleForm = reactive({\r\n   name: '',\r\n   password: ''\r\n"
+                },
+                {
+                    "date": 1648370852562,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,10 +64,9 @@\n //表单验证\r\n // 昵称格式：限16个字符，支持中英文、数字、减号或下划线\r\n const regStr = /(^[\\\\u4e00-\\\\u9fa5_a-zA-Z0-9-]{1,16}$)/;\r\n // 6-20 位，字母、数字、字符\r\n-//String reg = \"^([A-Z]|[a-z]|[0-9]|[`-=[];,./~!@#$%^*()_+}{:?]){6,20}$\";\r\n-const regPass = /(^([A-Z]|[a-z]|[0-9]|[`~!@#$%^&*()+=|{}':;',\\\\\\\\[\\\\\\\\].<>/ ? ~！@#￥%……&*（）——+| {}【】‘；：”“’。，、？]) { 6, 20 }$) /;\r\n+const regPass = \r\n const ruleFormRef = ref()\r\n const ruleForm = reactive({\r\n   name: '',\r\n   password: ''\r\n"
+                },
+                {
+                    "date": 1648370876991,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,10 +63,10 @@\n }\r\n //表单验证\r\n // 昵称格式：限16个字符，支持中英文、数字、减号或下划线\r\n const regStr = /(^[\\\\u4e00-\\\\u9fa5_a-zA-Z0-9-]{1,16}$)/;\r\n-// 6-20 位，字母、数字、字符\r\n-const regPass = \r\n+//校验密码：只能输入6-20个字母、数字、下划线  \r\n+const regPass = /^(\\w){6,20}$/\r\n const ruleFormRef = ref()\r\n const ruleForm = reactive({\r\n   name: '',\r\n   password: ''\r\n"
+                },
+                {
+                    "date": 1648370900486,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,10 +78,10 @@\n     { pattern: regStr, message: '限16个字符，支持中英文、数字、减号或下划线', trigger: 'blur' },\r\n   ],\r\n   password: [{ required: true, message: '请输入用户名', trigger: 'blur' },\r\n   {\r\n-    min: 6, max: 18,\r\n-    message: '用户名的长度在3~10之间', trigger: 'blur'\r\n+    pattern: regPass,\r\n+    message: '只能输入6-20个字母、数字、下划线 ', trigger: 'blur'\r\n   },],\r\n })\r\n const submitForm = (formEl) => {\r\n   if (!formEl) return\r\n"
+                },
+                {
+                    "date": 1648370984114,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -76,12 +76,12 @@\n   name: [\r\n     { required: true, message: '请输入用户名', trigger: 'blur' },\r\n     { pattern: regStr, message: '限16个字符，支持中英文、数字、减号或下划线', trigger: 'blur' },\r\n   ],\r\n-  password: [{ required: true, message: '请输入用户名', trigger: 'blur' },\r\n+  password: [{ required: true, message: '请输入密码', trigger: 'blur' },\r\n   {\r\n     pattern: regPass,\r\n-    message: '只能输入6-20个字母、数字、下划线 ', trigger: 'blur'\r\n+    message: '只能输入6-20个字母、数字、下划线的密码', trigger: 'blur'\r\n   },],\r\n })\r\n const submitForm = (formEl) => {\r\n   if (!formEl) return\r\n"
+                },
+                {
+                    "date": 1648371003965,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,9 +79,9 @@\n   ],\r\n   password: [{ required: true, message: '请输入密码', trigger: 'blur' },\r\n   {\r\n     pattern: regPass,\r\n-    message: '只能输入6-20个字母、数字、下划线的密码', trigger: 'blur'\r\n+    message: '只能输入6-20个字母、数字、下划线的密码', trigger: \"'blur'\"\r\n   },],\r\n })\r\n const submitForm = (formEl) => {\r\n   if (!formEl) return\r\n"
+                },
+                {
+                    "date": 1648371020972,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,9 +79,9 @@\n   ],\r\n   password: [{ required: true, message: '请输入密码', trigger: 'blur' },\r\n   {\r\n     pattern: regPass,\r\n-    message: '只能输入6-20个字母、数字、下划线的密码', trigger: \"'blur'\"\r\n+    message: '只能输入6-20个字母、数字、下划线的密码', trigger: ['blur', 'change']\r\n   },],\r\n })\r\n const submitForm = (formEl) => {\r\n   if (!formEl) return\r\n"
+                },
+                {
+                    "date": 1648371038051,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -76,9 +76,9 @@\n   name: [\r\n     { required: true, message: '请输入用户名', trigger: 'blur' },\r\n     { pattern: regStr, message: '限16个字符，支持中英文、数字、减号或下划线', trigger: 'blur' },\r\n   ],\r\n-  password: [{ required: true, message: '请输入密码', trigger: 'blur' },\r\n+  password: [{ required: true, message: '请输入密码', trigger: ['blur', 'change'] },\r\n   {\r\n     pattern: regPass,\r\n     message: '只能输入6-20个字母、数字、下划线的密码', trigger: ['blur', 'change']\r\n   },],\r\n"
+                },
+                {
+                    "date": 1648371288048,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,10 +25,10 @@\n         <el-form-item label=\"密码:\" prop=\"password\">\r\n           <el-input type=\"password\" v-model=\"ruleForm.password\" autocomplete=\"off\" />\r\n         </el-form-item>\r\n         <el-form-item>\r\n-          <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">Submit</el-button>\r\n-          <el-button @click=\"resetForm(ruleFormRef)\">Reset</el-button>\r\n+          <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">登录</el-button>\r\n+          <el-button @click=\"resetForm(ruleFormRef)\">重置</el-button>\r\n         </el-form-item>\r\n       </el-form>\r\n       <!-- <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">登录</a> -->\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1648371315914,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,11 +86,11 @@\n const submitForm = (formEl) => {\r\n   if (!formEl) return\r\n   formEl.validate((valid) => {\r\n     if (valid) {\r\n-      console.log('submit!')\r\n+      console.log('登录成功!')\r\n     } else {\r\n-      console.log('error submit!')\r\n+      console.log('错误登录')\r\n       return false\r\n     }\r\n   })\r\n }\r\n"
+                },
+                {
+                    "date": 1648371321500,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,9 +88,9 @@\n   formEl.validate((valid) => {\r\n     if (valid) {\r\n       console.log('登录成功!')\r\n     } else {\r\n-      console.log('错误登录')\r\n+      console.log('登录错误')\r\n       return false\r\n     }\r\n   })\r\n }\r\n"
+                },
+                {
+                    "date": 1648371362449,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,23 +45,8 @@\n let route = useRoute()\r\n let isLoging = false\r\n let userStore = useUser()\r\n \r\n-//登录逻辑\r\n-const login = () => {\r\n-  if (ruleForm.name != '' && ruleForm.password != '') {\r\n-    toLogin();\r\n-  }\r\n-}\r\n-//登录请求\r\n-const toLogin = async () => {\r\n-  let result: any = await userStore.login({ 'name': name.value, 'password': password.value })\r\n-  if (result == 'ok') {\r\n-    router.push('/')\r\n-  }\r\n-\r\n-\r\n-}\r\n //表单验证\r\n // 昵称格式：限16个字符，支持中英文、数字、减号或下划线\r\n const regStr = /(^[\\\\u4e00-\\\\u9fa5_a-zA-Z0-9-]{1,16}$)/;\r\n //校验密码：只能输入6-20个字母、数字、下划线  \r\n@@ -86,9 +71,16 @@\n const submitForm = (formEl) => {\r\n   if (!formEl) return\r\n   formEl.validate((valid) => {\r\n     if (valid) {\r\n-      console.log('登录成功!')\r\n+      async () => {\r\n+        let result: any = await userStore.login({ 'name': name.value, 'password': password.value })\r\n+        if (result == 'ok') {\r\n+          router.push('/')\r\n+        }\r\n+\r\n+\r\n+      }\r\n     } else {\r\n       console.log('登录错误')\r\n       return false\r\n     }\r\n"
+                },
+                {
+                    "date": 1648371386068,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,9 @@\n   if (!formEl) return\r\n   formEl.validate((valid) => {\r\n     if (valid) {\r\n       async () => {\r\n-        let result: any = await userStore.login({ 'name': name.value, 'password': password.value })\r\n+        let result: any = await userStore.login(ruleForm)\r\n         if (result == 'ok') {\r\n           router.push('/')\r\n         }\r\n \r\n"
+                },
+                {
+                    "date": 1648371460347,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,8 +45,9 @@\n let route = useRoute()\r\n let isLoging = false\r\n let userStore = useUser()\r\n \r\n+\r\n //表单验证\r\n // 昵称格式：限16个字符，支持中英文、数字、减号或下划线\r\n const regStr = /(^[\\\\u4e00-\\\\u9fa5_a-zA-Z0-9-]{1,16}$)/;\r\n //校验密码：只能输入6-20个字母、数字、下划线  \r\n@@ -71,10 +72,11 @@\n const submitForm = (formEl) => {\r\n   if (!formEl) return\r\n   formEl.validate((valid) => {\r\n     if (valid) {\r\n+      console.log('登录成功!')\r\n       async () => {\r\n-        let result: any = await userStore.login(ruleForm)\r\n+        let result: any = await userStore.login({ 'name': name.value, 'password': password.value })\r\n         if (result == 'ok') {\r\n           router.push('/')\r\n         }\r\n \r\n"
+                },
+                {
+                    "date": 1648371478764,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,9 +74,9 @@\n   formEl.validate((valid) => {\r\n     if (valid) {\r\n       console.log('登录成功!')\r\n       async () => {\r\n-        let result: any = await userStore.login({ 'name': name.value, 'password': password.value })\r\n+        let result: any = await userStore.login(ruleForm)\r\n         if (result == 'ok') {\r\n           router.push('/')\r\n         }\r\n \r\n"
+                },
+                {
+                    "date": 1648371557267,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -73,16 +73,17 @@\n   if (!formEl) return\r\n   formEl.validate((valid) => {\r\n     if (valid) {\r\n       console.log('登录成功!')\r\n-      async () => {\r\n-        let result: any = await userStore.login(ruleForm)\r\n-        if (result == 'ok') {\r\n-          router.push('/')\r\n-        }\r\n+      let result: any = async () => {\r\n+        return await userStore.login(ruleForm)\r\n \r\n \r\n+\r\n       }\r\n+      if (result == 'ok') {\r\n+        router.push('/')\r\n+      }\r\n     } else {\r\n       console.log('登录错误')\r\n       return false\r\n     }\r\n"
+                },
+                {
+                    "date": 1648371571260,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,8 +79,9 @@\n \r\n \r\n \r\n       }\r\n+      result()\r\n       if (result == 'ok') {\r\n         router.push('/')\r\n       }\r\n     } else {\r\n"
+                },
+                {
+                    "date": 1648371617015,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -75,14 +75,11 @@\n     if (valid) {\r\n       console.log('登录成功!')\r\n       let result: any = async () => {\r\n         return await userStore.login(ruleForm)\r\n-\r\n-\r\n-\r\n       }\r\n-      result()\r\n-      if (result == 'ok') {\r\n+      let res = result()\r\n+      if (res == 'ok') {\r\n         router.push('/')\r\n       }\r\n     } else {\r\n       console.log('登录错误')\r\n"
+                },
+                {
+                    "date": 1648371640825,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,8 +77,10 @@\n       let result: any = async () => {\r\n         return await userStore.login(ruleForm)\r\n       }\r\n       let res = result()\r\n+      console.log(res);\r\n+\r\n       if (res == 'ok') {\r\n         router.push('/')\r\n       }\r\n     } else {\r\n"
+                },
+                {
+                    "date": 1648371683402,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,9 +74,10 @@\n   formEl.validate((valid) => {\r\n     if (valid) {\r\n       console.log('登录成功!')\r\n       let result: any = async () => {\r\n-        return await userStore.login(ruleForm)\r\n+        let res = await userStore.login(ruleForm)\r\n+        return res\r\n       }\r\n       let res = result()\r\n       console.log(res);\r\n \r\n"
+                },
+                {
+                    "date": 1648371737380,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -75,9 +75,9 @@\n     if (valid) {\r\n       console.log('登录成功!')\r\n       async () => {\r\n         let res = await userStore.login(ruleForm)\r\n-        return res\r\n+\r\n       }\r\n \r\n \r\n     } else {\r\n"
+                },
+                {
+                    "date": 1648513539603,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,329 @@\n+<template>\r\n+  <div class=\"login\" id=\"login\">\r\n+    <div class=\"log-bg\">\r\n+      <div class=\"log-cloud cloud1\"></div>\r\n+      <div class=\"log-cloud cloud2\"></div>\r\n+      <div class=\"log-cloud cloud3\"></div>\r\n+      <div class=\"log-cloud cloud4\"></div>\r\n+\r\n+      <div class=\"log-logo\">Welcome!</div>\r\n+    </div>\r\n+    <div class=\"log-email\">\r\n+      <!-- <input type=\"text\" placeholder=\"请输入用户名\" :class=\"'log-input'\" v-model=\"name\" />\r\n+      <input type=\"password\" placeholder=\"请输入密码\" :class=\"'log-input'\" v-model=\"password\" />-->\r\n+      <!-- 使用ElementUI组件库中的form组件，校验规则改为rules -->\r\n+      <el-form\r\n+        ref=\"ruleFormRef\"\r\n+        :model=\"ruleForm\"\r\n+        :rules=\"rules\"\r\n+        label-width=\"120px\"\r\n+        class=\"demo-ruleForm\"\r\n+        size=\"default\"\r\n+      >\r\n+        <el-form-item class=\"el-i\" label=\"用户名:\" prop=\"name\">\r\n+          <el-input type=\"text\" v-model=\"ruleForm.name\" />\r\n+        </el-form-item>\r\n+        <el-form-item class=\"el-i\" label=\"密码:\" prop=\"password\">\r\n+          <el-input type=\"password\" v-model=\"ruleForm.password\" autocomplete=\"off\" />\r\n+        </el-form-item>\r\n+        <el-form-item>\r\n+          <!-- 当用户输入的用户名和密码通过校验规则后发送请求，判断是否成功登录 -->\r\n+          <el-button class=\"sub\" type=\"primary\" @click=\"submitForm(ruleFormRef)\">登录</el-button>\r\n+          <!-- 重置表单 -->\r\n+          <el-button class=\"reset\" @click=\"resetForm(ruleFormRef)\">重置</el-button>\r\n+        </el-form-item>\r\n+      </el-form>\r\n+      <!-- <a href=\"javascript:;\" class=\"log-btn\" @click=\"login\">登录</a> -->\r\n+    </div>\r\n+  </div>\r\n+</template>\r\n+\r\n+<script lang=\"ts\" setup>\r\n+import { useRouter, useRoute } from 'vue-router'\r\n+import { useUser } from '../../store';\r\n+import { ref, reactive } from 'vue';\r\n+import { rejects } from 'assert';\r\n+import FormInstance from 'element-plus'\r\n+let router = useRouter()\r\n+let route = useRoute()\r\n+let userStore = useUser()\r\n+\r\n+\r\n+//表单验证\r\n+// 昵称格式：限16个字符，支持中英文、数字、减号或下划线\r\n+const regStr = /(^[\\\\u4e00-\\\\u9fa5_a-zA-Z0-9-]{1,16}$)/;\r\n+//校验密码：只能输入6-20个字母、数字、下划线  \r\n+const regPass = /^(\\w){6,20}$/\r\n+const ruleFormRef = ref()\r\n+const ruleForm = reactive({\r\n+  name: '',\r\n+  password: ''\r\n+})\r\n+const rules: any = reactive({\r\n+  name: [\r\n+    { required: true, message: '请输入用户名', trigger: 'blur' },\r\n+    { pattern: regStr, message: '限16个字符，支持中英文、数字、减号或下划线', trigger: 'blur' },\r\n+  ],\r\n+  password: [{ required: true, message: '请输入密码', trigger: ['blur', 'change'] },\r\n+  {\r\n+    pattern: regPass,\r\n+    message: '只能输入6-20个字母、数字、下划线的密码', trigger: ['blur', 'change']\r\n+  },],\r\n+})\r\n+const submitForm = (formEl) => {\r\n+  if (!formEl) return\r\n+  formEl.validate(async (valid) => {\r\n+    if (valid) {\r\n+      let result = await userStore.login(ruleForm)\r\n+      if (result == 'ok') {\r\n+        router.push('/')\r\n+      }\r\n+    } else {\r\n+      console.log('登录错误')\r\n+      return false\r\n+    }\r\n+  })\r\n+}\r\n+const resetForm = (formEl) => {\r\n+  if (!formEl) return\r\n+  formEl.resetFields()\r\n+}\r\n+</script>\r\n+<style scoped>\r\n+.el-i {\r\n+  width: 80% !important;\r\n+}\r\n+.sub {\r\n+  width: 100px;\r\n+  margin-right: 65px;\r\n+}\r\n+.reset {\r\n+  width: 100px;\r\n+}\r\n+.login {\r\n+  position: fixed;\r\n+  overflow: hidden;\r\n+  left: 50%;\r\n+  margin-left: -250px;\r\n+  top: 50%;\r\n+  margin-top: -350px;\r\n+  width: 500px;\r\n+  min-height: 555px;\r\n+  z-index: 10;\r\n+  right: 140px;\r\n+  background: #fff;\r\n+  -webkit-border-radius: 5px;\r\n+  -moz-border-radius: 5px;\r\n+  -ms-border-radius: 5px;\r\n+  -o-border-radius: 5px;\r\n+  border-radius: 5px;\r\n+  -webkit-box-shadow: 0px 3px 16px -5px #070707;\r\n+  box-shadow: 0px 3px 16px -5px #070707;\r\n+}\r\n+.log-cloud {\r\n+  background-image: url(./images/login-cloud.png);\r\n+  width: 63px;\r\n+  height: 40px;\r\n+  position: absolute;\r\n+  z-index: 1;\r\n+}\r\n+.login .cloud1 {\r\n+  top: 21px;\r\n+  left: -30px;\r\n+  transform: scale(0.6);\r\n+  animation: cloud1 20s linear infinite;\r\n+}\r\n+.login .cloud2 {\r\n+  top: 87px;\r\n+  right: 20px;\r\n+  animation: cloud2 19s linear infinite;\r\n+}\r\n+.login .cloud3 {\r\n+  top: 160px;\r\n+  left: 5px;\r\n+  transform: scale(0.8);\r\n+  animation: cloud3 21s linear infinite;\r\n+}\r\n+.login .cloud4 {\r\n+  top: 150px;\r\n+  left: -40px;\r\n+  transform: scale(0.4);\r\n+  animation: cloud4 19s linear infinite;\r\n+}\r\n+.log-bg {\r\n+  background: url(./images/login-bg.jpg);\r\n+  width: 100%;\r\n+  height: 312px;\r\n+  overflow: hidden;\r\n+}\r\n+.log-logo {\r\n+  height: 80px;\r\n+  margin: 120px auto 25px;\r\n+  text-align: center;\r\n+  color: #1fcab3;\r\n+  font-weight: bold;\r\n+  font-size: 40px;\r\n+}\r\n+.log-text {\r\n+  color: #57d4c3;\r\n+  font-size: 13px;\r\n+  text-align: center;\r\n+  margin: 0 auto;\r\n+}\r\n+.log-logo,\r\n+.log-text {\r\n+  z-index: 2;\r\n+}\r\n+.icons {\r\n+  background: url(./images/icons.png) no-repeat;\r\n+  display: inline-block;\r\n+}\r\n+.close {\r\n+  height: 16px;\r\n+  width: 16px;\r\n+  background-position: -13px 0;\r\n+}\r\n+.login-email {\r\n+  height: 17px;\r\n+  width: 29px;\r\n+  background-position: -117px 0;\r\n+}\r\n+.log-btns {\r\n+  padding: 15px 0;\r\n+  margin: 0 auto;\r\n+}\r\n+.log-btn {\r\n+  width: 402px;\r\n+  display: block;\r\n+  text-align: left;\r\n+  line-height: 50px;\r\n+  margin: 0 auto 15px;\r\n+  height: 50px;\r\n+  color: #fff;\r\n+  font-size: 13px;\r\n+  -webkit-border-radius: 5px;\r\n+  background-color: #3b5999;\r\n+  -moz-border-radius: 5px;\r\n+  -ms-border-radius: 5px;\r\n+  -o-border-radius: 5px;\r\n+  border-radius: 5px;\r\n+  position: relative;\r\n+}\r\n+.log-btn.tw {\r\n+  background-color: #13b4e9;\r\n+}\r\n+.log-btn.email {\r\n+  background-color: #50e3ce;\r\n+}\r\n+.log-btn:hover,\r\n+.log-btn:focus {\r\n+  color: #fff;\r\n+  opacity: 0.8;\r\n+}\r\n+.log-email {\r\n+  text-align: center;\r\n+  margin-top: 20px;\r\n+}\r\n+.log-email .log-btn {\r\n+  background-color: #50e3ce;\r\n+  text-align: center;\r\n+}\r\n+.log-input-empty {\r\n+  border: 1px solid #f37474 !important;\r\n+}\r\n+.isloading {\r\n+  background: #d6d6d6;\r\n+}\r\n+.log-btn .icons {\r\n+  margin-left: 30px;\r\n+  vertical-align: middle;\r\n+}\r\n+.log-btn .text {\r\n+  left: 95px;\r\n+  line-height: 50px;\r\n+  text-align: left;\r\n+  position: absolute;\r\n+}\r\n+.log-input {\r\n+  width: 370px;\r\n+  overflow: hidden;\r\n+  padding: 0 15px;\r\n+  font-size: 13px;\r\n+  border: 1px solid #ebebeb;\r\n+  margin: 0 auto 15px;\r\n+  height: 48px;\r\n+  line-height: 48px;\r\n+  -webkit-border-radius: 5px;\r\n+  -moz-border-radius: 5px;\r\n+  -ms-border-radius: 5px;\r\n+  -o-border-radius: 5px;\r\n+  border-radius: 5px;\r\n+}\r\n+.log-input.warn {\r\n+  border: 1px solid #f88787;\r\n+}\r\n+@-webkit-keyframes cloud1 {\r\n+  0% {\r\n+    left: 200px;\r\n+  }\r\n+  100% {\r\n+    left: -130px;\r\n+  }\r\n+}\r\n+@keyframes cloud1 {\r\n+  0% {\r\n+    left: 200px;\r\n+  }\r\n+  100% {\r\n+    left: -130px;\r\n+  }\r\n+}\r\n+@-webkit-keyframes cloud2 {\r\n+  0% {\r\n+    left: 500px;\r\n+  }\r\n+  100% {\r\n+    left: -90px;\r\n+  }\r\n+}\r\n+@keyframes cloud2 {\r\n+  0% {\r\n+    left: 500px;\r\n+  }\r\n+  100% {\r\n+    left: -90px;\r\n+  }\r\n+}\r\n+@-webkit-keyframes cloud3 {\r\n+  0% {\r\n+    left: 620px;\r\n+  }\r\n+  100% {\r\n+    left: -70px;\r\n+  }\r\n+}\r\n+@keyframes cloud3 {\r\n+  0% {\r\n+    left: 620px;\r\n+  }\r\n+  100% {\r\n+    left: -70px;\r\n+  }\r\n+}\r\n+@-webkit-keyframes cloud4 {\r\n+  0% {\r\n+    left: 100px;\r\n+  }\r\n+  100% {\r\n+    left: -70px;\r\n+  }\r\n+}\r\n+@keyframes cloud4 {\r\n+  0% {\r\n+    left: 100px;\r\n+  }\r\n+  100% {\r\n+    left: -70px;\r\n+  }\r\n+}\r\n+</style>\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1647601248002,
+            "name": "Commit-0",
+            "content": "<template></template>\r\n<script>\r\n</script>\r\n<style>\r\n</style>"
+        }
+    ]
+}

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 16,
             "patches": [
                 {
                     "date": 1646391894478,
@@ -44,6 +44,34 @@
                 {
                     "date": 1647173906777,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import Axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios'\r\n import { ElMessage as $message } from 'element-plus'\r\n-import * as nProgress from 'nprogress';\r\n+import * as nProgress from 'nprogress'\r\n const BASE_URL = 'http://127.0.0.1:8000/blog'\r\n const TIME_OUT = 5000\r\n \r\n // 通过Axios.create()方法创建一个自定义配置的axios实例\r\n"
+                },
+                {
+                    "date": 1647516499346,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import Axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios'\r\n import { ElMessage as $message } from 'element-plus'\r\n import * as nProgress from 'nprogress'\r\n-const BASE_URL = 'http://127.0.0.1:8000/blog'\r\n+const BASE_URL = 'http://www.foogeoo.ltd:9999/blog'\r\n const TIME_OUT = 5000\r\n \r\n // 通过Axios.create()方法创建一个自定义配置的axios实例\r\n const instance = Axios.create({\r\n"
+                },
+                {
+                    "date": 1648368174173,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,9 @@\n     }\r\n     return Promise.reject(res.data)\r\n   },\r\n   (error: AxiosError) => {\r\n+    nProgress.done()\r\n     if (error && error.response) {\r\n       errorHandle(error.response.status, error.response)\r\n       return Promise.reject(error.response)\r\n     }\r\n"
+                },
+                {
+                    "date": 1648378620786,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n         message: res.data.message || '请求异常，请刷新重试',\r\n         result: false\r\n       }\r\n     }\r\n-    return Promise.reject(res.data)\r\n+    return Promise.reject(res)\r\n   },\r\n   (error: AxiosError) => {\r\n     nProgress.done()\r\n     if (error && error.response) {\r\n"
+                },
+                {
+                    "date": 1648378627114,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n         message: res.data.message || '请求异常，请刷新重试',\r\n         result: false\r\n       }\r\n     }\r\n-    return Promise.reject(res)\r\n+    return Promise.reject(res.data)\r\n   },\r\n   (error: AxiosError) => {\r\n     nProgress.done()\r\n     if (error && error.response) {\r\n"
+                },
+                {
+                    "date": 1648378681466,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n         message: res.data.message || '请求异常，请刷新重试',\r\n         result: false\r\n       }\r\n     }\r\n-    return Promise.reject(res.data)\r\n+    return Promise.reject(res)\r\n   },\r\n   (error: AxiosError) => {\r\n     nProgress.done()\r\n     if (error && error.response) {\r\n"
+                },
+                {
+                    "date": 1648379103250,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,8 +65,9 @@\n       .then(res => resolve(res))\r\n       .catch(err => reject(err))\r\n   })\r\n }\r\n+\r\n // 导出我们常用的请求方法：\r\n const get = (url: string, params?: any) => getPromise('get', url, { params })\r\n const post = (url: string, params: any, config?: AxiosRequestConfig) => getPromise('post', url, params, config)\r\n const del = (url: string, params?: any, config?: AxiosRequestConfig) => getPromise('delete', url, params, config)\r\n"
+                },
+                {
+                    "date": 1648379591137,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,20 +45,20 @@\n )\r\n // 当捕获到错误请求时，可以自定义错误处理：\r\n const errorHandle = (status: number, error): void => {\r\n   // HTTP状态码判断\r\n-  switch (status) {\r\n-    case 401:\r\n-      return alert(`Error Code: ${status}, Message: ${error.msg || '登录失效，请重新登录'}`)\r\n-    case 403:\r\n-      return alert(`Error Code: ${status}, Message: ${error.msg || '你没有访问权限'}`)\r\n-    case 500:\r\n-      return alert(`Error Code: ${status}, Message: ${error.msg || '后台错误，请联系管理员'}`)\r\n-    case 502:\r\n-      return alert(`Error Code: ${status}, Message: ${error.msg || '平台环境异常'}`)\r\n-    default:\r\n-      alert(`Error Code: ${status}, Message: ${error.msg || '未知错误，请刷新重试'}`)\r\n-  }\r\n+  // switch (status) {\r\n+  //   case 401:\r\n+  //     return alert(`Error Code: ${status}, Message: ${error.msg || '登录失效，请重新登录'}`)\r\n+  //   case 403:\r\n+  //     return alert(`Error Code: ${status}, Message: ${error.msg || '你没有访问权限'}`)\r\n+  //   case 500:\r\n+  //     return alert(`Error Code: ${status}, Message: ${error.msg || '后台错误，请联系管理员'}`)\r\n+  //   case 502:\r\n+  //     return alert(`Error Code: ${status}, Message: ${error.msg || '平台环境异常'}`)\r\n+  //   default:\r\n+  //     alert(`Error Code: ${status}, Message: ${error.msg || '未知错误，请刷新重试'}`)\r\n+  // }\r\n }\r\n const getPromise = (method, url, params, config = {}) => {\r\n   return new Promise((resolve, reject) => {\r\n     instance[method](url, params, config).catch(e => e.data)\r\n"
                 }
             ],
             "date": 1646391894477,

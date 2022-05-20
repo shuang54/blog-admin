@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1646992136326,
@@ -12,6 +12,42 @@
                 {
                     "date": 1646992286156,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,7 @@\n+<template>\r\n+  <div id=\"article-container\">\r\n+    <p>头部视图</p>\r\n+  </div>\r\n+</template>\r\n+<script setup lang=\"ts\"></script>\r\n+<style lang=\"less\" scoped></style>\r\n"
+                },
+                {
+                    "date": 1648387710762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <template>\r\n   <div id=\"article-container\">\r\n-    <p>头部视图</p>\r\n+    <el-container></el-container>\r\n   </div>\r\n </template>\r\n <script setup lang=\"ts\"></script>\r\n <style lang=\"less\" scoped></style>\r\n"
+                },
+                {
+                    "date": 1648387779928,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,13 @@\n <template>\r\n   <div id=\"article-container\">\r\n-    <el-container></el-container>\r\n+    <el-container>\r\n+      <el-row>\r\n+        <el-col :span=\"8\"></el-col>\r\n+        <el-col :span=\"8\">博客系统</el-col>\r\n+        <el-col :span=\"8\"></el-col>\r\n+      </el-row>\r\n+    </el-container>\r\n   </div>\r\n </template>\r\n <script setup lang=\"ts\"></script>\r\n <style lang=\"less\" scoped></style>\r\n"
+                },
+                {
+                    "date": 1648387791487,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n   <div id=\"article-container\">\r\n     <el-container>\r\n       <el-row>\r\n         <el-col :span=\"8\"></el-col>\r\n-        <el-col :span=\"8\">博客系统</el-col>\r\n+        <el-col :span=\"8\">博客后台系统</el-col>\r\n         <el-col :span=\"8\"></el-col>\r\n       </el-row>\r\n     </el-container>\r\n   </div>\r\n"
+                },
+                {
+                    "date": 1648387801168,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n   <div id=\"article-container\">\r\n     <el-container>\r\n       <el-row>\r\n         <el-col :span=\"8\"></el-col>\r\n-        <el-col :span=\"8\">博客后台系统</el-col>\r\n+        <el-col :span=\"8\">后台博客系统</el-col>\r\n         <el-col :span=\"8\"></el-col>\r\n       </el-row>\r\n     </el-container>\r\n   </div>\r\n"
+                },
+                {
+                    "date": 1648387849108,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,11 @@\n <template>\r\n   <div id=\"article-container\">\r\n-    <el-container>\r\n-      <el-row>\r\n-        <el-col :span=\"8\"></el-col>\r\n-        <el-col :span=\"8\">后台博客系统</el-col>\r\n-        <el-col :span=\"8\"></el-col>\r\n-      </el-row>\r\n-    </el-container>\r\n+    <el-row>\r\n+      <el-col :span=\"8\"></el-col>\r\n+      <el-col :span=\"8\">后台博客系统</el-col>\r\n+      <el-col :span=\"8\"></el-col>\r\n+    </el-row>\r\n   </div>\r\n </template>\r\n <script setup lang=\"ts\"></script>\r\n <style lang=\"less\" scoped></style>\r\n"
+                },
+                {
+                    "date": 1648387890426,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,11 @@\n   <div id=\"article-container\">\r\n     <el-row>\r\n       <el-col :span=\"8\"></el-col>\r\n       <el-col :span=\"8\">后台博客系统</el-col>\r\n-      <el-col :span=\"8\"></el-col>\r\n+      <el-col :span=\"8\">\r\n+        <a>退出登录</a>\r\n+      </el-col>\r\n     </el-row>\r\n   </div>\r\n </template>\r\n <script setup lang=\"ts\"></script>\r\n"
+                },
+                {
+                    "date": 1648388026934,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,11 +3,21 @@\n     <el-row>\r\n       <el-col :span=\"8\"></el-col>\r\n       <el-col :span=\"8\">后台博客系统</el-col>\r\n       <el-col :span=\"8\">\r\n-        <a>退出登录</a>\r\n+        <a @click=\"signOut\" href=\"javasctipt:;\">退出登录</a>\r\n       </el-col>\r\n     </el-row>\r\n   </div>\r\n </template>\r\n-<script setup lang=\"ts\"></script>\r\n+<script setup lang=\"ts\">\r\n+import {useRoute,useRouter} from 'vue-router'\r\n+import { useUser } from '../../store';\r\n+let route = useRoute()\r\n+let router = useRouter()\r\n+let userStore = useUser()\r\n+\r\n+const signOut = ()=>{\r\n+\r\n+}\r\n+</script>\r\n <style lang=\"less\" scoped></style>\r\n"
+                },
+                {
+                    "date": 1648388064408,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,15 +9,16 @@\n     </el-row>\r\n   </div>\r\n </template>\r\n <script setup lang=\"ts\">\r\n-import {useRoute,useRouter} from 'vue-router'\r\n+import { useRoute, useRouter } from 'vue-router'\r\n import { useUser } from '../../store';\r\n let route = useRoute()\r\n let router = useRouter()\r\n let userStore = useUser()\r\n \r\n-const signOut = ()=>{\r\n-\r\n+const signOut = () => {\r\n+  userStore.signOut()\r\n+  router.push('/login')\r\n }\r\n </script>\r\n <style lang=\"less\" scoped></style>\r\n"
+                },
+                {
+                    "date": 1648388161281,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n     <el-row>\r\n       <el-col :span=\"8\"></el-col>\r\n       <el-col :span=\"8\">后台博客系统</el-col>\r\n       <el-col :span=\"8\">\r\n-        <a @click=\"signOut\" href=\"javasctipt:;\">退出登录</a>\r\n+        <a @click=\"signOut\">退出登录</a>\r\n       </el-col>\r\n     </el-row>\r\n   </div>\r\n </template>\r\n"
                 }
             ],
             "date": 1646992136326,

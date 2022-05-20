@@ -73,7 +73,7 @@ const add = async () => {
 
 </script>
 
-<style scoped lang="less">
+<style  lang="less">
 #add-file-container {
   width: 100%;
   height: 100%;

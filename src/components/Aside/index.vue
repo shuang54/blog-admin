@@ -10,25 +10,25 @@
     active-text-color="#ffd04b"
     router
   >
-    <el-menu-item index="/">
+    <el-menu-item index="/admin">
       <el-icon>
         <location />
       </el-icon>
       <template #title>首页</template>
     </el-menu-item>
 
-    <el-menu-item index="/admin/article">
+    <el-menu-item index="/article">
       <el-icon>
         <icon-menu />
       </el-icon>
-      <template #title>文章</template>
+      <template #title>文章管理</template>
     </el-menu-item>
 
-    <el-menu-item index="/admin/category">
+    <el-menu-item index="/category">
       <el-icon>
         <document />
       </el-icon>
-      <template #title>分类</template>
+      <template #title>分类管理</template>
     </el-menu-item>
     <!-- <el-menu-item index="4">
       <el-icon>

@@ -3,11 +3,59 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 12,
             "patches": [
                 {
                     "date": 1646993963801,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1648353768896,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,19 @@\n <template>\r\n-  <div id=\"article-container\">\r\n+  <!-- <div id=\"article-container\">\r\n     <p>main视图</p>\r\n-  </div>\r\n+  </div>-->\r\n+  <!-- 头部 -->\r\n+  <el-header>博客后台管理系统</el-header>\r\n+  <el-container>\r\n+    <!-- 侧边栏 -->\r\n+    <el-aside width=\"200px\">\r\n+      <Aside></Aside>\r\n+    </el-aside>\r\n+    <!-- 主体内容 -->\r\n+    <el-main>\r\n+      <router-view></router-view>\r\n+    </el-main>\r\n+  </el-container>\r\n </template>\r\n <script setup lang=\"ts\"></script>\r\n <style lang=\"less\" scoped></style>\r\n"
+                },
+                {
+                    "date": 1648353806375,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,5 +15,40 @@\n     </el-main>\r\n   </el-container>\r\n </template>\r\n <script setup lang=\"ts\"></script>\r\n-<style lang=\"less\" scoped></style>\r\n+<style scoped lang=\"less\">\r\n+.el-header,\r\n+.el-footer {\r\n+  background-color: #b3c0d1;\r\n+  color: var(--el-text-color-primary);\r\n+  text-align: center;\r\n+  line-height: 60px;\r\n+}\r\n+\r\n+.el-aside {\r\n+  background-color: #d3dce6;\r\n+  color: var(--el-text-color-primary);\r\n+  text-align: center;\r\n+  line-height: 200px;\r\n+  height: 100vh;\r\n+}\r\n+\r\n+.el-main {\r\n+  background-color: white;\r\n+  color: var(--el-text-color-primary);\r\n+  text-align: center;\r\n+}\r\n+\r\n+body > .el-container {\r\n+  margin-bottom: 40px;\r\n+}\r\n+\r\n+.el-container:nth-child(5) .el-aside,\r\n+.el-container:nth-child(6) .el-aside {\r\n+  line-height: 260px;\r\n+}\r\n+\r\n+.el-container:nth-child(7) .el-aside {\r\n+  line-height: 320px;\r\n+}\r\n+</style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648353863829,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,15 @@\n       <router-view></router-view>\r\n     </el-main>\r\n   </el-container>\r\n </template>\r\n-<script setup lang=\"ts\"></script>\r\n+<script setup lang=\"ts\">\r\n+import { defineAsyncComponent } from \"vue\";\r\n+//异步导入组件\r\n+const Aside = defineAsyncComponent(() =>\r\n+  import('./components/Aside/index.vue')\r\n+)\r\n+</script>\r\n <style scoped lang=\"less\">\r\n .el-header,\r\n .el-footer {\r\n   background-color: #b3c0d1;\r\n"
+                },
+                {
+                    "date": 1648353871123,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n <script setup lang=\"ts\">\r\n import { defineAsyncComponent } from \"vue\";\r\n //异步导入组件\r\n const Aside = defineAsyncComponent(() =>\r\n-  import('./components/Aside/index.vue')\r\n+  import('./Aside/index.vue')\r\n )\r\n </script>\r\n <style scoped lang=\"less\">\r\n .el-header,\r\n"
+                },
+                {
+                    "date": 1648353914688,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,26 +1,28 @@\n <template>\r\n   <!-- <div id=\"article-container\">\r\n     <p>main视图</p>\r\n   </div>-->\r\n-  <!-- 头部 -->\r\n-  <el-header>博客后台管理系统</el-header>\r\n   <el-container>\r\n-    <!-- 侧边栏 -->\r\n-    <el-aside width=\"200px\">\r\n-      <Aside></Aside>\r\n-    </el-aside>\r\n-    <!-- 主体内容 -->\r\n-    <el-main>\r\n-      <router-view></router-view>\r\n-    </el-main>\r\n+    <!-- 头部 -->\r\n+    <el-header>博客后台管理系统</el-header>\r\n+    <el-container>\r\n+      <!-- 侧边栏 -->\r\n+      <el-aside width=\"200px\">\r\n+        <Aside></Aside>\r\n+      </el-aside>\r\n+      <!-- 主体内容 -->\r\n+      <el-main>\r\n+        <router-view></router-view>\r\n+      </el-main>\r\n+    </el-container>\r\n   </el-container>\r\n </template>\r\n <script setup lang=\"ts\">\r\n import { defineAsyncComponent } from \"vue\";\r\n //异步导入组件\r\n const Aside = defineAsyncComponent(() =>\r\n-  import('./Aside/index.vue')\r\n+  import('../Aside/index.vue')\r\n )\r\n </script>\r\n <style scoped lang=\"less\">\r\n .el-header,\r\n"
+                },
+                {
+                    "date": 1648387524708,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,62 @@\n+<template>\r\n+  <!-- <div id=\"article-container\">\r\n+    <p>main视图</p>\r\n+  </div>-->\r\n+  <el-container>\r\n+    <!-- 头部 -->\r\n+    <el-header></el-header>\r\n+    <el-container>\r\n+      <!-- 侧边栏 -->\r\n+      <el-aside width=\"200px\">\r\n+        <Aside></Aside>\r\n+      </el-aside>\r\n+      <!-- 主体内容 -->\r\n+      <el-main>\r\n+        <router-view></router-view>\r\n+      </el-main>\r\n+    </el-container>\r\n+  </el-container>\r\n+</template>\r\n+<script setup lang=\"ts\">\r\n+import { defineAsyncComponent } from \"vue\";\r\n+//异步导入组件\r\n+const Aside = defineAsyncComponent(() =>\r\n+  import('../Aside/index.vue')\r\n+)\r\n+</script>\r\n+<style scoped lang=\"less\">\r\n+.el-header,\r\n+.el-footer {\r\n+  background-color: #b3c0d1;\r\n+  color: var(--el-text-color-primary);\r\n+  text-align: center;\r\n+  line-height: 60px;\r\n+}\r\n+\r\n+.el-aside {\r\n+  background-color: #d3dce6;\r\n+  color: var(--el-text-color-primary);\r\n+  text-align: center;\r\n+  line-height: 200px;\r\n+  height: 100vh;\r\n+}\r\n+\r\n+.el-main {\r\n+  background-color: white;\r\n+  color: var(--el-text-color-primary);\r\n+  text-align: center;\r\n+}\r\n+\r\n+body > .el-container {\r\n+  margin-bottom: 40px;\r\n+}\r\n+\r\n+.el-container:nth-child(5) .el-aside,\r\n+.el-container:nth-child(6) .el-aside {\r\n+  line-height: 260px;\r\n+}\r\n+\r\n+.el-container:nth-child(7) .el-aside {\r\n+  line-height: 320px;\r\n+}\r\n+</style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1648387586379,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,70 +3,8 @@\n     <p>main视图</p>\r\n   </div>-->\r\n   <el-container>\r\n     <!-- 头部 -->\r\n-    <el-header></el-header>\r\n-    <el-container>\r\n-      <!-- 侧边栏 -->\r\n-      <el-aside width=\"200px\">\r\n-        <Aside></Aside>\r\n-      </el-aside>\r\n-      <!-- 主体内容 -->\r\n-      <el-main>\r\n-        <router-view></router-view>\r\n-      </el-main>\r\n-    </el-container>\r\n-  </el-container>\r\n-</template>\r\n-<script setup lang=\"ts\">\r\n-import { defineAsyncComponent } from \"vue\";\r\n-//异步导入组件\r\n-const Aside = defineAsyncComponent(() =>\r\n-  import('../Aside/index.vue')\r\n-)\r\n-</script>\r\n-<style scoped lang=\"less\">\r\n-.el-header,\r\n-.el-footer {\r\n-  background-color: #b3c0d1;\r\n-  color: var(--el-text-color-primary);\r\n-  text-align: center;\r\n-  line-height: 60px;\r\n-}\r\n-\r\n-.el-aside {\r\n-  background-color: #d3dce6;\r\n-  color: var(--el-text-color-primary);\r\n-  text-align: center;\r\n-  line-height: 200px;\r\n-  height: 100vh;\r\n-}\r\n-\r\n-.el-main {\r\n-  background-color: white;\r\n-  color: var(--el-text-color-primary);\r\n-  text-align: center;\r\n-}\r\n-\r\n-body > .el-container {\r\n-  margin-bottom: 40px;\r\n-}\r\n-\r\n-.el-container:nth-child(5) .el-aside,\r\n-.el-container:nth-child(6) .el-aside {\r\n-  line-height: 260px;\r\n-}\r\n-\r\n-.el-container:nth-child(7) .el-aside {\r\n-  line-height: 320px;\r\n-}\r\n-</style>\n-<template>\r\n-  <!-- <div id=\"article-container\">\r\n-    <p>main视图</p>\r\n-  </div>-->\r\n-  <el-container>\r\n-    <!-- 头部 -->\r\n     <el-header>博客后台管理系统</el-header>\r\n     <el-container>\r\n       <!-- 侧边栏 -->\r\n       <el-aside width=\"200px\">\r\n@@ -80,8 +18,9 @@\n   </el-container>\r\n </template>\r\n <script setup lang=\"ts\">\r\n import { defineAsyncComponent } from \"vue\";\r\n+import { Header } from '../Header/index.vue'\r\n //异步导入组件\r\n const Aside = defineAsyncComponent(() =>\r\n   import('../Aside/index.vue')\r\n )\r\n"
+                },
+                {
+                    "date": 1648387598085,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n   </el-container>\r\n </template>\r\n <script setup lang=\"ts\">\r\n import { defineAsyncComponent } from \"vue\";\r\n-import { Header } from '../Header/index.vue'\r\n+import Header from '../Header/index.vue'\r\n //异步导入组件\r\n const Aside = defineAsyncComponent(() =>\r\n   import('../Aside/index.vue')\r\n )\r\n"
+                },
+                {
+                    "date": 1648387652180,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,13 +18,16 @@\n   </el-container>\r\n </template>\r\n <script setup lang=\"ts\">\r\n import { defineAsyncComponent } from \"vue\";\r\n-import Header from '../Header/index.vue'\r\n //异步导入组件\r\n const Aside = defineAsyncComponent(() =>\r\n   import('../Aside/index.vue')\r\n )\r\n+const Header = defineAsyncComponent(() => {\r\n+  import('../Header/index.vue')\r\n+\r\n+})\r\n </script>\r\n <style scoped lang=\"less\">\r\n .el-header,\r\n .el-footer {\r\n"
+                },
+                {
+                    "date": 1648387660322,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,11 @@\n     <p>main视图</p>\r\n   </div>-->\r\n   <el-container>\r\n     <!-- 头部 -->\r\n-    <el-header>博客后台管理系统</el-header>\r\n+    <el-header>\r\n+      <Header></Header>>\r\n+    </el-header>\r\n     <el-container>\r\n       <!-- 侧边栏 -->\r\n       <el-aside width=\"200px\">\r\n         <Aside></Aside>\r\n"
+                },
+                {
+                    "date": 1648387689877,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,12 +24,12 @@\n //异步导入组件\r\n const Aside = defineAsyncComponent(() =>\r\n   import('../Aside/index.vue')\r\n )\r\n-const Header = defineAsyncComponent(() => {\r\n+const Header = defineAsyncComponent(() =>\r\n   import('../Header/index.vue')\r\n \r\n-})\r\n+)\r\n </script>\r\n <style scoped lang=\"less\">\r\n .el-header,\r\n .el-footer {\r\n"
+                },
+                {
+                    "date": 1653052226608,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n         <Aside></Aside>\r\n       </el-aside>\r\n       <!-- 主体内容 -->\r\n       <el-main>\r\n-        <router-view></router-view>\r\n+        <router-view ></router-view>\r\n       </el-main>\r\n     </el-container>\r\n   </el-container>\r\n </template>\r\n"
                 }
             ],
             "date": 1646993963801,
