@@ -33,6 +33,7 @@ instance.interceptors.response.use(
     return Promise.reject(res)
   },
   (error: AxiosError) => {
+
     nProgress.done()
     if (error && error.response) {
       errorHandle(error.response.status, error.response)

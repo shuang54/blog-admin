@@ -53,11 +53,12 @@ if (route.params.id) {
 
 // 添加文章
 const add = async () => {
+  console.log(markdown.value);
+     
   // 根据传递的路由参数判断 添加还是更新
   const id = route.params.id
   if (id) {
     if (oldMarkdown == markdown.value) {
-
     }
     let data = { id: id, markdown: markdown.value, title: title.value, categoryId: categoryId.value }
     useArticle().updateArticle(data)

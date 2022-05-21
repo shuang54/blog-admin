@@ -38,6 +38,11 @@ const router = createRouter({
           component: () => import('../view/AddFile/index.vue'),
           name: 'updateArticle'
         },
+        {
+          path: '/personal',
+          component: () => import('../view/personal/index.vue'),
+          name: 'personal'
+        },
       ],
     },
     {

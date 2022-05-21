@@ -70,7 +70,7 @@
         <el-pagination
           v-model:currentPage="currentPage"
           v-model:page-size="pageSize"
-          :page-sizes="[5, 10, 15, 20]"
+          :page-sizes="[5, 8, 12,15]"
           :disabled="disabled"
           :background="background"
           layout="total, sizes, prev, pager, next, jumper"
@@ -225,4 +225,6 @@ articleStore.getArticleList({ num: pageSize.value, page: page.value })
   display: flex;
   justify-content: flex-start;
 }
+
+
 </style>

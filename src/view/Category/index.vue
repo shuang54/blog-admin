@@ -72,7 +72,7 @@
         <el-pagination
           v-model:currentPage="currentPage"
           v-model:page-size="pageSize"
-          :page-sizes="[4, 8, 12, 16]"
+          :page-sizes="[4,6, 8, 10]"
           :small="small"
           :disabled="disabled"
           :background="background"
@@ -216,7 +216,6 @@ const handleSizeChange = (val: number) => {
 }
 const handleCurrentChange = (val: number) => {
   // console.log(`current page: ${val}`)
-
 }
 // 弹出框------------->
 const dialogTableVisible = ref(false)
@@ -237,6 +236,9 @@ const addCategory = () => {
 }
 .table {
   margin-top: 20px;
+  .el-input {
+  width: 300px;
+}
 }
 // 分页
 .demo-pagination-block + .demo-pagination-block {
@@ -263,9 +265,7 @@ const addCategory = () => {
 .el-select {
   width: 300px;
 }
-.el-input {
-  width: 300px;
-}
+
 .dialog-footer button:first-child {
   margin-right: 10px;
 }

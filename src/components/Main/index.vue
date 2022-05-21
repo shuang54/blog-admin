@@ -14,13 +14,13 @@
       </el-aside>
       <!-- 主体内容 -->
       <el-main>
-        <router-view ></router-view>
+   <router-view />
       </el-main>
     </el-container>
   </el-container>
 </template>
 <script setup lang="ts">
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, onBeforeMount } from "vue";
 //异步导入组件
 const Aside = defineAsyncComponent(() =>
   import('../Aside/index.vue')
@@ -29,6 +29,9 @@ const Header = defineAsyncComponent(() =>
   import('../Header/index.vue')
 
 )
+onBeforeMount(()=>{
+  // document.getElementById("loader-wrapper").remove()
+})
 </script>
 <style scoped lang="less">
 .el-header,
@@ -44,13 +47,14 @@ const Header = defineAsyncComponent(() =>
   color: var(--el-text-color-primary);
   text-align: center;
   line-height: 200px;
-  height: 100vh;
+  height:calc(100vh - 60px);
+  overflow-x:hidden;
+  width: auto;
 }
 
 .el-main {
   background-color: white;
   color: var(--el-text-color-primary);
-  text-align: center;
 }
 
 body > .el-container {
@@ -65,4 +69,5 @@ body > .el-container {
 .el-container:nth-child(7) .el-aside {
   line-height: 320px;
 }
+
 </style>

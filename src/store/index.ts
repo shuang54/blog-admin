@@ -1,72 +1,38 @@
-import axios, { Axios } from 'axios'
 import { defineStore } from 'pinia'
 import { get, del, put, post } from '../utils/axios'
 import { ElMessage as message } from 'element-plus'
-import { useCookies } from 'vue3-cookies'
-import * as nProgress from 'nprogress'
-const { cookies } = useCookies()
+import { createPinia } from 'pinia'
+import { useCategory as category } from './category'
+const store = createPinia()
 
-export const useCategory = defineStore('category', {
-  // 状态/数据
-  state: () => {
-    return {
-      categoryList: [],
-    }
-  },
-
-  getters: {
-
-  },
-
-  actions: {
-    async getCategoryList() {
-      let result: any = await get('category')
-      this.categoryList = result.data
-    },
-    async delCategoryById(id: number) {
-      let result: any = await del(`category/${id}`)
-      if (result.data == 1) {
-        this.getCategoryList()
-        message.success('删除成功');
-      } else {
-        message.success('删除失败')
-      }
-      // let result = await axios.put(`http://127.0.0.1:8000/blog/category/5/12`)
-    },
-    async updateCategory(params) {
-      let result: any = await put(`category/${params.id}/${params.categoryName}`)
-      if (result.data == 1) {
-        this.getCategoryList()
-        message.success('更新成功');
-      } else {
-        this.getCategoryList()
-        message.error('更新失败')
-      }
-    },
-    async addCategory(params) {
-      let result: any = await post(`category`, params)
-      if (result.data != []) {
-        this.getCategoryList()
-        message.success('添加成功');
-      } else {
-        this.getCategoryList()
-        message.error('添加失败')
-      }
-    },
-  }
-})
+export default store
+export const useCategory = category
 export const useArticle = defineStore('article', {
   state: () => {
     return {
       articleList: [],
       articleData: [],
       total: 0,
+      articleTotalData: [[], []],
     }
   },
   getters: {
 
   },
+
   actions: {
+    // 文章提交统计
+    async getArticleTotal() {
+      const result: any = await get('getArticleTotal')
+      if (result.code == 200) {
+        result.data.forEach((item: any, index) => {
+          this.articleTotalData[0].push(item.dates)
+          this.articleTotalData[1].push(item.value)
+        })
+      } else {
+        message.error('查询文章提交统计失败')
+      }
+    },
     async getArticleList(data) {
       let result: any = await get('articlelist', data)
       this.articleList = result.data
@@ -95,6 +61,8 @@ export const useArticle = defineStore('article', {
     },
     async updateArticle(data) {
       let result: any = await put(`article?id=${data.id}&title=${data.title}&categoryid=${data.categoryId}&markdown=${data.markdown}`)
+
+
       if (result.data == 1 || result.data == 0) {
         message.success('更新成功')
       } else {
