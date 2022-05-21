@@ -14,7 +14,7 @@
       </el-aside>
       <!-- 主体内容 -->
       <el-main>
-   <router-view />
+        <router-view />
       </el-main>
     </el-container>
   </el-container>
@@ -29,7 +29,7 @@ const Header = defineAsyncComponent(() =>
   import('../Header/index.vue')
 
 )
-onBeforeMount(()=>{
+onBeforeMount(() => {
   // document.getElementById("loader-wrapper").remove()
 })
 </script>
@@ -47,8 +47,8 @@ onBeforeMount(()=>{
   color: var(--el-text-color-primary);
   text-align: center;
   line-height: 200px;
-  height:calc(100vh - 60px);
-  overflow-x:hidden;
+  height: calc(100vh - 60px);
+  overflow-x: hidden;
   width: auto;
 }
 
@@ -57,7 +57,7 @@ onBeforeMount(()=>{
   color: var(--el-text-color-primary);
 }
 
-body > .el-container {
+body>.el-container {
   margin-bottom: 40px;
 }
 
@@ -69,5 +69,4 @@ body > .el-container {
 .el-container:nth-child(7) .el-aside {
   line-height: 320px;
 }
-
 </style>
