@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 116,
+            "activePatchIndex": 117,
             "patches": [
                 {
                     "date": 1646380259106,
@@ -472,6 +472,10 @@
                 {
                     "date": 1653052822254,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,12 +3,12 @@\n const routerHistory = createWebHistory()\r\n const router = createRouter({\r\n   history: routerHistory,\r\n   routes: [\r\n-    // {\r\n-    //   path: '/',\r\n-    //   redirect: '/admin'\r\n-    // },\r\n+    {\r\n+      path: '/',\r\n+      redirect: '/admin'\r\n+    },\r\n \r\n     {\r\n       path: '/',\r\n       component: () => import('../components/Main/index.vue'),\r\n"
+                },
+                {
+                    "date": 1653194927133,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,8 +37,13 @@\n           path: '/updateArticle',\r\n           component: () => import('../view/AddFile/index.vue'),\r\n           name: 'updateArticle'\r\n         },\r\n+        {\r\n+          path: '/personal',\r\n+          component: () => import('../view/Personal/index.vue'),\r\n+          name: 'personal'\r\n+        },\r\n       ],\r\n     },\r\n     {\r\n       path: '/login',\r\n"
                 }
             ],
             "date": 1646380259106,

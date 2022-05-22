@@ -40,7 +40,7 @@ const router = createRouter({
         },
         {
           path: '/personal',
-          component: () => import('../view/personal/index.vue'),
+          component: () => import('../view/Personal/index.vue'),
           name: 'personal'
         },
       ],

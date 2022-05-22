@@ -4,10 +4,11 @@
     <el-row>
       <el-col class="header-left" :span="8">
         <!-- <el-button @click="setIsCollapse">折叠</el-button> -->
+
+        <h1>博客后台管理系统</h1>
         <el-icon @click="setIsCollapse" class="expand" :size="40">
           <Expand />
         </el-icon>
-        <h1>博客后台管理系统</h1>
       </el-col>
       <el-col :span="8"></el-col>
       <el-col :span="8">
@@ -28,7 +29,10 @@
                 <el-dropdown-item>
                   <router-link to="/personal">个人中心</router-link>
                 </el-dropdown-item>
-                <el-dropdown-item>Action 2</el-dropdown-item>
+                <el-dropdown-item>
+                  <a href="https://gitee.com/foochange/blog-admin" target="_blank">仓库地址</a>
+
+                </el-dropdown-item>
                 <el-dropdown-item @click="signOut" divided>退出登录</el-dropdown-item>
               </el-dropdown-menu>
             </template>
@@ -55,6 +59,11 @@ const signOut = () => {
   userStore.signOut()
   router.push('/login')
 }
+// 点击跳转仓库地址
+// const jumpAddress = () => {
+//   window.open('https://gitee.com/foochange/blog-admin', '_blank')
+// }
+
 </script>
 <style lang="less" scoped>
 a {

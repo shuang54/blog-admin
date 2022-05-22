@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 12,
+            "activePatchIndex": 13,
             "patches": [
                 {
                     "date": 1646993963801,
@@ -56,6 +56,10 @@
                 {
                     "date": 1653052226608,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n         <Aside></Aside>\r\n       </el-aside>\r\n       <!-- 主体内容 -->\r\n       <el-main>\r\n-        <router-view></router-view>\r\n+        <router-view ></router-view>\r\n       </el-main>\r\n     </el-container>\r\n   </el-container>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1653194016166,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,23 +13,26 @@\n         <Aside></Aside>\r\n       </el-aside>\r\n       <!-- 主体内容 -->\r\n       <el-main>\r\n-        <router-view ></router-view>\r\n+        <router-view />\r\n       </el-main>\r\n     </el-container>\r\n   </el-container>\r\n </template>\r\n <script setup lang=\"ts\">\r\n-import { defineAsyncComponent } from \"vue\";\r\n+import { defineAsyncComponent, onBeforeMount } from \"vue\";\r\n //异步导入组件\r\n const Aside = defineAsyncComponent(() =>\r\n   import('../Aside/index.vue')\r\n )\r\n const Header = defineAsyncComponent(() =>\r\n   import('../Header/index.vue')\r\n \r\n )\r\n+onBeforeMount(() => {\r\n+  // document.getElementById(\"loader-wrapper\").remove()\r\n+})\r\n </script>\r\n <style scoped lang=\"less\">\r\n .el-header,\r\n .el-footer {\r\n@@ -43,18 +46,19 @@\n   background-color: #d3dce6;\r\n   color: var(--el-text-color-primary);\r\n   text-align: center;\r\n   line-height: 200px;\r\n-  height: 100vh;\r\n+  height: calc(100vh - 60px);\r\n+  overflow-x: hidden;\r\n+  width: auto;\r\n }\r\n \r\n .el-main {\r\n   background-color: white;\r\n   color: var(--el-text-color-primary);\r\n-  text-align: center;\r\n }\r\n \r\n-body > .el-container {\r\n+body>.el-container {\r\n   margin-bottom: 40px;\r\n }\r\n \r\n .el-container:nth-child(5) .el-aside,\r\n"
                 }
             ],
             "date": 1646993963801,

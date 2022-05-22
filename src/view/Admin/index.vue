@@ -68,7 +68,7 @@ function initPieChart() {
     },
     tooltip: {
       trigger: 'item',
-      formatter: '{a} <br/>{b} : {c} ({d}%)'
+      formatter: '{b} : {c} 篇({d}%)'
     },
     legend: {
       bottom: 10,
@@ -120,6 +120,11 @@ function initPieChart() {
     </div>
     <div class="item-box">
       <div class="item">
+        <a href="http://www.foogeoo.ltd:9998/#/" target="_blank">
+          博客前台
+        </a>
+      </div>
+      <div class="item">
         <router-link to="/article">文章管理</router-link>
       </div>
       <div class="item">
@@ -132,8 +137,6 @@ function initPieChart() {
   </div>
 </template>
 <style scoped lang="less">
-#admin-container {}
-
 .title {
   font-size: 24px;
   margin-left: 80px;
@@ -165,8 +168,8 @@ function initPieChart() {
 
   .item {
     background-color: white;
-    width: 300px;
-    height: 200px;
+    width: 200px;
+    height: 100px;
     margin-left: 10px;
     box-shadow: 0px 0px 12px rgba(0, 0, 0, .12);
     transition: .3s;
@@ -180,7 +183,7 @@ function initPieChart() {
       height: 100%;
       display: block;
       font-size: 24px;
-      line-height: 184px;
+      line-height: 100px;
 
       &:hover {
         color: #000;

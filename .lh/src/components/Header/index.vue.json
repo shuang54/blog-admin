@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 10,
+            "activePatchIndex": 23,
             "patches": [
                 {
                     "date": 1646992136326,
@@ -48,6 +48,58 @@
                 {
                     "date": 1648388161281,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n     <el-row>\r\n       <el-col :span=\"8\"></el-col>\r\n       <el-col :span=\"8\">后台博客系统</el-col>\r\n       <el-col :span=\"8\">\r\n-        <a @click=\"signOut\" href=\"javasctipt:;\">退出登录</a>\r\n+        <a @click=\"signOut\">退出登录</a>\r\n       </el-col>\r\n     </el-row>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1653188856107,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,24 +1,113 @@\n <template>\r\n+\r\n   <div id=\"article-container\">\r\n     <el-row>\r\n+      <el-col class=\"header-left\" :span=\"8\">\r\n+        <!-- <el-button @click=\"setIsCollapse\">折叠</el-button> -->\r\n+        <el-icon @click=\"setIsCollapse\" class=\"expand\" :size=\"40\">\r\n+          <Expand />\r\n+        </el-icon>\r\n+        <h1>博客后台管理系统</h1>\r\n+      </el-col>\r\n       <el-col :span=\"8\"></el-col>\r\n-      <el-col :span=\"8\">后台博客系统</el-col>\r\n       <el-col :span=\"8\">\r\n-        <a @click=\"signOut\">退出登录</a>\r\n+        <!-- <a @click=\"signOut\">退出登录</a> -->\r\n+        <div class=\"user\">\r\n+          <el-image style=\"width: 55px; height: 55px\"\r\n+            src=\"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F7ad1e283fc93d4eea2e392eceedea69d8b33618019160-z1Va2S_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1655734206&t=c996fce6d47701e5065d65a9017079f1\"\r\n+            lazy fit=\"fill\" />\r\n+          <el-dropdown>\r\n+            <span class=\"name\">\r\n+              admin\r\n+              <el-icon :size=\"20\" color=\"white\">\r\n+                <caret-bottom />\r\n+              </el-icon>\r\n+            </span>\r\n+            <template #dropdown>\r\n+              <el-dropdown-menu>\r\n+                <el-dropdown-item>\r\n+                  <router-link to=\"/personal\">个人中心</router-link>\r\n+                </el-dropdown-item>\r\n+                <el-dropdown-item>\r\n+                  <router-link to=\"http://www.github.com/shuang54\">GitHub</router-link>\r\n+                </el-dropdown-item>\r\n+                <el-dropdown-item @click=\"signOut\" divided>退出登录</el-dropdown-item>\r\n+              </el-dropdown-menu>\r\n+            </template>\r\n+          </el-dropdown>\r\n+        </div>\r\n       </el-col>\r\n     </el-row>\r\n   </div>\r\n </template>\r\n <script setup lang=\"ts\">\r\n+import {\r\n+  Expand,\r\n+  CaretBottom\r\n+\r\n+} from '@element-plus/icons-vue'\r\n import { useRoute, useRouter } from 'vue-router'\r\n import { useUser } from '../../store';\r\n+import { useSystem } from '../../store/system'\r\n let route = useRoute()\r\n let router = useRouter()\r\n let userStore = useUser()\r\n-\r\n+const { setIsCollapse } = useSystem()\r\n const signOut = () => {\r\n   userStore.signOut()\r\n   router.push('/login')\r\n }\r\n </script>\r\n-<style lang=\"less\" scoped></style>\r\n+<style lang=\"less\" scoped>\r\n+a {\r\n+  &:hover {\r\n+    color: #409eff;\r\n+  }\r\n+}\r\n+\r\n+.user {\r\n+  display: flex;\r\n+  align-items: center;\r\n+  justify-content: center;\r\n+\r\n+  .name {\r\n+    cursor: pointer;\r\n+    display: flex;\r\n+    align-items: center;\r\n+    font-size: 20px;\r\n+    margin-left: 10px;\r\n+    color: white;\r\n+\r\n+\r\n+\r\n+\r\n+\r\n+    span {\r\n+      font-size: 20px;\r\n+    }\r\n+  }\r\n+\r\n+  .el-image {\r\n+    border-radius: 30px;\r\n+  }\r\n+\r\n+\r\n+}\r\n+\r\n+.header-left {\r\n+  text-align: left;\r\n+  font-size: 16px;\r\n+  // font-weight: 400;\r\n+  color: white;\r\n+  display: flex;\r\n+  align-items: center;\r\n+\r\n+  .expand {\r\n+    cursor: pointer;\r\n+\r\n+    &:hover {\r\n+      color: #ffd04b;\r\n+    }\r\n+  }\r\n+}\r\n+</style>\r\n"
+                },
+                {
+                    "date": 1653189016774,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n                 <el-dropdown-item>\r\n                   <router-link to=\"/personal\">个人中心</router-link>\r\n                 </el-dropdown-item>\r\n                 <el-dropdown-item>\r\n-                  <router-link to=\"http://www.github.com/shuang54\">GitHub</router-link>\r\n+                  <router-link to=\"https://gitee.com/foochange/blog-admin\">开发地址</router-link>\r\n                 </el-dropdown-item>\r\n                 <el-dropdown-item @click=\"signOut\" divided>退出登录</el-dropdown-item>\r\n               </el-dropdown-menu>\r\n             </template>\r\n"
+                },
+                {
+                    "date": 1653189092604,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,10 +27,9 @@\n               <el-dropdown-menu>\r\n                 <el-dropdown-item>\r\n                   <router-link to=\"/personal\">个人中心</router-link>\r\n                 </el-dropdown-item>\r\n-                <el-dropdown-item>\r\n-                  <router-link to=\"https://gitee.com/foochange/blog-admin\">开发地址</router-link>\r\n+                <el-dropdown-item @click=\"\">项目仓库地址\r\n                 </el-dropdown-item>\r\n                 <el-dropdown-item @click=\"signOut\" divided>退出登录</el-dropdown-item>\r\n               </el-dropdown-menu>\r\n             </template>\r\n"
+                },
+                {
+                    "date": 1653189108107,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n               <el-dropdown-menu>\r\n                 <el-dropdown-item>\r\n                   <router-link to=\"/personal\">个人中心</router-link>\r\n                 </el-dropdown-item>\r\n-                <el-dropdown-item @click=\"\">项目仓库地址\r\n+                <el-dropdown-item @click=\"address\">项目仓库地址\r\n                 </el-dropdown-item>\r\n                 <el-dropdown-item @click=\"signOut\" divided>退出登录</el-dropdown-item>\r\n               </el-dropdown-menu>\r\n             </template>\r\n"
+                },
+                {
+                    "date": 1653189179454,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n               <el-dropdown-menu>\r\n                 <el-dropdown-item>\r\n                   <router-link to=\"/personal\">个人中心</router-link>\r\n                 </el-dropdown-item>\r\n-                <el-dropdown-item @click=\"address\">项目仓库地址\r\n+                <el-dropdown-item @click=\"jumpAddress\">项目仓库地址\r\n                 </el-dropdown-item>\r\n                 <el-dropdown-item @click=\"signOut\" divided>退出登录</el-dropdown-item>\r\n               </el-dropdown-menu>\r\n             </template>\r\n@@ -55,8 +55,13 @@\n const signOut = () => {\r\n   userStore.signOut()\r\n   router.push('/login')\r\n }\r\n+// 点击跳转仓库地址\r\n+const jumpAddress = () => {\r\n+  location.href('')\r\n+}\r\n+\r\n </script>\r\n <style lang=\"less\" scoped>\r\n a {\r\n   &:hover {\r\n"
+                },
+                {
+                    "date": 1653189189497,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,9 +57,9 @@\n   router.push('/login')\r\n }\r\n // 点击跳转仓库地址\r\n const jumpAddress = () => {\r\n-  location.href('')\r\n+  location.href('https://gitee.com/foochange/blog-admin')\r\n }\r\n \r\n </script>\r\n <style lang=\"less\" scoped>\r\n"
+                },
+                {
+                    "date": 1653189246589,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,9 +57,9 @@\n   router.push('/login')\r\n }\r\n // 点击跳转仓库地址\r\n const jumpAddress = () => {\r\n-  location.href('https://gitee.com/foochange/blog-admin')\r\n+  location.href = 'https://gitee.com/foochange/blog-admin';\r\n }\r\n \r\n </script>\r\n <style lang=\"less\" scoped>\r\n"
+                },
+                {
+                    "date": 1653189289133,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,9 +57,9 @@\n   router.push('/login')\r\n }\r\n // 点击跳转仓库地址\r\n const jumpAddress = () => {\r\n-  location.href = 'https://gitee.com/foochange/blog-admin';\r\n+  window.open = 'https://gitee.com/foochange/blog-admin';\r\n }\r\n \r\n </script>\r\n <style lang=\"less\" scoped>\r\n"
+                },
+                {
+                    "date": 1653189319871,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,9 +57,9 @@\n   router.push('/login')\r\n }\r\n // 点击跳转仓库地址\r\n const jumpAddress = () => {\r\n-  window.open = 'https://gitee.com/foochange/blog-admin';\r\n+  window.open('https://gitee.com/foochange/blog-admin')\r\n }\r\n \r\n </script>\r\n <style lang=\"less\" scoped>\r\n"
+                },
+                {
+                    "date": 1653189359170,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,9 +57,9 @@\n   router.push('/login')\r\n }\r\n // 点击跳转仓库地址\r\n const jumpAddress = () => {\r\n-  window.open('https://gitee.com/foochange/blog-admin')\r\n+  window.open('https://gitee.com/foochange/blog-admin', '')\r\n }\r\n \r\n </script>\r\n <style lang=\"less\" scoped>\r\n"
+                },
+                {
+                    "date": 1653189412554,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,11 @@\n               <el-dropdown-menu>\r\n                 <el-dropdown-item>\r\n                   <router-link to=\"/personal\">个人中心</router-link>\r\n                 </el-dropdown-item>\r\n-                <el-dropdown-item @click=\"jumpAddress\">项目仓库地址\r\n+                <el-dropdown-item @click=\"jumpAddress\">\r\n+                  <a href=\"https://gitee.com/foochange/blog-admin\" target=\"_blank\">项目仓库地址</a>\r\n+\r\n                 </el-dropdown-item>\r\n                 <el-dropdown-item @click=\"signOut\" divided>退出登录</el-dropdown-item>\r\n               </el-dropdown-menu>\r\n             </template>\r\n@@ -56,11 +58,11 @@\n   userStore.signOut()\r\n   router.push('/login')\r\n }\r\n // 点击跳转仓库地址\r\n-const jumpAddress = () => {\r\n-  window.open('https://gitee.com/foochange/blog-admin', '')\r\n-}\r\n+// const jumpAddress = () => {\r\n+//   window.open('https://gitee.com/foochange/blog-admin', '_blank')\r\n+// }\r\n \r\n </script>\r\n <style lang=\"less\" scoped>\r\n a {\r\n"
+                },
+                {
+                    "date": 1653189498042,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,10 +27,10 @@\n               <el-dropdown-menu>\r\n                 <el-dropdown-item>\r\n                   <router-link to=\"/personal\">个人中心</router-link>\r\n                 </el-dropdown-item>\r\n-                <el-dropdown-item @click=\"jumpAddress\">\r\n-                  <a href=\"https://gitee.com/foochange/blog-admin\" target=\"_blank\">项目仓库地址</a>\r\n+                <el-dropdown-item>\r\n+                  <a href=\"https://gitee.com/foochange/blog-admin\" target=\"_blank\">仓库地址</a>\r\n \r\n                 </el-dropdown-item>\r\n                 <el-dropdown-item @click=\"signOut\" divided>退出登录</el-dropdown-item>\r\n               </el-dropdown-menu>\r\n"
+                },
+                {
+                    "date": 1653193082930,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,12 +3,13 @@\n   <div id=\"article-container\">\r\n     <el-row>\r\n       <el-col class=\"header-left\" :span=\"8\">\r\n         <!-- <el-button @click=\"setIsCollapse\">折叠</el-button> -->\r\n+\r\n+        <h1>博客后台管理系统</h1>\r\n         <el-icon @click=\"setIsCollapse\" class=\"expand\" :size=\"40\">\r\n           <Expand />\r\n         </el-icon>\r\n-        <h1>博客后台管理系统</h1>\r\n       </el-col>\r\n       <el-col :span=\"8\"></el-col>\r\n       <el-col :span=\"8\">\r\n         <!-- <a @click=\"signOut\">退出登录</a> -->\r\n"
                 }
             ],
             "date": 1646992136326,

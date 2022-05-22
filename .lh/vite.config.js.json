@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 7,
+            "activePatchIndex": 8,
             "patches": [
                 {
                     "date": 1646384783229,
@@ -36,6 +36,10 @@
                 {
                     "date": 1647517612596,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,10 +25,10 @@\n         drop_console: true, // 生产环境去除 console\n         drop_debugger: true // 生产环境去除 debugger\n       },\n     },\n-    chunkSizeWarningLimit: 1500 // chunk 大小警告的限制（以 kbs 为单位）\n-    , cssCodeSplit: false,\n+    chunkSizeWarningLimit: 1500,// chunk 大小警告的限制（以 kbs 为单位）\n+    cssCodeSplit: false,\n   },\n   resolve: {\n     alias: {\n       '@': pathResolve('./src'), // 设置 `@` 指向 `src` 目录\n"
+                },
+                {
+                    "date": 1653194666527,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,8 +43,9 @@\n     port: 4000, // 设置服务启动端口号\n     open: true, // 设置服务启动时是否自动打开浏览器\n     cors: true, // 允许跨域\n     host: 'localhost',\n+    hmr: true,\n     // base: './',\n     // 设置代理，根据我们项目实际情况配置\n     proxy: {\n       '/blog': {\n"
                 }
             ],
             "date": 1646384783229,

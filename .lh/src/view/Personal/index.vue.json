@@ -1,0 +1,306 @@
+{
+    "sourceFile": "src/view/Personal/index.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 72,
+            "patches": [
+                {
+                    "date": 1653193631125,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1653193644897,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \r\n <template>\r\n   <div class=\"personal-container\">\r\n     <div class=\"user-box\">\r\n-      <div class=\"\"></div>\r\n+      <div class=\"user-display\"></div>\r\n       <div></div>\r\n     </div>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1653193661498,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n <template>\r\n   <div class=\"personal-container\">\r\n     <div class=\"user-box\">\r\n       <div class=\"user-display\"></div>\r\n-      <div></div>\r\n+      <div class=\"user-\"></div>\r\n     </div>\r\n   </div>\r\n </template>\r\n \r\n"
+                },
+                {
+                    "date": 1653193681813,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n <template>\r\n   <div class=\"personal-container\">\r\n     <div class=\"user-box\">\r\n       <div class=\"user-display\"></div>\r\n-      <div class=\"user-\"></div>\r\n+      <div class=\"user-info\"></div>\r\n     </div>\r\n   </div>\r\n </template>\r\n \r\n"
+                },
+                {
+                    "date": 1653193805505,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,14 +2,20 @@\n \r\n </script>\r\n \r\n <template>\r\n-  <div class=\"personal-container\">\r\n-    <div class=\"user-box\">\r\n-      <div class=\"user-display\"></div>\r\n-      <div class=\"user-info\"></div>\r\n-    </div>\r\n+  <div class=\"user-box\">\r\n+    <div class=\"user-display\"></div>\r\n+    <div class=\"user-info\"></div>\r\n   </div>\r\n </template>\r\n \r\n-<style lang=\"less\">\r\n+<style lang=\"less\" scoped>\r\n+.user-box {\r\n+  margin: 0 auto;\r\n+  display: flex;\r\n+  align-items: center;\r\n+  background-color: white;\r\n+\r\n+  .user-display {}\r\n+}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1653193835308,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,9 @@\n   margin: 0 auto;\r\n   display: flex;\r\n   align-items: center;\r\n   background-color: white;\r\n+  box-shadow: 0px 0px 12px rgb(0 0 0 / 12%);\r\n \r\n   .user-display {}\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1653193876653,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n </script>\r\n \r\n <template>\r\n   <div class=\"user-box\">\r\n-    <div class=\"user-display\"></div>\r\n+    <div class=\"user-display\">aaa</div>\r\n     <div class=\"user-info\"></div>\r\n   </div>\r\n </template>\r\n \r\n"
+                },
+                {
+                    "date": 1653193919105,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n \r\n </script>\r\n \r\n <template>\r\n+  <div>asdfalsd</div>\r\n   <div class=\"user-box\">\r\n     <div class=\"user-display\">aaa</div>\r\n     <div class=\"user-info\"></div>\r\n   </div>\r\n"
+                },
+                {
+                    "date": 1653193968103,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,8 @@\n \r\n </script>\r\n \r\n <template>\r\n-  <div>asdfalsd</div>\r\n   <div class=\"user-box\">\r\n     <div class=\"user-display\">aaa</div>\r\n     <div class=\"user-info\"></div>\r\n   </div>\r\n"
+                },
+                {
+                    "date": 1653194004199,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,10 @@\n </template>\r\n \r\n <style lang=\"less\" scoped>\r\n .user-box {\r\n+  width: 600px;\r\n+  height: 500px;\r\n   margin: 0 auto;\r\n   display: flex;\r\n   align-items: center;\r\n   background-color: white;\r\n"
+                },
+                {
+                    "date": 1653194116585,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n </template>\r\n \r\n <style lang=\"less\" scoped>\r\n .user-box {\r\n-  width: 600px;\r\n+  width: 800px;\r\n   height: 500px;\r\n   margin: 0 auto;\r\n   display: flex;\r\n   align-items: center;\r\n"
+                },
+                {
+                    "date": 1653194140168,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n </script>\r\n \r\n <template>\r\n   <div class=\"user-box\">\r\n-    <div class=\"user-display\">aaa</div>\r\n+    <div class=\"user-display\"></div>\r\n     <div class=\"user-info\"></div>\r\n   </div>\r\n </template>\r\n \r\n"
+                },
+                {
+                    "date": 1653194180328,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,11 @@\n </script>\r\n \r\n <template>\r\n   <div class=\"user-box\">\r\n-    <div class=\"user-display\"></div>\r\n+    <div class=\"user-display\">\r\n+      <el-image src=\"\"></el-image>\r\n+    </div>\r\n     <div class=\"user-info\"></div>\r\n   </div>\r\n </template>\r\n \r\n"
+                },
+                {
+                    "date": 1653194193514,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,11 @@\n \r\n <template>\r\n   <div class=\"user-box\">\r\n     <div class=\"user-display\">\r\n-      <el-image src=\"\"></el-image>\r\n+      <el-image\r\n+        src=\"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F7ad1e283fc93d4eea2e392eceedea69d8b33618019160-z1Va2S_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1655734206&t=c996fce6d47701e5065d65a9017079f1\"\r\n+        fit=\"fill\"></el-image>\r\n     </div>\r\n     <div class=\"user-info\"></div>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1653194311996,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,13 @@\n     <div class=\"user-display\">\r\n       <el-image\r\n         src=\"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F7ad1e283fc93d4eea2e392eceedea69d8b33618019160-z1Va2S_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1655734206&t=c996fce6d47701e5065d65a9017079f1\"\r\n         fit=\"fill\"></el-image>\r\n+      <p>admin</p>\r\n+      <div>\r\n+        <el-button>修改头像</el-button>\r\n+        <el-button>修改密码</el-button>\r\n+      </div>\r\n     </div>\r\n     <div class=\"user-info\"></div>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1653194362613,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,7 +27,14 @@\n   align-items: center;\r\n   background-color: white;\r\n   box-shadow: 0px 0px 12px rgb(0 0 0 / 12%);\r\n \r\n-  .user-display {}\r\n+  .user-display {\r\n+    width: 300px;\r\n+    height: 100%;\r\n+    display: flex;\r\n+    flex-direction: column;\r\n+    justify-content: center;\r\n+    align-items: center;\r\n+  }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1653194459822,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,7 +34,9 @@\n     display: flex;\r\n     flex-direction: column;\r\n     justify-content: center;\r\n     align-items: center;\r\n+\r\n+    img {}\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1653194481634,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,8 +35,8 @@\n     flex-direction: column;\r\n     justify-content: center;\r\n     align-items: center;\r\n \r\n-    img {}\r\n+    .el-image {}\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1653194502160,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,8 +35,12 @@\n     flex-direction: column;\r\n     justify-content: center;\r\n     align-items: center;\r\n \r\n-    .el-image {}\r\n+    .el-image {\r\n+      width: 100px;\r\n+      height: 100px;\r\n+      border-radius: 50px;\r\n+    }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1653194530979,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n     width: 300px;\r\n     height: 100%;\r\n     display: flex;\r\n     flex-direction: column;\r\n-    justify-content: center;\r\n+    justify-content: space-evenly;\r\n     align-items: center;\r\n \r\n     .el-image {\r\n       width: 100px;\r\n"
+                },
+                {
+                    "date": 1653194538486,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,11 +36,11 @@\n     justify-content: space-evenly;\r\n     align-items: center;\r\n \r\n     .el-image {\r\n-      width: 100px;\r\n-      height: 100px;\r\n-      border-radius: 50px;\r\n+      width: 300px;\r\n+      height: 300px;\r\n+      border-radius: 150px;\r\n     }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1653194568834,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,11 +36,11 @@\n     justify-content: space-evenly;\r\n     align-items: center;\r\n \r\n     .el-image {\r\n-      width: 300px;\r\n-      height: 300px;\r\n-      border-radius: 150px;\r\n+      width: 200px;\r\n+      height: 200px;\r\n+      border-radius: 100px;\r\n     }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1653194599619,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n     width: 300px;\r\n     height: 100%;\r\n     display: flex;\r\n     flex-direction: column;\r\n-    justify-content: space-evenly;\r\n+    justify-content: center;\r\n     align-items: center;\r\n \r\n     .el-image {\r\n       width: 200px;\r\n"
+                },
+                {
+                    "date": 1653194691607,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,8 @@\n \r\n     .el-image {\r\n       width: 200px;\r\n       height: 200px;\r\n-      border-radius: 100px;\r\n     }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1653194698877,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,8 +38,9 @@\n \r\n     .el-image {\r\n       width: 200px;\r\n       height: 200px;\r\n+      border-radius: 100px;\r\n     }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1653194717880,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,13 +4,15 @@\n \r\n <template>\r\n   <div class=\"user-box\">\r\n     <div class=\"user-display\">\r\n-      <el-image\r\n-        src=\"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F7ad1e283fc93d4eea2e392eceedea69d8b33618019160-z1Va2S_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1655734206&t=c996fce6d47701e5065d65a9017079f1\"\r\n-        fit=\"fill\"></el-image>\r\n-      <p>admin</p>\r\n       <div>\r\n+        <el-image\r\n+          src=\"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F7ad1e283fc93d4eea2e392eceedea69d8b33618019160-z1Va2S_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1655734206&t=c996fce6d47701e5065d65a9017079f1\"\r\n+          fit=\"fill\"></el-image>\r\n+        <p>admin</p>\r\n+      </div>\r\n+      <div>\r\n         <el-button>修改头像</el-button>\r\n         <el-button>修改密码</el-button>\r\n       </div>\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1653194743629,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,8 +37,13 @@\n     flex-direction: column;\r\n     justify-content: center;\r\n     align-items: center;\r\n \r\n+    p {\r\n+      font-size: 30px;\r\n+\r\n+    }\r\n+\r\n     .el-image {\r\n       width: 200px;\r\n       height: 200px;\r\n       border-radius: 100px;\r\n"
+                },
+                {
+                    "date": 1653194851949,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,8 +36,9 @@\n     display: flex;\r\n     flex-direction: column;\r\n     justify-content: center;\r\n     align-items: center;\r\n+    text-align: center;\r\n \r\n     p {\r\n       font-size: 30px;\r\n \r\n"
+                },
+                {
+                    "date": 1653194992188,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n     width: 300px;\r\n     height: 100%;\r\n     display: flex;\r\n     flex-direction: column;\r\n-    justify-content: center;\r\n+    justify-content: space-between;\r\n     align-items: center;\r\n     text-align: center;\r\n \r\n     p {\r\n"
+                },
+                {
+                    "date": 1653195047677,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \r\n <template>\r\n   <div class=\"user-box\">\r\n     <div class=\"user-display\">\r\n-      <div>\r\n+      <div class=\"user-header\">\r\n         <el-image\r\n           src=\"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F7ad1e283fc93d4eea2e392eceedea69d8b33618019160-z1Va2S_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1655734206&t=c996fce6d47701e5065d65a9017079f1\"\r\n           fit=\"fill\"></el-image>\r\n         <p>admin</p>\r\n"
+                },
+                {
+                    "date": 1653195064307,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \r\n <template>\r\n   <div class=\"user-box\">\r\n     <div class=\"user-display\">\r\n-      <div class=\"user-header\">\r\n+      <div class=\"d-header\">\r\n         <el-image\r\n           src=\"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F7ad1e283fc93d4eea2e392eceedea69d8b33618019160-z1Va2S_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1655734206&t=c996fce6d47701e5065d65a9017079f1\"\r\n           fit=\"fill\"></el-image>\r\n         <p>admin</p>\r\n"
+                },
+                {
+                    "date": 1653195091557,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,8 +38,12 @@\n     justify-content: space-between;\r\n     align-items: center;\r\n     text-align: center;\r\n \r\n+    .d-header {\r\n+      margin-top: 10px;\r\n+    }\r\n+\r\n     p {\r\n       font-size: 30px;\r\n \r\n     }\r\n"
+                },
+                {
+                    "date": 1653195115514,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,10 @@\n     align-items: center;\r\n     text-align: center;\r\n \r\n     .d-header {\r\n-      margin-top: 10px;\r\n+      margin-top: 20px;\r\n+      border-right: 1px solid #ccc;\r\n     }\r\n \r\n     p {\r\n       font-size: 30px;\r\n"
+                },
+                {
+                    "date": 1653195125863,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,12 +37,12 @@\n     flex-direction: column;\r\n     justify-content: space-between;\r\n     align-items: center;\r\n     text-align: center;\r\n+    border-right: 1px solid #ccc;\r\n \r\n     .d-header {\r\n       margin-top: 20px;\r\n-      border-right: 1px solid #ccc;\r\n     }\r\n \r\n     p {\r\n       font-size: 30px;\r\n"
+                },
+                {
+                    "date": 1653195131462,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n     flex-direction: column;\r\n     justify-content: space-between;\r\n     align-items: center;\r\n     text-align: center;\r\n-    border-right: 1px solid #ccc;\r\n+    border-right: 2px solid #ccc;\r\n \r\n     .d-header {\r\n       margin-top: 20px;\r\n     }\r\n"
+                },
+                {
+                    "date": 1653195148815,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n     flex-direction: column;\r\n     justify-content: space-between;\r\n     align-items: center;\r\n     text-align: center;\r\n-    border-right: 2px solid #ccc;\r\n+    border-right: 2px solid #ececec;\r\n \r\n     .d-header {\r\n       margin-top: 20px;\r\n     }\r\n"
+                },
+                {
+                    "date": 1653195207469,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n           src=\"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F7ad1e283fc93d4eea2e392eceedea69d8b33618019160-z1Va2S_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1655734206&t=c996fce6d47701e5065d65a9017079f1\"\r\n           fit=\"fill\"></el-image>\r\n         <p>admin</p>\r\n       </div>\r\n-      <div>\r\n+      <div class=\"d-body\">\r\n         <el-button>修改头像</el-button>\r\n         <el-button>修改密码</el-button>\r\n       </div>\r\n     </div>\r\n@@ -43,8 +43,12 @@\n     .d-header {\r\n       margin-top: 20px;\r\n     }\r\n \r\n+    .d-body {\r\n+      border-top: 2px solid #ececec;\r\n+    }\r\n+\r\n     p {\r\n       font-size: 30px;\r\n \r\n     }\r\n"
+                },
+                {
+                    "date": 1653195220597,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,8 +45,9 @@\n     }\r\n \r\n     .d-body {\r\n       border-top: 2px solid #ececec;\r\n+      height: 100px;\r\n     }\r\n \r\n     p {\r\n       font-size: 30px;\r\n"
+                },
+                {
+                    "date": 1653195226186,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n     }\r\n \r\n     .d-body {\r\n       border-top: 2px solid #ececec;\r\n-      height: 100px;\r\n+      height: 200px;\r\n     }\r\n \r\n     p {\r\n       font-size: 30px;\r\n"
+                },
+                {
+                    "date": 1653195231498,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,10 @@\n     }\r\n \r\n     .d-body {\r\n       border-top: 2px solid #ececec;\r\n-      height: 200px;\r\n+      height: 150px;\r\n+\r\n     }\r\n \r\n     p {\r\n       font-size: 30px;\r\n"
+                },
+                {
+                    "date": 1653195249140,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,8 +46,9 @@\n \r\n     .d-body {\r\n       border-top: 2px solid #ececec;\r\n       height: 150px;\r\n+      padding-top: 30px;\r\n \r\n     }\r\n \r\n     p {\r\n"
+                },
+                {
+                    "date": 1653195262155,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n \r\n     .d-body {\r\n       border-top: 2px solid #ececec;\r\n       height: 150px;\r\n-      padding-top: 30px;\r\n+      width: 100px padding-top: 30px;\r\n \r\n     }\r\n \r\n     p {\r\n"
+                },
+                {
+                    "date": 1653195317712,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n       <div class=\"d-header\">\r\n         <el-image\r\n           src=\"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F7ad1e283fc93d4eea2e392eceedea69d8b33618019160-z1Va2S_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1655734206&t=c996fce6d47701e5065d65a9017079f1\"\r\n           fit=\"fill\"></el-image>\r\n+        <p>注册日期:xxxx-xxxx-xx</p>\r\n         <p>admin</p>\r\n       </div>\r\n       <div class=\"d-body\">\r\n         <el-button>修改头像</el-button>\r\n@@ -46,9 +47,10 @@\n \r\n     .d-body {\r\n       border-top: 2px solid #ececec;\r\n       height: 150px;\r\n-      width: 100px padding-top: 30px;\r\n+      width: 100%;\r\n+      padding-top: 30px;\r\n \r\n     }\r\n \r\n     p {\r\n"
+                },
+                {
+                    "date": 1653195360355,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n         <el-image\r\n           src=\"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F7ad1e283fc93d4eea2e392eceedea69d8b33618019160-z1Va2S_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1655734206&t=c996fce6d47701e5065d65a9017079f1\"\r\n           fit=\"fill\"></el-image>\r\n         <p>注册日期:xxxx-xxxx-xx</p>\r\n-        <p>admin</p>\r\n+        <p class=\"name\">admin</p>\r\n       </div>\r\n       <div class=\"d-body\">\r\n         <el-button>修改头像</el-button>\r\n         <el-button>修改密码</el-button>\r\n@@ -52,9 +52,9 @@\n       padding-top: 30px;\r\n \r\n     }\r\n \r\n-    p {\r\n+    .name {\r\n       font-size: 30px;\r\n \r\n     }\r\n \r\n"
+                },
+                {
+                    "date": 1653195368506,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,10 +8,10 @@\n       <div class=\"d-header\">\r\n         <el-image\r\n           src=\"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F7ad1e283fc93d4eea2e392eceedea69d8b33618019160-z1Va2S_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1655734206&t=c996fce6d47701e5065d65a9017079f1\"\r\n           fit=\"fill\"></el-image>\r\n+        <p class=\"name\">admin</p>\r\n         <p>注册日期:xxxx-xxxx-xx</p>\r\n-        <p class=\"name\">admin</p>\r\n       </div>\r\n       <div class=\"d-body\">\r\n         <el-button>修改头像</el-button>\r\n         <el-button>修改密码</el-button>\r\n"
+                },
+                {
+                    "date": 1653195857076,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,11 @@\n         <el-button>修改头像</el-button>\r\n         <el-button>修改密码</el-button>\r\n       </div>\r\n     </div>\r\n-    <div class=\"user-info\"></div>\r\n+    <div class=\"user-info\">\r\n+\r\n+    </div>\r\n   </div>\r\n </template>\r\n \r\n <style lang=\"less\" scoped>\r\n"
+                },
+                {
+                    "date": 1653196310522,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,9 @@\n         <el-button>修改密码</el-button>\r\n       </div>\r\n     </div>\r\n     <div class=\"user-info\">\r\n+      <h1>个人信息</h1>\r\n \r\n     </div>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1653196428238,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,23 @@\n       </div>\r\n     </div>\r\n     <div class=\"user-info\">\r\n       <h1>个人信息</h1>\r\n-\r\n+      <el-form ref=\"formRef\" :model=\"dynamicValidateForm\" label-width=\"120px\" class=\"demo-dynamic\">\r\n+        <el-form-item prop=\"email\" label=\"Email\" :rules=\"[\r\n+          {\r\n+            required: true,\r\n+            message: 'Please input email address',\r\n+            trigger: 'blur',\r\n+          },\r\n+          {\r\n+            type: 'email',\r\n+            message: 'Please input correct email address',\r\n+            trigger: ['blur', 'change'],\r\n+          },\r\n+        ]\">\r\n+          <el-input v-model=\"dynamicValidateForm.email\" />\r\n+        </el-form-item>\r\n     </div>\r\n   </div>\r\n </template>\r\n \r\n"
+                },
+                {
+                    "date": 1653196437217,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,8 +33,9 @@\n           },\r\n         ]\">\r\n           <el-input v-model=\"dynamicValidateForm.email\" />\r\n         </el-form-item>\r\n+      </el-form>\r\n     </div>\r\n   </div>\r\n </template>\r\n \r\n"
+                },
+                {
+                    "date": 1653196446664,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,8 +33,13 @@\n           },\r\n         ]\">\r\n           <el-input v-model=\"dynamicValidateForm.email\" />\r\n         </el-form-item>\r\n+        <el-form-item>\r\n+          <el-button type=\"primary\" @click=\"submitForm(formRef)\">Submit</el-button>\r\n+          <el-button @click=\"addDomain\">New domain</el-button>\r\n+          <el-button @click=\"resetForm(formRef)\">Reset</el-button>\r\n+        </el-form-item>\r\n       </el-form>\r\n     </div>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1653196461875,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,57 @@\n <script setup >\r\n+import { reactive, ref } from 'vue'\r\n+import type { FormInstance } from 'element-plus'\r\n \r\n+const formRef = ref < FormInstance > ()\r\n+const dynamicValidateForm = reactive < {\r\n+  domains: DomainItem[]\r\n+  email: string\r\n+} > ({\r\n+  domains: [\r\n+    {\r\n+      key: 1,\r\n+      value: '',\r\n+    },\r\n+  ],\r\n+  email: '',\r\n+})\r\n+\r\n+interface DomainItem {\r\n+  key: number\r\n+  value: string\r\n+}\r\n+\r\n+const removeDomain = (item: DomainItem) => {\r\n+  const index = dynamicValidateForm.domains.indexOf(item)\r\n+  if (index !== -1) {\r\n+    dynamicValidateForm.domains.splice(index, 1)\r\n+  }\r\n+}\r\n+\r\n+const addDomain = () => {\r\n+  dynamicValidateForm.domains.push({\r\n+    key: Date.now(),\r\n+    value: '',\r\n+  })\r\n+}\r\n+\r\n+const submitForm = (formEl: FormInstance | undefined) => {\r\n+  if (!formEl) return\r\n+  formEl.validate((valid) => {\r\n+    if (valid) {\r\n+      console.log('submit!')\r\n+    } else {\r\n+      console.log('error submit!')\r\n+      return false\r\n+    }\r\n+  })\r\n+}\r\n+\r\n+const resetForm = (formEl: FormInstance | undefined) => {\r\n+  if (!formEl) return\r\n+  formEl.resetFields()\r\n+}\r\n </script>\r\n \r\n <template>\r\n   <div class=\"user-box\">\r\n"
+                },
+                {
+                    "date": 1653196509708,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n-<script setup >\r\n+<script setup lang=\"ts\">\r\n import { reactive, ref } from 'vue'\r\n import type { FormInstance } from 'element-plus'\r\n \r\n-const formRef = ref < FormInstance > ()\r\n-const dynamicValidateForm = reactive < {\r\n+const formRef = ref<FormInstance>()\r\n+const dynamicValidateForm = reactive<{\r\n   domains: DomainItem[]\r\n   email: string\r\n-} > ({\r\n+}>({\r\n   domains: [\r\n     {\r\n       key: 1,\r\n       value: '',\r\n@@ -15,19 +15,9 @@\n   ],\r\n   email: '',\r\n })\r\n \r\n-interface DomainItem {\r\n-  key: number\r\n-  value: string\r\n-}\r\n \r\n-const removeDomain = (item: DomainItem) => {\r\n-  const index = dynamicValidateForm.domains.indexOf(item)\r\n-  if (index !== -1) {\r\n-    dynamicValidateForm.domains.splice(index, 1)\r\n-  }\r\n-}\r\n \r\n const addDomain = () => {\r\n   dynamicValidateForm.domains.push({\r\n     key: Date.now(),\r\n"
+                },
+                {
+                    "date": 1653196527822,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,28 +3,15 @@\n import type { FormInstance } from 'element-plus'\r\n \r\n const formRef = ref<FormInstance>()\r\n const dynamicValidateForm = reactive<{\r\n-  domains: DomainItem[]\r\n   email: string\r\n }>({\r\n-  domains: [\r\n-    {\r\n-      key: 1,\r\n-      value: '',\r\n-    },\r\n-  ],\r\n   email: '',\r\n })\r\n \r\n \r\n \r\n-const addDomain = () => {\r\n-  dynamicValidateForm.domains.push({\r\n-    key: Date.now(),\r\n-    value: '',\r\n-  })\r\n-}\r\n \r\n const submitForm = (formEl: FormInstance | undefined) => {\r\n   if (!formEl) return\r\n   formEl.validate((valid) => {\r\n"
+                },
+                {
+                    "date": 1653196538164,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,9 +63,8 @@\n           <el-input v-model=\"dynamicValidateForm.email\" />\r\n         </el-form-item>\r\n         <el-form-item>\r\n           <el-button type=\"primary\" @click=\"submitForm(formRef)\">Submit</el-button>\r\n-          <el-button @click=\"addDomain\">New domain</el-button>\r\n           <el-button @click=\"resetForm(formRef)\">Reset</el-button>\r\n         </el-form-item>\r\n       </el-form>\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1653196592219,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -113,6 +113,13 @@\n       height: 200px;\r\n       border-radius: 100px;\r\n     }\r\n   }\r\n+\r\n+  .user-info {\r\n+    display: flex;\r\n+    flex-direction: column;\r\n+    justify-content: center;\r\n+    align-items: center;\r\n+  }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1653196636408,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -115,11 +115,14 @@\n     }\r\n   }\r\n \r\n   .user-info {\r\n+\r\n     display: flex;\r\n     flex-direction: column;\r\n     justify-content: center;\r\n     align-items: center;\r\n+    width: 100%;\r\n+    height: 100%;\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1653196644314,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -119,9 +119,8 @@\n \r\n     display: flex;\r\n     flex-direction: column;\r\n     justify-content: center;\r\n-    align-items: center;\r\n     width: 100%;\r\n     height: 100%;\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1653196662431,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -121,7 +121,12 @@\n     flex-direction: column;\r\n     justify-content: center;\r\n     width: 100%;\r\n     height: 100%;\r\n+\r\n+    h1 {\r\n+      text-align: center;\r\n+\r\n+    }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1653196671591,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -124,9 +124,9 @@\n     height: 100%;\r\n \r\n     h1 {\r\n       text-align: center;\r\n-\r\n+      height: 40px;\r\n     }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1653196678211,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -118,9 +118,8 @@\n   .user-info {\r\n \r\n     display: flex;\r\n     flex-direction: column;\r\n-    justify-content: center;\r\n     width: 100%;\r\n     height: 100%;\r\n \r\n     h1 {\r\n"
+                },
+                {
+                    "date": 1653196689902,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -123,9 +123,10 @@\n     height: 100%;\r\n \r\n     h1 {\r\n       text-align: center;\r\n-      height: 40px;\r\n+      height: 50px;\r\n+      line-height: 50px;\r\n     }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1653196703389,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -125,8 +125,9 @@\n     h1 {\r\n       text-align: center;\r\n       height: 50px;\r\n       line-height: 50px;\r\n+      font-size: 24px;\r\n     }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1653196717839,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n         <el-button>修改密码</el-button>\r\n       </div>\r\n     </div>\r\n     <div class=\"user-info\">\r\n-      <h1>个人信息</h1>\r\n+      <p>个人信息</p>\r\n       <el-form ref=\"formRef\" :model=\"dynamicValidateForm\" label-width=\"120px\" class=\"demo-dynamic\">\r\n         <el-form-item prop=\"email\" label=\"Email\" :rules=\"[\r\n           {\r\n             required: true,\r\n@@ -121,9 +121,9 @@\n     flex-direction: column;\r\n     width: 100%;\r\n     height: 100%;\r\n \r\n-    h1 {\r\n+    p {\r\n       text-align: center;\r\n       height: 50px;\r\n       line-height: 50px;\r\n       font-size: 24px;\r\n"
+                },
+                {
+                    "date": 1653196729984,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -126,8 +126,9 @@\n       text-align: center;\r\n       height: 50px;\r\n       line-height: 50px;\r\n       font-size: 24px;\r\n+      margin-bottom: 20px;\r\n     }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1653196740115,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -123,12 +123,11 @@\n     height: 100%;\r\n \r\n     p {\r\n       text-align: center;\r\n-      height: 50px;\r\n-      line-height: 50px;\r\n+      height: 70px;\r\n+      line-height: 70px;\r\n       font-size: 24px;\r\n-      margin-bottom: 20px;\r\n     }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1653196775640,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,17 +55,17 @@\n             trigger: 'blur',\r\n           },\r\n           {\r\n             type: 'email',\r\n-            message: 'Please input correct email address',\r\n+            message: '请输入邮箱',\r\n             trigger: ['blur', 'change'],\r\n           },\r\n         ]\">\r\n           <el-input v-model=\"dynamicValidateForm.email\" />\r\n         </el-form-item>\r\n         <el-form-item>\r\n-          <el-button type=\"primary\" @click=\"submitForm(formRef)\">Submit</el-button>\r\n-          <el-button @click=\"resetForm(formRef)\">Reset</el-button>\r\n+          <el-button type=\"primary\" @click=\"submitForm(formRef)\">提交</el-button>\r\n+          <el-button @click=\"resetForm(formRef)\">重置</el-button>\r\n         </el-form-item>\r\n       </el-form>\r\n     </div>\r\n   </div>\r\n"
+                },
+                {
+                    "date": 1653197332242,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n       <el-form ref=\"formRef\" :model=\"dynamicValidateForm\" label-width=\"120px\" class=\"demo-dynamic\">\r\n         <el-form-item prop=\"email\" label=\"Email\" :rules=\"[\r\n           {\r\n             required: true,\r\n-            message: 'Please input email address',\r\n+            message: '请输入邮箱',\r\n             trigger: 'blur',\r\n           },\r\n           {\r\n             type: 'email',\r\n@@ -62,9 +62,9 @@\n         ]\">\r\n           <el-input v-model=\"dynamicValidateForm.email\" />\r\n         </el-form-item>\r\n         <el-form-item>\r\n-          <el-button type=\"primary\" @click=\"submitForm(formRef)\">提交</el-button>\r\n+          <el-button type=\"primary\" @click=\"submitForm(formRef)\">保存</el-button>\r\n           <el-button @click=\"resetForm(formRef)\">重置</el-button>\r\n         </el-form-item>\r\n       </el-form>\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1653197369622,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,8 +61,22 @@\n           },\r\n         ]\">\r\n           <el-input v-model=\"dynamicValidateForm.email\" />\r\n         </el-form-item>\r\n+        <el-form-item prop=\"userName\" label=\"Email\" :rules=\"[\r\n+          {\r\n+            required: true,\r\n+            message: '请输入邮箱',\r\n+            trigger: 'blur',\r\n+          },\r\n+          {\r\n+            type: 'email',\r\n+            message: '请输入邮箱',\r\n+            trigger: ['blur', 'change'],\r\n+          },\r\n+        ]\">\r\n+          <el-input v-model=\"dynamicValidateForm.email\" />\r\n+        </el-form-item>\r\n         <el-form-item>\r\n           <el-button type=\"primary\" @click=\"submitForm(formRef)\">保存</el-button>\r\n           <el-button @click=\"resetForm(formRef)\">重置</el-button>\r\n         </el-form-item>\r\n"
+                },
+                {
+                    "date": 1653197376204,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,9 +61,9 @@\n           },\r\n         ]\">\r\n           <el-input v-model=\"dynamicValidateForm.email\" />\r\n         </el-form-item>\r\n-        <el-form-item prop=\"userName\" label=\"Email\" :rules=\"[\r\n+        <el-form-item prop=\"name\" label=\"Name\" :rules=\"[\r\n           {\r\n             required: true,\r\n             message: '请输入邮箱',\r\n             trigger: 'blur',\r\n"
+                },
+                {
+                    "date": 1653197385175,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,14 +64,14 @@\n         </el-form-item>\r\n         <el-form-item prop=\"name\" label=\"Name\" :rules=\"[\r\n           {\r\n             required: true,\r\n-            message: '请输入邮箱',\r\n+            message: '请输入用户名',\r\n             trigger: 'blur',\r\n           },\r\n           {\r\n             type: 'email',\r\n-            message: '请输入邮箱',\r\n+            message: '请输入用户名',\r\n             trigger: ['blur', 'change'],\r\n           },\r\n         ]\">\r\n           <el-input v-model=\"dynamicValidateForm.email\" />\r\n"
+                },
+                {
+                    "date": 1653197413382,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,12 @@\n \r\n const formRef = ref<FormInstance>()\r\n const dynamicValidateForm = reactive<{\r\n   email: string\r\n+  name: string\r\n }>({\r\n   email: '',\r\n+  name: ''\r\n })\r\n \r\n \r\n \r\n@@ -68,14 +70,14 @@\n             message: '请输入用户名',\r\n             trigger: 'blur',\r\n           },\r\n           {\r\n-            type: 'email',\r\n+            type: 'name',\r\n             message: '请输入用户名',\r\n             trigger: ['blur', 'change'],\r\n           },\r\n         ]\">\r\n-          <el-input v-model=\"dynamicValidateForm.email\" />\r\n+          <el-input v-model=\"dynamicValidateForm.name\" />\r\n         </el-form-item>\r\n         <el-form-item>\r\n           <el-button type=\"primary\" @click=\"submitForm(formRef)\">保存</el-button>\r\n           <el-button @click=\"resetForm(formRef)\">重置</el-button>\r\n"
+                },
+                {
+                    "date": 1653197524228,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,10 @@\n             message: '请输入用户名',\r\n             trigger: 'blur',\r\n           },\r\n           {\r\n-            min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur'\r\n+            min: 3, max: 5,\r\n+             message: 'Length should be 3 to 5', trigger: 'blur'\r\n           },\r\n         ]\">\r\n           <el-input v-model=\"dynamicValidateForm.name\" />\r\n         </el-form-item>\r\n"
+                },
+                {
+                    "date": 1653223402164,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -176,9 +176,10 @@\n     <!-- 修改密码对话框 -->\r\n     <el-dialog width=\"500px\" center class=\"updateAvatar\" v-model=\"updatePwdDialog\" title=\"修改密码\">\r\n       <el-form :model=\"updatePwdForm\" status-icon ref=\"updatePwdRef\" label-width=\"100px\">\r\n         <el-form-item label=\"新密码\" prop=\"newpwd\">\r\n-          <el-input type=\"password\" v-model=\"updatePwdForm.newPwd\" auto-complete=\"off\"></el-input>\r\n+          <el-input type=\"password\" \r\n+          v-model=\"updatePwdForm.newPwd\" auto-complete=\"off\"></el-input>\r\n         </el-form-item>\r\n         <el-form-item label=\"确认密码\" prop=\"renewpwd\">\r\n           <el-input type=\"password\" v-model=\"updatePwdForm.oldPwd\" auto-complete=\"off\"></el-input>\r\n         </el-form-item>\r\n"
+                }
+            ],
+            "date": 1653193631125,
+            "name": "Commit-0",
+            "content": "<script setup >\r\n\r\n</script>\r\n\r\n<template>\r\n  <div class=\"personal-container\">\r\n    <div class=\"user-box\">\r\n      <div class=\"\"></div>\r\n      <div></div>\r\n    </div>\r\n  </div>\r\n</template>\r\n\r\n<style lang=\"less\">\r\n</style>"
+        }
+    ]
+}
