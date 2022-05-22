@@ -95,6 +95,7 @@ export const useUser = defineStore('user', {
     return {
       isToken: window.localStorage.getItem('token'),
       name: '',
+      email: '',
     }
   },
   actions: {
@@ -108,6 +109,7 @@ export const useUser = defineStore('user', {
         message.success('登录成功')
         this.token = result.data.token
         this.name = result.data.name
+        this.email = result.data.email
         return 'ok'
       }
       message.error('用户名或密码错误')
@@ -120,6 +122,7 @@ export const useUser = defineStore('user', {
 
       if (result.code == 200) {
         this.name = result.data.name
+        this.email = result.data.email
         return;
       }
       return Promise.reject(new Error(''))
@@ -132,7 +135,8 @@ export const useUser = defineStore('user', {
     },
     // 修改密码
     async updatePassword(data) {
-      let result: any = await post('user/setPassword', data)
+      let result: any = await post('user/setPassword', { name: this.name, email: this.email, oldpassword: data.oldPwd, newpassword: data.newPwd })
+
       if (result.code == 200) {
         message.success('更新密码成功')
         return 'ok'

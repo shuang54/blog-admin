@@ -3,6 +3,10 @@ import { reactive, ref } from 'vue'
 import type { FormInstance, UploadProps } from 'element-plus'
 import { ElMessage } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
+import { useUser } from '../../store'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const userStore = useUser()
 const formRef = ref<FormInstance>()
 const dynamicValidateForm = reactive<{
   email: string
@@ -104,7 +108,11 @@ const updatePwd = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate(async (valid, fields) => {
     if (valid) {
-
+      const result = await userStore.updatePassword(pwdRuleForm)
+      if (result == 'ok') {
+        userStore.signOut()
+        router.push('/login')
+      }
     }
   })
 }
