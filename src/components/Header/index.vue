@@ -14,12 +14,10 @@
       <el-col :span="8">
         <!-- <a @click="signOut">退出登录</a> -->
         <div class="user">
-          <el-image style="width: 55px; height: 55px"
-            src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F7ad1e283fc93d4eea2e392eceedea69d8b33618019160-z1Va2S_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1655734206&t=c996fce6d47701e5065d65a9017079f1"
-            lazy fit="fill" />
+          <el-image style="width: 55px; height: 55px" :src="imgUrl" lazy fit="fill" />
           <el-dropdown>
             <span class="name">
-              admin
+              {{ name }}
               <el-icon :size="20" color="white">
                 <caret-bottom />
               </el-icon>
@@ -48,6 +46,7 @@ import {
   CaretBottom
 
 } from '@element-plus/icons-vue'
+import { storeToRefs } from 'pinia';
 import { useRoute, useRouter } from 'vue-router'
 import { useUser } from '../../store';
 import { useSystem } from '../../store/system'
@@ -59,6 +58,7 @@ const signOut = () => {
   userStore.signOut()
   router.push('/login')
 }
+const { name, imgUrl } = storeToRefs(userStore)
 // 点击跳转仓库地址
 // const jumpAddress = () => {
 //   window.open('https://gitee.com/foochange/blog-admin', '_blank')

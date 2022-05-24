@@ -57,8 +57,8 @@ router.beforeEach(async (to, from, next) => {
   let userStore = useUser()
   let token = window.localStorage.getItem('token')
   let name = userStore.name
-  console.log(to.path);
-  console.log(to.path.indexOf('/login'));
+  // console.log(to.path);
+  // console.log(to.path.indexOf('/login'));
   if (to.path.indexOf('/login') != -1) {
     next()
   } else if (token != undefined) {

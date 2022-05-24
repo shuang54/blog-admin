@@ -93,9 +93,12 @@ export const useArticle = defineStore('article', {
 export const useUser = defineStore('user', {
   state: () => {
     return {
-      isToken: window.localStorage.getItem('token'),
+      token: window.localStorage.getItem('token'),
       name: '',
       email: '',
+      desc: '',
+      imgUrl: '',
+      created_at: '',
     }
   },
   actions: {
@@ -110,6 +113,9 @@ export const useUser = defineStore('user', {
         this.token = result.data.token
         this.name = result.data.name
         this.email = result.data.email
+        this.desc = result.data.desc
+        this.imgUrl = result.data.imgUrl
+        this.created_at = result.data.created_at
         return 'ok'
       }
       message.error('用户名或密码错误')
@@ -123,6 +129,9 @@ export const useUser = defineStore('user', {
       if (result.code == 200) {
         this.name = result.data.name
         this.email = result.data.email
+        this.desc = result.data.desc
+        this.imgUrl = result.data.imgUrl
+        this.created_at = result.data.created_at
         return;
       }
       return Promise.reject(new Error(''))
@@ -131,6 +140,10 @@ export const useUser = defineStore('user', {
     signOut() {
       this.name = ''
       this.token = ''
+      this.desc = ''
+      this.imgUrl = ''
+      this.email = ''
+      this.created_at = ''
       window.localStorage.removeItem('token')
     },
     // 修改密码
@@ -144,6 +157,21 @@ export const useUser = defineStore('user', {
       message.error('更新密码失败')
       return 'no'
     },
+    // 修改用户信息
+    async updateUserInfo(data) {
+      let result: any = await post('user/updateUserInfo', data)
+
+      if (result.code == 200) {
+        message.success('修改用户信息成功')
+        this.name = data.name
+        this.email = data.email
+        this.desc = data.desc
+
+        return 'ok'
+      }
+      message.error('修改用户信息失败')
+      return 'no'
+    },
     // 忘记密码
     async forgotPassword(data) {
       let result: any = await post('user/forgotPassword', data)
@@ -152,6 +180,16 @@ export const useUser = defineStore('user', {
         return 'ok'
       }
       message.error('设置密码失败')
+      return 'no'
+    },
+    async updateImg(data) {
+      let result: any = await post('user/updateImg', data)
+      if (result.code == 200) {
+        message.success('更新头像成功')
+        this.imgUrl = data.imgUrl
+        return 'ok'
+      }
+      message.error('更新头像失败')
       return 'no'
     }
 

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 23,
+            "activePatchIndex": 25,
             "patches": [
                 {
                     "date": 1646992136326,
@@ -100,6 +100,14 @@
                 {
                     "date": 1653193082930,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,12 +3,13 @@\n   <div id=\"article-container\">\r\n     <el-row>\r\n       <el-col class=\"header-left\" :span=\"8\">\r\n         <!-- <el-button @click=\"setIsCollapse\">折叠</el-button> -->\r\n+\r\n+        <h1>博客后台管理系统</h1>\r\n         <el-icon @click=\"setIsCollapse\" class=\"expand\" :size=\"40\">\r\n           <Expand />\r\n         </el-icon>\r\n-        <h1>博客后台管理系统</h1>\r\n       </el-col>\r\n       <el-col :span=\"8\"></el-col>\r\n       <el-col :span=\"8\">\r\n         <!-- <a @click=\"signOut\">退出登录</a> -->\r\n"
+                },
+                {
+                    "date": 1653398285865,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,8 +47,9 @@\n   Expand,\r\n   CaretBottom\r\n \r\n } from '@element-plus/icons-vue'\r\n+import { storeToRefs } from 'pinia';\r\n import { useRoute, useRouter } from 'vue-router'\r\n import { useUser } from '../../store';\r\n import { useSystem } from '../../store/system'\r\n let route = useRoute()\r\n@@ -58,8 +59,9 @@\n const signOut = () => {\r\n   userStore.signOut()\r\n   router.push('/login')\r\n }\r\n+const { name, imgUrl } = storeToRefs(userStore)\r\n // 点击跳转仓库地址\r\n // const jumpAddress = () => {\r\n //   window.open('https://gitee.com/foochange/blog-admin', '_blank')\r\n // }\r\n"
+                },
+                {
+                    "date": 1653398299762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,14 +13,12 @@\n       <el-col :span=\"8\"></el-col>\r\n       <el-col :span=\"8\">\r\n         <!-- <a @click=\"signOut\">退出登录</a> -->\r\n         <div class=\"user\">\r\n-          <el-image style=\"width: 55px; height: 55px\"\r\n-            src=\"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F7ad1e283fc93d4eea2e392eceedea69d8b33618019160-z1Va2S_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1655734206&t=c996fce6d47701e5065d65a9017079f1\"\r\n-            lazy fit=\"fill\" />\r\n+          <el-image style=\"width: 55px; height: 55px\" :src=\"imgUrl\" lazy fit=\"fill\" />\r\n           <el-dropdown>\r\n             <span class=\"name\">\r\n-              admin\r\n+              {{ name }}\r\n               <el-icon :size=\"20\" color=\"white\">\r\n                 <caret-bottom />\r\n               </el-icon>\r\n             </span>\r\n"
                 }
             ],
             "date": 1646992136326,

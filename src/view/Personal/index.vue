@@ -5,10 +5,11 @@ import { ElMessage } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
 import { useUser } from '../../store'
 import { useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
 const router = useRouter()
 const userStore = useUser()
 const formRef = ref<FormInstance>()
-const dynamicValidateForm = reactive<{
+const userInfoForm = reactive<{
   email: string
   name: string
   desc: string
@@ -17,15 +18,19 @@ const dynamicValidateForm = reactive<{
   name: '',
   desc: '',
 })
-
+userInfoForm.name = userStore.name
+userInfoForm.email = userStore.email
+userInfoForm.desc = userStore.desc
+const { imgUrl, name, created_at } = storeToRefs(userStore)
 
 
 
 const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
-  formEl.validate((valid) => {
+  formEl.validate(async (valid) => {
     if (valid) {
-      console.log('submit!')
+      const result = await userStore.updateUserInfo(userInfoForm)
+
     } else {
       console.log('error submit!')
       return false
@@ -46,18 +51,26 @@ const handleAvatarSuccess: UploadProps['onSuccess'] = (
   response,
   uploadFile
 ) => {
-  imageUrl.value = URL.createObjectURL(uploadFile.raw!)
-}
 
+  imageUrl.value = response.data
+}
 const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
-  if (rawFile.type !== 'image/jpeg') {
-    ElMessage.error('头像不是JPG格式')
-    return false
-  } else if (rawFile.size / 1024 / 1024 > 2) {
+  // if (rawFile.type !== 'image/jpeg') {
+  //   ElMessage.error('头像不是JPG格式')
+  //   return false
+  // } else 
+
+  if (rawFile.size / 1024 / 1024 > 2) {
     ElMessage.error('头像大小大于2MB')
     return false
   }
   return true
+}
+// 提交图片
+const updateImg = () => {
+  userStore.updateImg({ 'imgUrl': imageUrl.value, 'email': userInfoForm.email })
+  outerVisible.value = false
+  imageUrl.value = ''
 }
 // 修改密码对话框
 
@@ -124,11 +137,9 @@ const updatePwd = async (formEl: FormInstance | undefined) => {
     <div class="user-box">
       <div class="user-display">
         <div class="d-header">
-          <el-image
-            src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F7ad1e283fc93d4eea2e392eceedea69d8b33618019160-z1Va2S_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1655734206&t=c996fce6d47701e5065d65a9017079f1"
-            fit="fill"></el-image>
-          <p class="name">admin</p>
-          <p>注册日期:xxxx-xxxx-xx</p>
+          <el-image :src="imgUrl" fit="fill"></el-image>
+          <p class="name">{{ name }}</p>
+          <p>注册日期:{{ created_at }}</p>
         </div>
         <div class="d-body">
           <el-button @click="outerVisible = true">修改头像</el-button>
@@ -137,10 +148,14 @@ const updatePwd = async (formEl: FormInstance | undefined) => {
       </div>
       <div class="user-info">
         <p>个人信息</p>
-        <el-form ref="formRef" :model="dynamicValidateForm" label-width="120px" class="demo-dynamic">
-          <el-form-item prop="name" label="姓名：" :rules="[
+        <el-form ref="formRef" :model="userInfoForm" label-width="120px" class="demo-dynamic">
+
+          <el-form-item prop="email" label="邮箱：">
+            <el-input disabled v-model="userInfoForm.email" />
+          </el-form-item>
+          <el-form-item prop="name" label="用户名：" :rules="[
             {
-              required: true,
+              required: false,
               message: '请输入用户名',
               trigger: 'blur',
             },
@@ -149,25 +164,10 @@ const updatePwd = async (formEl: FormInstance | undefined) => {
               message: '长度3-7位', trigger: 'blur'
             },
           ]">
-            <el-input v-model="dynamicValidateForm.name" />
+            <el-input v-model="userInfoForm.name" />
           </el-form-item>
-          <el-form-item prop="email" label="邮箱：" :rules="[
-            {
-              required: true,
-              message: '请输入邮箱',
-              trigger: 'blur',
-            },
-            {
-              type: 'email',
-              message: '请输入邮箱',
-              trigger: ['blur', 'change'],
-            },
-          ]">
-            <el-input v-model="dynamicValidateForm.email" />
-          </el-form-item>
-
           <el-form-item label="描述：" prop="desc">
-            <el-input v-model="dynamicValidateForm.desc" type="textarea" />
+            <el-input :rows="8" v-model="userInfoForm.desc" type="textarea" />
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="submitForm(formRef)">保存</el-button>
@@ -178,7 +178,7 @@ const updatePwd = async (formEl: FormInstance | undefined) => {
     </div>
     <!-- 修改头像对话框 -->
     <el-dialog width="500px" center class="updateAvatar" v-model="outerVisible" title="修改头像">
-      <el-upload class="avatar-uploader" action="http://upload-na0.qiniup.com" :show-file-list="false"
+      <el-upload class="avatar-uploader" action="http://www.foogeoo.ltd:9999/blog/user/addImg" :show-file-list="false"
         :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
         <img v-if="imageUrl" :src="imageUrl" class="avatar" />
         <el-icon v-else class="avatar-uploader-icon">
@@ -187,7 +187,7 @@ const updatePwd = async (formEl: FormInstance | undefined) => {
       </el-upload>
       <template #footer>
         <div class="dialog-footer">
-          <el-button type="primary">提交</el-button>
+          <el-button type="primary" @click="updateImg">提交</el-button>
           <el-button @click="outerVisible = false">取消</el-button>
         </div>
       </template>
