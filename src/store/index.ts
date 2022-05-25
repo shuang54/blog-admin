@@ -99,6 +99,7 @@ export const useUser = defineStore('user', {
       desc: '',
       imgUrl: '',
       created_at: '',
+      verifyUrl: '',
     }
   },
   actions: {
@@ -118,7 +119,8 @@ export const useUser = defineStore('user', {
         this.created_at = result.data.created_at
         return 'ok'
       }
-      message.error('用户名或密码错误')
+      this.getVerify()
+      message.error(result.message)
       return 'no'
     },
     //用户是否登录
@@ -176,10 +178,11 @@ export const useUser = defineStore('user', {
     async forgotPassword(data) {
       let result: any = await post('user/forgotPassword', data)
       if (result.code == 200) {
-        message.success('设置密码成功')
+        message.success('修改密码成功')
         return 'ok'
       }
-      message.error('设置密码失败')
+      message.error('修改密码失败')
+      this.getVerify()
       return 'no'
     },
     async updateImg(data) {
@@ -191,7 +194,15 @@ export const useUser = defineStore('user', {
       }
       message.error('更新头像失败')
       return 'no'
-    }
+    },
+    // 获取验证码
+    async getVerify() {
+      let result: any = await get('verify')
+
+      this.verifyUrl = result
+
+    },
+    // 
 
   },
   getters: {}

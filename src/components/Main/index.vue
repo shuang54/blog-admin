@@ -29,9 +29,8 @@ const Header = defineAsyncComponent(() =>
   import('../Header/index.vue')
 
 )
-onBeforeMount(() => {
-  // document.getElementById("loader-wrapper").remove()
-})
+
+
 </script>
 <style scoped lang="less">
 .el-header,
