@@ -4,7 +4,7 @@
     <el-row justify="center">
       <el-col :md="10" :lg="12" :xl="14">
         <div>
-          <el-input v-model="input" placeholder="请输入需要搜索的内容" clearable size="large" />
+          <el-input v-model="input" placeholder="请输入需要搜索的分类" clearable size="large" />
         </div>
       </el-col>
       <el-col :md="6" :lg="5" :xl="3" class="search-btn">
@@ -25,35 +25,21 @@
     <!-- 文章表格 -->
     <el-row justify="center">
       <el-col :span="22">
-        <el-table
-          ref="multipleTableRef"
-          :data="tableData"
-          style="width: 100%"
-          class="table"
-          @selection-change="handleSelectionChange"
-          size="large"
-        >
+        <el-table ref="multipleTableRef" :data="tableData" style="width: 100%" class="table"
+          @selection-change="handleSelectionChange" size="large">
           <el-table-column type="selection" width="55" />
           <el-table-column type="index" label="index" width="120" />
           <el-table-column label="分类" show-overflow-tooltip>
             <template #default="scope">
-              <el-input v-model="scope.row.categoryName" placeholder="Please input" clearable />
+              <el-input v-model="scope.row.categoryName" placeholder="输入分类名称" clearable />
             </template>
           </el-table-column>
-          <el-table-column label="Operations">
+          <el-table-column label="操作">
             <template #default="scope">
-              <el-button
-                type="primary"
-                :icon="Edit"
-                size="small"
-                @click="handleEdit(scope.$index, scope.row)"
-              >编辑</el-button>
-              <el-button
-                size="small"
-                type="danger"
-                @click="handleDelete(scope.$index, scope.row)"
-                :icon="Minus"
-              >删除</el-button>
+              <el-button type="primary" :icon="Edit" size="small" @click="handleEdit(scope.$index, scope.row)">编辑
+              </el-button>
+              <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)" :icon="Minus">删除
+              </el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -69,23 +55,14 @@
     <!-- 分页器 -->
     <el-row justify="center">
       <el-col :span="24">
-        <el-pagination
-          v-model:currentPage="currentPage"
-          v-model:page-size="pageSize"
-          :page-sizes="[4,6, 8, 10]"
-          :small="small"
-          :disabled="disabled"
-          :background="background"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="total"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          class="pagination"
-        ></el-pagination>
+        <el-pagination v-model:currentPage="currentPage" v-model:page-size="pageSize" :page-sizes="[4, 6, 8, 10]"
+          :small="small" :disabled="disabled" :background="background" layout="total, sizes, prev, pager, next, jumper"
+          :total="total" @size-change="handleSizeChange" @current-change="handleCurrentChange" class="pagination">
+        </el-pagination>
       </el-col>
     </el-row>
     <!-- 弹出框 -->
-    <el-dialog v-model="dialogFormVisible" title="Shipping address">
+    <el-dialog v-model="dialogFormVisible" title="添加分类">
       <el-row>
         <el-col>
           <span>分类名称：</span>
@@ -94,8 +71,8 @@
       </el-row>
       <template #footer>
         <span class="dialog-footer">
-          <el-button @click="dialogFormVisible = false">取消</el-button>
-          <el-button type="primary" @click="addCategory">确定</el-button>
+          <el-button size="large" @click="dialogFormVisible = false">取消</el-button>
+          <el-button size="large" type="primary" @click="addCategory">确定</el-button>
         </span>
       </template>
     </el-dialog>
@@ -106,8 +83,6 @@ import { reactive, ref, computed } from 'vue';
 import { Search, Plus, Minus, Edit } from '@element-plus/icons-vue'
 import { ElTable, ElMessage } from 'element-plus'
 import { useCategory } from '../../store';
-import { log } from 'console';
-
 // 获取仓库
 const categoryStore = useCategory()
 categoryStore.getCategoryList()
@@ -234,23 +209,29 @@ const addCategory = () => {
 .search-btn {
   max-width: 200px;
 }
+
 .table {
   margin-top: 20px;
+
   .el-input {
-  width: 300px;
+    width: 300px;
+  }
 }
-}
+
 // 分页
-.demo-pagination-block + .demo-pagination-block {
+.demo-pagination-block+.demo-pagination-block {
   margin-top: 10px;
 }
+
 .demo-pagination-block .demonstration {
   margin-bottom: 16px;
 }
+
 .pagination {
   margin-top: 20px;
   justify-content: center;
 }
+
 // 批量删除
 .del-btn {
   margin-top: 20px;
@@ -258,12 +239,32 @@ const addCategory = () => {
   display: flex;
   justify-content: flex-start;
 }
+
 // 弹出框
 .el-button--text {
   margin-right: 15px;
 }
+
 .el-select {
   width: 300px;
+}
+
+/deep/.el-dialog {
+  width: 400px !important;
+  height: auto;
+}
+
+.dialog-footer {
+  display: flex;
+  justify-content: right;
+
+  .el-button {
+    width: 100px;
+  }
+}
+
+/deep/.cell {
+  text-align: left;
 }
 
 .dialog-footer button:first-child {

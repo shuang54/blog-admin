@@ -4,7 +4,7 @@
     <el-row justify="center">
       <el-col :md="10" :lg="12" :xl="14">
         <div>
-          <el-input v-model="input" placeholder="请输入内容" clearable size="large" />
+          <el-input v-model="input" placeholder="输入需要搜索的标题" clearable size="large" />
         </div>
       </el-col>
       <el-col :md="6" :lg="5" :xl="3" class="search-btn">
@@ -25,33 +25,37 @@
     <!-- 文章表格 -->
     <el-row justify="center">
       <el-col :span="22">
-        <el-table
-          ref="multipleTableRef"
-          :data="tableData"
-          style="width: 100%"
-          class="table"
-          @selection-change="handleSelectionChange"
-        >
+        <el-table ref="multipleTableRef" :data="tableData" style="width: 100%" class="table"
+          @selection-change="handleSelectionChange">
           <el-table-column type="selection" width="55" />
           <el-table-column type="index" label="index" width="120" />
-          <el-table-column label="创建时间" min-width="180">
-            <template #default="scope">{{ scope.row.createTime }}</template>
+          <el-table-column prop="date" label="Date" sorttable min-width="180">
+            <template #default="scope">
+              <div style="display: flex; align-items: center">
+                <el-icon>
+                  <timer />
+                </el-icon>{{ scope.row.createTime }}
+              </div>
+            </template>
           </el-table-column>
 
-          <el-table-column property="title" label="标题" min-width="180" />
-          <el-table-column property="categoryName" label="分类" show-overflow-tooltip />
+          <el-table-column show-overflow-tooltip property="title" label="标题" min-width="180" />
+          <el-table-column prop="category" width="120" :filters="filterLst()" :filter-method="filterTag"
+            filter-placement="bottom-end" label="分类">
+            <template #default="scope">
+              <el-tag type="success" disable-transitions>
+                {{ scope.row.categoryName }}
+              </el-tag>
+            </template>
+          </el-table-column>
           <el-table-column label="最后一次修改时间" min-width="180">
             <template #default="scope">{{ scope.row.updateTime }}</template>
           </el-table-column>
           <el-table-column fixed="right" min-width="180" label="操作">
             <template #default="scope">
               <el-button :icon="Edit" size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-              <el-button
-                size="small"
-                type="danger"
-                @click="handleDelete(scope.$index, scope.row)"
-                :icon="Minus"
-              >删除</el-button>
+              <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)" :icon="Minus">删除
+              </el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -67,34 +71,26 @@
     <!-- 分页器 -->
     <el-row justify="center">
       <el-col :span="24">
-        <el-pagination
-          v-model:currentPage="currentPage"
-          v-model:page-size="pageSize"
-          :page-sizes="[5, 8, 12,15]"
-          :disabled="disabled"
-          :background="background"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="total"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          class="pagination"
-        ></el-pagination>
+        <el-pagination v-model:currentPage="currentPage" v-model:page-size="pageSize" :page-sizes="[5, 8, 12, 15]"
+          :disabled="disabled" :background="background" layout="total, sizes, prev, pager, next, jumper" :total="total"
+          @size-change="handleSizeChange" @current-change="handleCurrentChange" class="pagination"></el-pagination>
       </el-col>
     </el-row>
   </div>
 </template>
 <script setup lang="ts">
-import { ref, computed, reactive, onMounted } from 'vue';
-import { Search, Plus, Minus, Edit } from '@element-plus/icons-vue'
+import { ref, computed, reactive, onMounted, onBeforeMount } from 'vue';
+import { Search, Plus, Minus, Edit, Timer } from '@element-plus/icons-vue'
 import type { ElTable } from 'element-plus'
-import { useArticle } from '../../store';
+import { storeToRefs } from 'pinia';
+import { useArticle, useCategory } from '../../store';
 // import { reactify } from '_@vueuse_shared@7.7.1@@vueuse/shared';
 // import router from '../../route';
 import { useRouter } from 'vue-router';
 
 //获取仓库
 const articleStore = useArticle()
-
+const categoryStore = useCategory()
 // 要搜索的值
 const input = ref('')
 // 搜索文章
@@ -197,27 +193,57 @@ const articleList = computed({
 const tableData = computed(() => {
   return articleList.value
 })
+// 表格排序
+function sortCreatePageName(prev, next) {
+  console.log(prev, next);
+
+  return compare(prev.createPage.name, next.createPage.name)
+}
+
+function compare(prev, next) {
+  return (prev || '').localeCompare(next || '')
+}
 articleStore.getArticleList({ num: pageSize.value, page: page.value })
+//  分类过滤
+const filterTag = (value: string, row) => {
+  return row.categoryName === value
+}
+// 过滤列表 { text: 'Office', value: 'Office' },
+const { categoryTotalData } = storeToRefs(categoryStore);
+const filterLst = () => {
+  let arr = categoryTotalData.value[0].map((item, i) => {
+
+    return { text: item, value: item }
+  })
+  console.log(arr);
+
+  return arr
+}
 
 </script>
 <style lang="less" scoped>
 .search-btn {
   max-width: 200px;
 }
+
 .table {
   margin-top: 20px;
 }
+
 // 分页
-.demo-pagination-block + .demo-pagination-block {
+.demo-pagination-block+.demo-pagination-block {
   margin-top: 10px;
 }
+
 .demo-pagination-block .demonstration {
   margin-bottom: 16px;
 }
+
 .pagination {
   margin-top: 20px;
   justify-content: center;
 }
+
 // 批量删除
 .del-btn {
   margin-top: 20px;
@@ -225,6 +251,4 @@ articleStore.getArticleList({ num: pageSize.value, page: page.value })
   display: flex;
   justify-content: flex-start;
 }
-
-
 </style>

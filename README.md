@@ -1,7 +1,56 @@
-# Vue 3 + Vite
+# 个人博客后台管理系统
+> 个人博客前台地址 https://gitee.com/foochange/blog-system
+# 一 项目展示
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## 1 登录
 
-## Recommended IDE Setup
+![image-20220526220107966](http://niu.foogeoo.ltd/GitHubImg/image-20220526220107966.png)
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+
+
+## 2首页展示
+
+
+
+![image-20220526220201414](http://niu.foogeoo.ltd/GitHubImg/image-20220526220201414.png)
+
+
+
+## 3 文章管理模块展示
+
+![image-20220526220244410](http://niu.foogeoo.ltd/GitHubImg/image-20220526220244410.png)
+
+## 4 分类管理模块展示
+
+![image-20220526220409161](http://niu.foogeoo.ltd/GitHubImg/image-20220526220409161.png)
+
+## 4 个人信息管理模块展示
+
+![image-20220526220424708](http://niu.foogeoo.ltd/GitHubImg/image-20220526220424708.png)
+
+# 二 简介
+
+## 2.1  项目简介
+
+ 后台功能主要是博客的删除、修改和新增博客的发布、以及博客分类的删除、修改和新增分类，以及用户登录的功能。
+
+当用户想要发布文章时，可以进入文章管理界面，点击添加文章按钮进入文章发布页面，然后进行编辑最后编辑完成点击发布按钮。文章发布成功后会在前台界面显示。创建文章后可能需要对文章进行修改，这就需要修改文章的功能。点击文章管理，点击想要编辑文章的编辑按钮就可以对该文章进行编辑操作，编辑完成后，前台页面就可以展示编辑后的页面。
+
+想要删除文章时可点击删除按钮完成删除操作，还可店家最前面的多选框，选中想要删除的文章，然后点击批量删除按钮，完成批量删除。考虑到文章过多不方便管理，博客后台系统提供了博客分类标签的新增、修改、删除、以及批量删除等功能。方便对博客进行分类管理。
+
+## 2.2 项目模块
+
+
+
+## 2.3 技术栈
+
+- Vue3 + VueRouter + Element-Plus + Pinia + Axios 
+
+> `VUE` 
+> 是一套用于构建用户界面的**渐进式框架**。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。 前后端分离是目前一种非常流行的开发模式，它使项目的分工更加明确：后端：负责处理、存储数据. 前端：负责显示数据 前端和后端开发人员通过 接口 进行数据的交换。
+
+## 2.4  软件环境
+
+
+
+## 2.5 项目结构
