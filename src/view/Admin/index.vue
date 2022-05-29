@@ -1,4 +1,10 @@
 <script  setup lang="ts">
+import {
+  HomeFilled,
+  Document,
+  Menu as IconMenu,
+  UserFilled,
+} from '@element-plus/icons-vue'
 import * as echarts from 'echarts';
 import { onBeforeMount, onMounted, onUnmounted, reactive, ref, watchEffect } from 'vue'
 import { useArticle, useCategory } from '../../store';
@@ -63,7 +69,7 @@ function initPieChart() {
   piechart.setOption({
     title: {
       text: '文章分类统计',
-      subtext: '每种分类的文章数',
+      // subtext: '每种分类的文章数',
       left: 'center'
     },
     tooltip: {
@@ -121,17 +127,32 @@ function initPieChart() {
     <div class="item-box">
       <div class="item">
         <a href="http://www.foogeoo.ltd:9998/#/" target="_blank">
+           <el-icon :size="30" color="#ccc">
+              <HomeFilled />
+           </el-icon>
           博客前台
         </a>
       </div>
-      <div class="item">
-        <router-link to="/article">文章管理</router-link>
+      <div class="item"> 
+        <router-link to="/article">
+           <el-icon :size="30" color="#ccc">
+              <Document />
+           </el-icon>
+          文章管理</router-link>
       </div>
       <div class="item">
-        <router-link to="/category">分类管理</router-link>
+        <router-link to="/category">
+           <el-icon :size="30" color="#ccc">
+              <IconMenu />
+           </el-icon>
+          分类管理</router-link>
       </div>
       <div class="item">
-        <router-link to="/personal">个人信息管理</router-link>
+        <router-link to="/personal">
+           <el-icon :size="30" color="#ccc">
+              <UserFilled />
+           </el-icon>
+          个人信息管理</router-link>
       </div>
     </div>
   </div>
@@ -184,7 +205,10 @@ function initPieChart() {
       display: block;
       font-size: 24px;
       line-height: 100px;
-
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
       &:hover {
         color: #000;
       }

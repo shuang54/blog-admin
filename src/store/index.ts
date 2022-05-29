@@ -100,6 +100,7 @@ export const useUser = defineStore('user', {
       imgUrl: '',
       created_at: '',
       verifyUrl: '',
+      bulletin:'',
     }
   },
   actions: {
@@ -117,6 +118,7 @@ export const useUser = defineStore('user', {
         this.desc = result.data.desc
         this.imgUrl = result.data.imgUrl
         this.created_at = result.data.created_at
+        this.bulletin = result.data.bulletin
         return 'ok'
       }
       this.getVerify()
@@ -134,6 +136,7 @@ export const useUser = defineStore('user', {
         this.desc = result.data.desc
         this.imgUrl = result.data.imgUrl
         this.created_at = result.data.created_at
+        this.bulletin = result.data.bulletin
         return;
       }
       return Promise.reject(new Error(''))
@@ -146,6 +149,7 @@ export const useUser = defineStore('user', {
       this.imgUrl = ''
       this.email = ''
       this.created_at = ''
+      this.bulletin = ''
       window.localStorage.removeItem('token')
     },
     // 修改密码
@@ -168,7 +172,7 @@ export const useUser = defineStore('user', {
         this.name = data.name
         this.email = data.email
         this.desc = data.desc
-
+        this.bulletin = data.bulletin
         return 'ok'
       }
       message.error('修改用户信息失败')

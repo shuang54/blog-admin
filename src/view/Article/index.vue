@@ -71,9 +71,17 @@
     <!-- 分页器 -->
     <el-row justify="center">
       <el-col :span="24">
-        <el-pagination v-model:currentPage="currentPage" v-model:page-size="pageSize" :page-sizes="[5, 8, 12, 15]"
-          :disabled="disabled" :background="background" layout="total, sizes, prev, pager, next, jumper" :total="total"
-          @size-change="handleSizeChange" @current-change="handleCurrentChange" class="pagination"></el-pagination>
+        <el-pagination 
+        v-model:currentPage="currentPage"
+         v-model:page-size="pageSize" 
+         :page-sizes="[5, 8, 12, 15]"
+          :disabled="disabled" 
+          :background="background" 
+          layout="total, sizes, prev, pager, next, jumper" 
+          :total="total"
+          @size-change="handleSizeChange" 
+          @current-change="handleCurrentChange" 
+          class="pagination"></el-pagination>
       </el-col>
     </el-row>
   </div>
@@ -215,7 +223,6 @@ const filterLst = () => {
 
     return { text: item, value: item }
   })
-  console.log(arr);
 
   return arr
 }

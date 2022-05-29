@@ -13,15 +13,18 @@ const userInfoForm = reactive<{
   email: string
   name: string
   desc: string
+  bulletin:string
 }>({
   email: '',
   name: '',
   desc: '',
+  bulletin: '',
 })
 userInfoForm.name = userStore.name
 userInfoForm.email = userStore.email
 userInfoForm.desc = userStore.desc
-const { imgUrl, name, created_at } = storeToRefs(userStore)
+userInfoForm.bulletin = userStore.bulletin
+const { imgUrl, name, created_at,bulletin } = storeToRefs(userStore)
 
 
 
@@ -167,7 +170,10 @@ const updatePwd = async (formEl: FormInstance | undefined) => {
             <el-input v-model="userInfoForm.name" />
           </el-form-item>
           <el-form-item label="描述：" prop="desc">
-            <el-input :rows="8" v-model="userInfoForm.desc" type="textarea" />
+            <el-input :rows="4" v-model="userInfoForm.desc" type="textarea" />
+          </el-form-item>
+           <el-form-item label="公告栏：" prop="bulletin">
+            <el-input :rows="4" v-model="userInfoForm.bulletin" type="textarea" />
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="submitForm(formRef)">保存</el-button>

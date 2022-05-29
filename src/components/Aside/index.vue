@@ -64,8 +64,6 @@ const handleOpen = (key: string, keyPath: string[]) => {
   // console.log(route.path);
 
   activeIndex.value = route.path ? route.path : '/'
-
-
 }
 watchEffect(() => {
   activeIndex.value = route.path
