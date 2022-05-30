@@ -1,5 +1,13 @@
 # 个人博客后台管理系统
-> 个人博客前台地址 https://gitee.com/foochange/blog-system
+> 
+>
+> 后台展示界面：http://www.foogeoo.ltd:9997/
+>
+> 前台展示界面：http://www.foogeoo.ltd:9998/
+>
+> 个人博客前台 GitHub地址：https://github.com/shuang54/blog-syatem
+>
+> 个人博客后台 GitHub地址：https://github.com/shuang54/blog-admin
 # 一 项目展示
 
 ## 1 登录
